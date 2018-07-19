@@ -1,0 +1,2 @@
+module PigCi::Loggers
+end
