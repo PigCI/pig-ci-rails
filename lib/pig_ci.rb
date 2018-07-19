@@ -1,23 +1,25 @@
 require "pig_ci/version"
 
 module PigCi
-  module_function
+
+  extend self
 
   attr_accessor :running
   attr_accessor :pid
 
+  module_function
   def start
     self.running = true
     self.pid = Process.pid
+    puts '[PigCi] Starting up'
 
     # Purge any previous logs
     
     # Attach listners
-    puts 'running'
   end
 
   def run_exit_tasks!
-    puts 'finished'
+    puts '[PigCI] Finished, expect an output or something in a moment'
   end
 end
 
