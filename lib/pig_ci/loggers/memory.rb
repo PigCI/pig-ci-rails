@@ -2,17 +2,39 @@ require 'get_process_mem'
 require 'terminal-table'
 
 class PigCi::Loggers::Memory
-  def self.purge_previous_snapshot!
+  def self.setup!
     File.open(PigCi.tmp_directory.join('pig-ci-memory.txt'), 'w') {|file| file.truncate(0) }
+  end
+
+  def self.touch_memory!
+    @memory = ::GetProcessMem.new.kb
   end
 
   def self.append_row(key)
     File.open(PigCi.tmp_directory.join('pig-ci-memory.txt'),"a+") do |f|
-      f.puts([key, ::GetProcessMem.new.kb].join('|'))
+      f.puts([key, (::GetProcessMem.new.kb - @memory)].join('|'))
     end
   end
 
   def self.report!
+
+    table = Terminal::Table.new headings: ['Key', 'Max', 'Min', 'Mean', 'Number of requests'] do |t|
+      aggregated_memory_totals.each do |data|
+        t << [
+          data[:key],
+          data[:max],
+          data[:min],
+          (data[:total] / data[:number_of_requests]),
+          data[:number_of_requests]
+        ]
+      end
+    end
+
+    puts "[PigCI] Aggregated Memory Totals:\n"
+    puts table
+  end
+
+  def self.aggregated_memory_totals
     aggregated_totals = {}
 
     File.foreach(PigCi.tmp_directory.join('pig-ci-memory.txt')) do |f|
@@ -33,21 +55,6 @@ class PigCi::Loggers::Memory
       aggregated_totals[key][:number_of_requests] += 1
     end
 
-    aggregated_totals = aggregated_totals.collect{ |k,d| d }.sort_by { |k| k[:max] * -1 }
-
-    table = Terminal::Table.new headings: ['Key', 'Max', 'Min', 'Mean', 'Number of requests'] do |t|
-      aggregated_totals.each do |data|
-        t << [
-          data[:key],
-          data[:max],
-          data[:min],
-          (data[:total] / data[:number_of_requests]),
-          data[:number_of_requests]
-        ]
-      end
-    end
-
-    puts "[PigCI] Aggregated Memory Totals:\n"
-    puts table
+    aggregated_totals.collect{ |k,d| d }.sort_by { |k| k[:max] * -1 }
   end
 end

@@ -20,11 +20,8 @@ module PigCi
     self.pid = Process.pid
     puts '[PigCi] Starting up'
 
-    # Purge any previous logs
-    ::PigCi::Rails.purge_previous_snapshots!
-    
-    # Attach listeners
-    ::PigCi::Rails.attach_listeners!
+    # Purge any previous logs and attach some listeners
+    ::PigCi::Rails.setup!
   end
 
   def run_exit_tasks!

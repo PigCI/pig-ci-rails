@@ -1,12 +1,18 @@
 class PigCi::Rails
-  def self.purge_previous_snapshots!
+  def self.setup!
     Dir.mkdir(PigCi.tmp_directory) unless File.exists?(PigCi.tmp_directory)
 
-    PigCi::Loggers::Memory.purge_previous_snapshot!
-    PigCi::Loggers::Sql.purge_previous_snapshot!
+    PigCi::Loggers::Memory.setup!
+    PigCi::Loggers::Sql.setup!
+
+    # Attach listeners
+    attach_listeners!
   end
 
   def self.attach_listeners!
+    ::ActiveSupport::Notifications.subscribe "start_processing.action_controller" do |*args|
+      PigCi::Loggers::Memory.touch_memory!
+    end
     ::ActiveSupport::Notifications.subscribe "process_action.action_controller" do |*args|
       event = ActiveSupport::Notifications::Event.new *args
 
