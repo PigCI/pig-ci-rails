@@ -1,4 +1,5 @@
 require 'get_process_mem'
+require 'terminal-table'
 
 class PigCi::Loggers::Memory
   def self.purge_previous_snapshot!
@@ -19,18 +20,34 @@ class PigCi::Loggers::Memory
       memory = memory.to_i
 
       aggregated_totals[key] ||= {
+        key: key,
         max: memory,
         min: memory,
-        mean: memory,
+        total: 0,
         number_of_requests: 0
       }
       aggregated_totals[key][:max] = memory if aggregated_totals[key][:max] < memory
       aggregated_totals[key][:min] = memory if aggregated_totals[key][:max] > memory
-      aggregated_totals[key][:mean] = (memory + memory) / 2
+      aggregated_totals[key][:total] += memory
 
       aggregated_totals[key][:number_of_requests] += 1
     end
 
-    puts aggregated_totals.inspect
+    aggregated_totals = aggregated_totals.collect{ |k,d| d }.sort_by { |k| k[:max] * -1 }
+
+    table = Terminal::Table.new headings: ['Key', 'Max', 'Min', 'Mean', 'Number of requests'] do |t|
+      aggregated_totals.each do |data|
+        t << [
+          data[:key],
+          data[:max],
+          data[:min],
+          (data[:total] / data[:number_of_requests]),
+          data[:number_of_requests]
+        ]
+      end
+    end
+
+    puts "[PigCI] Aggregated Memory Totals:\n"
+    puts table
   end
 end
