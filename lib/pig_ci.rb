@@ -2,8 +2,9 @@ require "pig_ci/version"
 require "pig_ci/rails"
 
 require "pig_ci/loggers"
+require "pig_ci/loggers/instantiation_active_record"
 require "pig_ci/loggers/memory"
-require "pig_ci/loggers/sql"
+require "pig_ci/loggers/sql_active_record"
 
 module PigCi
 
