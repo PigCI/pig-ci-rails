@@ -7,13 +7,16 @@ class PigCi::Loggers::Memory
   end
 
   def self.touch_memory!
+    GC.disable
     @memory = ::GetProcessMem.new.kb
   end
 
   def self.append_row(key)
+    new_memory = ::GetProcessMem.new.kb
     File.open(PigCi.tmp_directory.join('pig-ci-memory.txt'),"a+") do |f|
-      f.puts([key, (::GetProcessMem.new.kb - @memory)].join('|'))
+      f.puts([key, (new_memory - @memory)].join('|'))
     end
+    GC.enable
   end
 
   def self.report!
@@ -48,8 +51,8 @@ class PigCi::Loggers::Memory
         total: 0,
         number_of_requests: 0
       }
-      aggregated_totals[key][:max] = memory if aggregated_totals[key][:max] < memory
-      aggregated_totals[key][:min] = memory if aggregated_totals[key][:max] > memory
+      aggregated_totals[key][:max] = memory if memory > aggregated_totals[key][:max]
+      aggregated_totals[key][:min] = memory if memory < aggregated_totals[key][:min]
       aggregated_totals[key][:total] += memory
 
       aggregated_totals[key][:number_of_requests] += 1
