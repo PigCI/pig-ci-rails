@@ -6,17 +6,18 @@ class PigCi::Loggers::Memory
     File.open(PigCi.tmp_directory.join('pig-ci-memory.txt'), 'w') {|file| file.truncate(0) }
   end
 
-  def self.touch_memory!
+  def self.start!
     GC.disable
-    @memory = ::GetProcessMem.new.kb
+  end
+
+  def self.complete!
+    GC.enable
   end
 
   def self.append_row(key)
-    new_memory = ::GetProcessMem.new.kb
     File.open(PigCi.tmp_directory.join('pig-ci-memory.txt'),"a+") do |f|
-      f.puts([key, (new_memory - @memory)].join('|'))
+      f.puts([key, ::GetProcessMem.new.kb].join('|'))
     end
-    GC.enable
   end
 
   def self.report!
