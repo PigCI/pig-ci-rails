@@ -2,7 +2,7 @@ en:
   pig_ci:
     reports:
       instantiation_active_record:
-        name: Instantiation Active Record
+        name: Active Record Object Instantiation
         attributes:
 
       memory:

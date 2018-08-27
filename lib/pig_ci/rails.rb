@@ -2,9 +2,11 @@ class PigCi::Rails
   def self.setup!
     Dir.mkdir(PigCi.tmp_directory) unless File.exists?(PigCi.tmp_directory)
 
-    PigCi::Loggers::Memory.setup!
-    PigCi::Loggers::InstantiationActiveRecord.setup!
-    PigCi::Loggers::SqlActiveRecord.setup!
+    [
+      PigCi::Loggers::Memory,
+      PigCi::Loggers::InstantiationActiveRecord,
+      PigCi::Loggers::SqlActiveRecord
+    ].collect(&:setup!)
 
     # Attach listeners
     attach_listeners!
@@ -21,8 +23,8 @@ class PigCi::Rails
   def self.attach_listeners!
     ::ActiveSupport::Notifications.subscribe "start_processing.action_controller" do |*args|
       event = ActiveSupport::Notifications::Event.new *args
-
       self.request_key = "#{event.payload[:method]} #{event.payload[:controller]}##{event.payload[:action]}{format:#{event.payload[:format]}}"
+
       PigCi::Loggers::Memory.start!
       PigCi::Loggers::InstantiationActiveRecord.start!
       PigCi::Loggers::SqlActiveRecord.start!
