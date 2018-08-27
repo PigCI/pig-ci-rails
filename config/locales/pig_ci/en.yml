@@ -1,0 +1,14 @@
+en:
+  pig_ci:
+    reports:
+      instantiation_active_record:
+        name: Instantiation Active Record
+        attributes:
+
+      memory:
+        name: Peak memory per a request
+        attributes:
+
+      sql_active_record:
+        name: Queries to the database
+        attributes:

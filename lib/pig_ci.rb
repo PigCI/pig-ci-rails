@@ -26,6 +26,9 @@ module PigCi
     self.pid = Process.pid
     puts '[PigCi] Starting up'
 
+    # Add our translations
+    I18n.load_path += Dir["#{File.expand_path("../../config/locales/pig_ci", __FILE__)}/*.{rb,yml}"]
+    
     # Purge any previous logs and attach some listeners
     ::PigCi::Rails.setup!
   end
