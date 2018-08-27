@@ -53,9 +53,15 @@ class PigCi::Rails
     end
   end
 
-  def self.build_report!
-    PigCi::Loggers::Memory.report!
-    #PigCi::Loggers::InstantiationActiveRecord.report!
-    #PigCi::Loggers::SqlActiveRecord.report!
+  def self.print_reports!
+    [
+      PigCi::Reports::Memory,
+      PigCi::Reports::InstantiationActiveRecord,
+      PigCi::Reports::SqlActiveRecord
+    ].collect(&:print!)
+  end
+
+  def self.send_reports!
+    puts "[PigCi] Sharing stats with your team…"
   end
 end

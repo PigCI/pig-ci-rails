@@ -6,6 +6,11 @@ require "pig_ci/loggers/instantiation_active_record"
 require "pig_ci/loggers/memory"
 require "pig_ci/loggers/sql_active_record"
 
+require "pig_ci/reports"
+require "pig_ci/reports/instantiation_active_record"
+require "pig_ci/reports/memory"
+require "pig_ci/reports/sql_active_record"
+
 module PigCi
 
   extend self
@@ -28,7 +33,8 @@ module PigCi
   def run_exit_tasks!
     puts '[PigCI] Finished, expect an output or something in a moment'
 
-    ::PigCi::Rails.build_report!
+    ::PigCi::Rails.print_reports!
+    ::PigCi::Rails.send_reports!
   end
 end
 
