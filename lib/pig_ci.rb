@@ -46,6 +46,11 @@ module PigCi
     @profiler_engine ||= PigCi::ProfilerEngine::Rails
   end
 
+  attr_accessor :request_key
+  def request_key(payload)
+    (@request_key || Proc.new{ |pl| "#{pl[:method]} #{pl[:controller]}##{pl[:action]}{format:#{pl[:format]}}" }).call(payload)
+  end
+
   module_function
   def start
     self.running = true

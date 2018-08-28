@@ -27,7 +27,7 @@ class PigCi::ProfilerEngine::Rails < PigCi::ProfilerEngine
   def self.attach_listeners!
     ::ActiveSupport::Notifications.subscribe 'start_processing.action_controller' do |*args|
       event = ActiveSupport::Notifications::Event.new *args
-      self.request_key = "#{event.payload[:method]} #{event.payload[:controller]}##{event.payload[:action]}{format:#{event.payload[:format]}}"
+      self.request_key = PigCi.request_key(event.payload)
 
       profilers.collect(&:start!)
     end
