@@ -39,13 +39,16 @@ module PigCi
   def run_exit_tasks!
     puts '[PigCI] Finished, expect an output or something in a moment'
 
-    self.finish_time = Time.now.to_i
+    self.finish_time = Time.now.to_i.to_s
 
     ::PigCi::Rails.save_reports!
     ::PigCi::Rails.print_reports!
     ::PigCi::Rails.send_reports!
   end
 end
+
+PigCi.tmp_directory = Pathname.new(Dir.getwd).join('tmp')
+PigCi.output_directory = Pathname.new(Dir.getwd).join('tmp')
 
 at_exit do
   # If we are in a different process than called start, don't interfere.

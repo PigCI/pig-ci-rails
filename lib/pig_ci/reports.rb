@@ -47,12 +47,30 @@ class PigCi::Reports
   end
 
   def self.aggregated_data
-    historical_data[PigCi.finish_time][i18n_key]
+    historical_data[PigCi.finish_time][i18n_key].collect do |data|
+      previous_run_data = previous_run_data_for_key(data[:key]) || data
+
+      data[:max_change] = "#{(( BigDecimal(previous_run_data[:max]) / BigDecimal(data[:max]) ) - 1).round(4)}%"
+      data
+    end
+  end
+
+  def self.previous_run_data_for_key(key)
+    previous_run_keys.each do |previous_run_key|
+      historical_data[previous_run_key][i18n_key.to_sym].each do |raw_previous_run_data|
+        return raw_previous_run_data if raw_previous_run_data[:key] == key
+      end
+    end
+    nil
+  end
+
+  def self.previous_run_keys
+    @previous_run_keys ||= historical_data.keys.reject { |key| key == PigCi.finish_time }.sort.reverse
   end
 
   def self.historical_data
     @historical_data ||= if File.exists? output_file
-      JSON.parse(File.open(output_file, 'r').read)
+      JSON.parse(File.open(output_file, 'r').read, symbolize_names: true)
     else
       {}
     end
@@ -60,7 +78,7 @@ class PigCi::Reports
 
   private
   def self.column_keys
-    [:key, :max, :min, :mean, :number_of_requests]
+    [:key, :max, :min, :mean, :number_of_requests, :max_change]
   end
 
   def self.log_file
