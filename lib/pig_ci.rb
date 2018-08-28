@@ -29,7 +29,7 @@ module PigCi
 
   attr_accessor :report_print_limit
   def report_print_limit
-    @report_print_limit || 20
+    @report_print_limit || -1
   end
 
   attr_accessor :report_print_sort_by
@@ -99,7 +99,7 @@ module PigCi
   end
 end
 
-PigCi.report_print_sort_by = Proc.new { |d| d[:max_change_percentage] * -1 }
+# PigCi.report_print_sort_by = Proc.new { |d| d[:max_change_percentage] * -1 }
 
 at_exit do
   # If we are in a different process than called start, don't interfere.
