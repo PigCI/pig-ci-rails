@@ -50,6 +50,7 @@ class PigCi::ProfilerEngine::Rails < PigCi::ProfilerEngine
       profilers.each do |profiler|
         profiler.append_row(request_key)
       end
+      PigCi.request_was_completed = true
       self.request_key = nil
     end
   end

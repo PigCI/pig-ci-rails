@@ -10,6 +10,7 @@ module PigCi
 
   attr_accessor :running
   attr_accessor :pid
+  attr_accessor :request_was_completed
 
   attr_accessor :tmp_directory
   def tmp_directory
@@ -28,7 +29,7 @@ module PigCi
 
   attr_accessor :report_print_limit
   def report_print_limit
-    @report_print_limit || 5
+    @report_print_limit || 20
   end
 
   attr_accessor :report_print_sort_by
@@ -53,7 +54,7 @@ module PigCi
 
   attr_accessor :api_base_uri
   def api_base_uri
-    @api_base_uri || 'https://api.pigci.com'
+    @api_base_uri || 'https://api.pigci.com/v1'
   end
 
   attr_accessor :api_key
@@ -87,7 +88,7 @@ module PigCi
     reports = self.profiler_engine.reports
     puts "[PigCi] Saving your reports…"
     reports.collect(&:save!)
-    puts "[PigCi] Printing your reports…"
+    puts "[PigCi] Printing your reports…\n\n"
     reports.collect(&:print!)
     if PigCi.api_key.present?
       puts "[PigCi] Sharing your reports…"
@@ -98,11 +99,11 @@ module PigCi
   end
 end
 
-# PigCi.report_print_sort_by = Proc.new { |d| d[:max_change_percentage] * -1 }
+PigCi.report_print_sort_by = Proc.new { |d| d[:max_change_percentage] * -1 }
 
 at_exit do
   # If we are in a different process than called start, don't interfere.
   next if PigCi.pid != Process.pid
 
-  PigCi.run_exit_tasks! unless $ERROR_INFO
+  PigCi.run_exit_tasks! if PigCi.request_was_completed
 end
