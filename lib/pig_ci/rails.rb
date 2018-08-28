@@ -1,12 +1,24 @@
 class PigCi::Rails
+  def self.loggers
+    [
+      PigCi::Logger::Memory,
+      PigCi::Logger::InstantiationActiveRecord,
+      PigCi::Logger::SqlActiveRecord
+    ]
+  end
+
+  def self.reports
+    [
+      PigCi::Report::Memory,
+      PigCi::Report::InstantiationActiveRecord,
+      PigCi::Report::SqlActiveRecord
+    ]
+  end
+
   def self.setup!
     Dir.mkdir(PigCi.tmp_directory) unless File.exists?(PigCi.tmp_directory)
 
-    [
-      PigCi::Loggers::Memory,
-      PigCi::Loggers::InstantiationActiveRecord,
-      PigCi::Loggers::SqlActiveRecord
-    ].collect(&:setup!)
+    loggers.collect(&:setup!)
 
     # Attach listeners
     attach_listeners!
@@ -25,54 +37,31 @@ class PigCi::Rails
       event = ActiveSupport::Notifications::Event.new *args
       self.request_key = "#{event.payload[:method]} #{event.payload[:controller]}##{event.payload[:action]}{format:#{event.payload[:format]}}"
 
-      PigCi::Loggers::Memory.start!
-      PigCi::Loggers::InstantiationActiveRecord.start!
-      PigCi::Loggers::SqlActiveRecord.start!
+      loggers.collect(&:start!)
     end
 
     ::ActiveSupport::Notifications.subscribe "instantiation.active_record" do |*args|
       if self.request_key
         event = ActiveSupport::Notifications::Event.new *args
-        PigCi::Loggers::InstantiationActiveRecord.increment!(by: event.payload[:record_count])
+        PigCi::Logger::InstantiationActiveRecord.increment!(by: event.payload[:record_count])
       end
     end
 
     ::ActiveSupport::Notifications.subscribe "sql.active_record" do |*args|
       if self.request_key
         event = ActiveSupport::Notifications::Event.new *args
-        PigCi::Loggers::SqlActiveRecord.increment!
+        PigCi::Logger::SqlActiveRecord.increment!
       end
     end
 
     ::ActiveSupport::Notifications.subscribe "process_action.action_controller" do |*args|
       event = ActiveSupport::Notifications::Event.new *args
-      PigCi::Loggers::Memory.append_row(self.request_key)
-      PigCi::Loggers::InstantiationActiveRecord.append_row(self.request_key)
-      PigCi::Loggers::SqlActiveRecord.append_row(self.request_key)
+      PigCi::Logger::Memory.append_row(self.request_key)
+      PigCi::Logger::InstantiationActiveRecord.append_row(self.request_key)
+      PigCi::Logger::SqlActiveRecord.append_row(self.request_key)
 
-      PigCi::Loggers::Memory.complete!
+      PigCi::Logger::Memory.complete!
       self.request_key = nil
     end
-  end
-
-  def self.save_reports!
-    puts "[PigCi] Saving your reports…"
-    [
-      PigCi::Reports::Memory,
-      PigCi::Reports::InstantiationActiveRecord,
-      PigCi::Reports::SqlActiveRecord
-    ].collect(&:save!)
-  end
-
-  def self.print_reports!
-    [
-      PigCi::Reports::Memory,
-      PigCi::Reports::InstantiationActiveRecord,
-      PigCi::Reports::SqlActiveRecord
-    ].collect(&:print!)
-  end
-
-  def self.send_reports!
-    puts "[PigCi] Sharing stats with your team…"
   end
 end

@@ -1,9 +1,9 @@
 require 'terminal-table'
 
-class PigCi::Reports
+class PigCi::Report
   def self.print!
     puts "[PigCI] #{I18n.t('.name', scope: i18n_scope)}:\n"
-    table = Terminal::Table.new headings: column_keys.collect(&:to_s).collect(&:humanize) do |t|
+    table = Terminal::Table.new headings: column_keys.collect { |key| I18n.t(".attributes.#{key}", scope: i18n_scope) } do |t|
       aggregated_data.each do |data|
         t << column_keys.collect {|key| data[key] }
       end
@@ -76,7 +76,6 @@ class PigCi::Reports
     end
   end
 
-  private
   def self.column_keys
     [:key, :max, :min, :mean, :number_of_requests, :max_change]
   end
@@ -94,6 +93,6 @@ class PigCi::Reports
   end
 
   def self.i18n_scope
-    @i18n_scope ||= "pig_ci.reports.#{i18n_key}"
+    @i18n_scope ||= "pig_ci.report.#{i18n_key}"
   end
 end

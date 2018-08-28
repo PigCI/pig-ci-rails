@@ -1,4 +1,4 @@
-class PigCi::Loggers
+class PigCi::Logger
   def self.setup!
     File.open(log_file, 'w') {|file| file.truncate(0) }
   end

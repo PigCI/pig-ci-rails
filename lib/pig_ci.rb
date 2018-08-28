@@ -1,15 +1,17 @@
 require "pig_ci/version"
 require "pig_ci/rails"
 
-require "pig_ci/loggers"
-require "pig_ci/loggers/instantiation_active_record"
-require "pig_ci/loggers/memory"
-require "pig_ci/loggers/sql_active_record"
+require "pig_ci/api"
 
-require "pig_ci/reports"
-require "pig_ci/reports/instantiation_active_record"
-require "pig_ci/reports/memory"
-require "pig_ci/reports/sql_active_record"
+require "pig_ci/logger"
+require "pig_ci/logger/instantiation_active_record"
+require "pig_ci/logger/memory"
+require "pig_ci/logger/sql_active_record"
+
+require "pig_ci/report"
+require "pig_ci/report/instantiation_active_record"
+require "pig_ci/report/memory"
+require "pig_ci/report/sql_active_record"
 
 module PigCi
 
@@ -41,9 +43,12 @@ module PigCi
 
     self.finish_time = Time.now.to_i.to_s
 
-    ::PigCi::Rails.save_reports!
-    ::PigCi::Rails.print_reports!
-    ::PigCi::Rails.send_reports!
+    reports = ::PigCi::Rails.reports
+    puts "[PigCi] Saving your reports…"
+    reports.collect(&:save!)
+    puts "[PigCi] Saving your reports…"
+    reports.collect(&:print!)
+    puts "[PigCi] Sharing your reports…"
   end
 end
 
