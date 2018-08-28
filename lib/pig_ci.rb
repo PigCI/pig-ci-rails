@@ -12,12 +12,36 @@ module PigCi
   attr_accessor :pid
   attr_accessor :tmp_directory
   attr_accessor :output_directory
-  attr_accessor :finish_time
+  attr_accessor :change_precision
+  attr_accessor :report_print_limit
+  attr_accessor :report_print_sort_by
+
+  def tmp_directory
+    @tmp_directory || Pathname.new(Dir.getwd).join('tmp')
+  end
+
+  def output_directory
+    @output_directory || Pathname.new(Dir.getwd).join('tmp')
+  end
+
+  def change_precision
+    @change_precision || 5
+  end
+
+  def report_print_limit
+    @report_print_limit || 5
+  end
+
+  def report_print_sort_by(data)
+    (@report_print_sort_by || Proc.new{ |d| d[:max] * -1 }).call(data)
+  end
+
+  def finish_time
+    @finish_time ||= Time.now.to_i.to_s
+  end
 
   module_function
   def start
-    self.tmp_directory = Pathname.new(Dir.getwd).join('tmp')
-    self.output_directory = Pathname.new(Dir.getwd).join('tmp')
     self.running = true
     self.pid = Process.pid
     puts '[PigCi] Starting up'
@@ -32,19 +56,16 @@ module PigCi
   def run_exit_tasks!
     puts '[PigCI] Finished, expect an output or something in a moment'
 
-    self.finish_time = Time.now.to_i.to_s
-
     reports = ::PigCi::Engine::Rails.reports
     puts "[PigCi] Saving your reports…"
     reports.collect(&:save!)
-    puts "[PigCi] Saving your reports…"
+    puts "[PigCi] Printing your reports…"
     reports.collect(&:print!)
     puts "[PigCi] Sharing your reports…"
   end
 end
 
-PigCi.tmp_directory = Pathname.new(Dir.getwd).join('tmp')
-PigCi.output_directory = Pathname.new(Dir.getwd).join('tmp')
+PigCi.report_print_sort_by = Proc.new { |d| d[:max_change_percentage] * -1 }
 
 at_exit do
   # If we are in a different process than called start, don't interfere.

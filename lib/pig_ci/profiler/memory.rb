@@ -5,7 +5,8 @@ class PigCi::Profiler::Memory < PigCi::Profiler
     GC.disable
   end
 
-  def self.complete!
+  def self.append_row(key)
+    super
     GC.enable
   end
 

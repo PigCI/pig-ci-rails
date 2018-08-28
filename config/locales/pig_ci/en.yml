@@ -9,7 +9,7 @@ en:
           min: Min
           mean: Mean
           number_of_requests: Requests
-          max_change: "% Change"
+          max_change_percentage_with_unit: "% Change"
 
       memory:
         name: Peak memory per a request
@@ -19,7 +19,7 @@ en:
           min: Min
           mean: Mean
           number_of_requests: Requests
-          max_change: "% Change"
+          max_change_percentage_with_unit: "% Change"
 
       sql_active_record:
         name: Queries to the database
@@ -29,4 +29,4 @@ en:
           min: Min
           mean: Mean
           number_of_requests: Requests
-          max_change: "% Change"
+          max_change_percentage_with_unit: "% Change"

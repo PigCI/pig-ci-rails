@@ -47,11 +47,9 @@ class PigCi::Engine::Rails < PigCi::Engine
     end
 
     ::ActiveSupport::Notifications.subscribe 'process_action.action_controller' do |*args|
-      PigCi::Profiler::Memory.append_row(self.request_key)
-      PigCi::Profiler::InstantiationActiveRecord.append_row(self.request_key)
-      PigCi::Profiler::SqlActiveRecord.append_row(self.request_key)
-
-      PigCi::Profiler::Memory.complete!
+      profilers.each do |profiler|
+        profiler.append_row(request_key)
+      end
       self.request_key = nil
     end
   end
