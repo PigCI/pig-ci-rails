@@ -1,6 +1,6 @@
 require 'pig_ci/version'
 require 'pig_ci/api'
-require 'pig_ci/engine'
+require 'pig_ci/profiler_engine'
 require 'pig_ci/profiler'
 require 'pig_ci/report'
 
@@ -41,6 +41,11 @@ module PigCi
     @run_timestamp ||= Time.now.to_i.to_s
   end
 
+  attr_accessor :profile_engine
+  def profiler_engine
+    @profiler_engine ||= PigCi::ProfilerEngine::Rails
+  end
+
   module_function
   def start
     self.running = true
@@ -51,13 +56,13 @@ module PigCi
     I18n.load_path += Dir["#{File.expand_path("../../config/locales/pig_ci", __FILE__)}/*.{rb,yml}"]
     
     # Purge any previous logs and attach some listeners
-    ::PigCi::Engine::Rails.setup!
+    self.profiler_engine.setup!
   end
 
   def run_exit_tasks!
     puts '[PigCI] Finished, expect an output or something in a moment'
 
-    reports = ::PigCi::Engine::Rails.reports
+    reports = self.profiler_engine.reports
     puts "[PigCi] Saving your reports…"
     reports.collect(&:save!)
     puts "[PigCi] Printing your reports…"
@@ -66,7 +71,7 @@ module PigCi
   end
 end
 
-PigCi.report_print_sort_by = Proc.new { |d| d[:max_change_percentage] * -1 }
+# PigCi.report_print_sort_by = Proc.new { |d| d[:max_change_percentage] * -1 }
 
 at_exit do
   # If we are in a different process than called start, don't interfere.

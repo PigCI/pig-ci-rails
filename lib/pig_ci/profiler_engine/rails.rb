@@ -1,4 +1,4 @@
-class PigCi::Engine::Rails < PigCi::Engine
+class PigCi::ProfilerEngine::Rails < PigCi::ProfilerEngine
   def self.profilers
     [
       PigCi::Profiler::Memory,
