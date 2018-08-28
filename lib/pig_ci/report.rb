@@ -12,6 +12,13 @@ class PigCi::Report
     puts "\n"
   end
 
+  def self.to_json
+    {
+      type: i18n_key,
+      data: last_run_data
+    }
+  end
+
   def self.save!
     historical_data
 

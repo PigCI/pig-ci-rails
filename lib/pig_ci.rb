@@ -51,6 +51,23 @@ module PigCi
     (@request_key || Proc.new{ |pl| "#{pl[:method]} #{pl[:controller]}##{pl[:action]}{format:#{pl[:format]}}" }).call(payload)
   end
 
+  attr_accessor :api_base_uri
+  def api_base_uri
+    @api_base_uri || 'https://api.pigci.com'
+  end
+
+  attr_accessor :api_key
+
+  attr_accessor :commit_sha1
+  def commit_sha1
+    @commit_sha1 || ENV['CIRCLE_SHA1'] || ENV['TRAVIS_COMMIT'] || `git rev-parse HEAD`
+  end
+
+  attr_accessor :reporter_name
+  def reporter_name
+    @reporter_name || ('Circle CI' if ENV['CIRCLE_SHA1']) || ('TravisCi' if ENV['TRAVIS_COMMIT'])
+  end
+
   module_function
   def start
     self.running = true
@@ -72,7 +89,12 @@ module PigCi
     reports.collect(&:save!)
     puts "[PigCi] Printing your reports…"
     reports.collect(&:print!)
-    puts "[PigCi] Sharing your reports…"
+    if PigCi.api_key.present?
+      puts "[PigCi] Sharing your reports…"
+      PigCi::Api::ShareReports.new(reports: reports).share
+    else
+      puts "[PigCi] You can share your reports PigCI with your colleagues via https://pigci.com/"
+    end
   end
 end
 
