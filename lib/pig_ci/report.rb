@@ -1,4 +1,5 @@
 require 'terminal-table'
+require 'colorized_string'
 
 class PigCi::Report
   def self.print!
@@ -57,9 +58,16 @@ class PigCi::Report
     historical_data[PigCi.run_timestamp][i18n_key].collect do |data|
       previous_run_data = previous_run_data_for_key(data[:key]) || data
 
-      data[:max_change_percentage] = (( BigDecimal(previous_run_data[:max]) / BigDecimal(data[:max]) ) - 1).round(PigCi.change_precision)
+      data[:max_change_percentage] = (( BigDecimal(previous_run_data[:max]) / BigDecimal(data[:max]) ) - 1)
       data[:max_change_percentage] = BigDecimal('0') if data[:max_change_percentage].to_s == 'NaN'
-      data[:max_change_percentage_with_unit] = "#{data[:max_change_percentage]}%"
+
+      if data[:max_change_percentage] >= BigDecimal('0.01')
+        data[:max_change_percentage_with_unit] = ColorizedString["#{data[:max_change_percentage].round(PigCi.change_precision)}%"].colorize(:red)
+      elsif data[:max_change_percentage] <= BigDecimal('-0.01')
+        data[:max_change_percentage_with_unit] = ColorizedString["#{data[:max_change_percentage].round(PigCi.change_precision)}%"].colorize(:green)
+      else
+        data[:max_change_percentage_with_unit] = "#{data[:max_change_percentage].round(PigCi.change_precision)}%"
+      end
       data
     end
   end
