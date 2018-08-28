@@ -1,20 +1,18 @@
-class PigCi::Logger
+class PigCi::Profiler
   def self.setup!
     File.open(log_file, 'w') {|file| file.truncate(0) }
   end
 
   private
   def self.log_file
-    @log_file ||= PigCi.tmp_directory.join(
-      "pig-ci-#{i18n_key}.txt"
-    )
+    @log_file ||= PigCi.tmp_directory.join("pig-ci-#{i18n_key}.txt")
   end
 
   def self.i18n_key
     @i18n_key ||= name.underscore.split('/').last
   end
 
-  def self.log_value;end
+  def self.log_value; end
 
   def self.append_row(key)
     File.open(log_file, 'a+') do |f|
@@ -22,3 +20,7 @@ class PigCi::Logger
     end
   end
 end
+
+require 'pig_ci/profiler/instantiation_active_record'
+require 'pig_ci/profiler/memory'
+require 'pig_ci/profiler/sql_active_record'

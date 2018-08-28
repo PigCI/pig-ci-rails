@@ -96,3 +96,7 @@ class PigCi::Report
     @i18n_scope ||= "pig_ci.report.#{i18n_key}"
   end
 end
+
+require 'pig_ci/report/instantiation_active_record'
+require 'pig_ci/report/memory'
+require 'pig_ci/report/sql_active_record'

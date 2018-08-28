@@ -1,4 +1,4 @@
-class PigCi::Logger::InstantiationActiveRecord < PigCi::Logger
+class PigCi::Profiler::InstantiationActiveRecord < PigCi::Profiler
   def self.start!
     @object_count = 0
   end

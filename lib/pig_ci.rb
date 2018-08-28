@@ -1,17 +1,8 @@
-require "pig_ci/version"
-require "pig_ci/rails"
-
-require "pig_ci/api"
-
-require "pig_ci/logger"
-require "pig_ci/logger/instantiation_active_record"
-require "pig_ci/logger/memory"
-require "pig_ci/logger/sql_active_record"
-
-require "pig_ci/report"
-require "pig_ci/report/instantiation_active_record"
-require "pig_ci/report/memory"
-require "pig_ci/report/sql_active_record"
+require 'pig_ci/version'
+require 'pig_ci/api'
+require 'pig_ci/engine'
+require 'pig_ci/profiler'
+require 'pig_ci/report'
 
 module PigCi
 
@@ -35,7 +26,7 @@ module PigCi
     I18n.load_path += Dir["#{File.expand_path("../../config/locales/pig_ci", __FILE__)}/*.{rb,yml}"]
     
     # Purge any previous logs and attach some listeners
-    ::PigCi::Rails.setup!
+    ::PigCi::Engine::Rails.setup!
   end
 
   def run_exit_tasks!
@@ -43,7 +34,7 @@ module PigCi
 
     self.finish_time = Time.now.to_i.to_s
 
-    reports = ::PigCi::Rails.reports
+    reports = ::PigCi::Engine::Rails.reports
     puts "[PigCi] Saving your reports…"
     reports.collect(&:save!)
     puts "[PigCi] Saving your reports…"
@@ -59,5 +50,5 @@ at_exit do
   # If we are in a different process than called start, don't interfere.
   next if PigCi.pid != Process.pid
 
-  PigCi.run_exit_tasks!
+  PigCi.run_exit_tasks! unless $ERROR_INFO
 end
