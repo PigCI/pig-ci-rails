@@ -10,34 +10,35 @@ module PigCi
 
   attr_accessor :running
   attr_accessor :pid
-  attr_accessor :tmp_directory
-  attr_accessor :output_directory
-  attr_accessor :change_precision
-  attr_accessor :report_print_limit
-  attr_accessor :report_print_sort_by
 
+  attr_accessor :tmp_directory
   def tmp_directory
     @tmp_directory || Pathname.new(Dir.getwd).join('tmp')
   end
 
+  attr_accessor :output_directory
   def output_directory
     @output_directory || Pathname.new(Dir.getwd).join('tmp')
   end
 
+  attr_accessor :change_precision
   def change_precision
     @change_precision || 5
   end
 
+  attr_accessor :report_print_limit
   def report_print_limit
     @report_print_limit || 5
   end
 
+  attr_accessor :report_print_sort_by
   def report_print_sort_by(data)
     (@report_print_sort_by || Proc.new{ |d| d[:max] * -1 }).call(data)
   end
 
-  def finish_time
-    @finish_time ||= Time.now.to_i.to_s
+  attr_accessor :run_timestamp
+  def run_timestamp
+    @run_timestamp ||= Time.now.to_i.to_s
   end
 
   module_function

@@ -15,8 +15,8 @@ class PigCi::Report
   def self.save!
     historical_data
 
-    @historical_data[PigCi.finish_time] ||= {}
-    @historical_data[PigCi.finish_time][i18n_key] = last_run_data
+    @historical_data[PigCi.run_timestamp] ||= {}
+    @historical_data[PigCi.run_timestamp][i18n_key] = last_run_data
 
     File.write(output_file, @historical_data.to_json)
   end
@@ -47,7 +47,7 @@ class PigCi::Report
   end
 
   def self.aggregated_data
-    historical_data[PigCi.finish_time][i18n_key].collect do |data|
+    historical_data[PigCi.run_timestamp][i18n_key].collect do |data|
       previous_run_data = previous_run_data_for_key(data[:key]) || data
 
       data[:max_change_percentage] = (( BigDecimal(previous_run_data[:max]) / BigDecimal(data[:max]) ) - 1).round(PigCi.change_precision)
@@ -67,7 +67,7 @@ class PigCi::Report
   end
 
   def self.previous_run_keys
-    @previous_run_keys ||= historical_data.keys.reject { |key| key == PigCi.finish_time }.sort.reverse
+    @previous_run_keys ||= historical_data.keys.reject { |key| key == PigCi.run_timestamp }.sort.reverse
   end
 
   def self.historical_data
