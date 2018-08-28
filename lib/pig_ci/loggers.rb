@@ -5,9 +5,13 @@ class PigCi::Loggers
 
   private
   def self.log_file
-    PigCi.tmp_directory.join(
-      "pig-ci-#{name.split('::').last.gsub(/([a-z\d])([A-Z])/,'\1_\2').downcase}.txt"
+    @log_file ||= PigCi.tmp_directory.join(
+      "pig-ci-#{i18n_key}.txt"
     )
+  end
+
+  def self.i18n_key
+    @i18n_key ||= name.underscore.split('/').last
   end
 
   def self.log_value;end

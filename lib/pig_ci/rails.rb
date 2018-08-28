@@ -55,6 +55,15 @@ class PigCi::Rails
     end
   end
 
+  def self.save_reports!
+    puts "[PigCi] Saving your reports…"
+    [
+      PigCi::Reports::Memory,
+      PigCi::Reports::InstantiationActiveRecord,
+      PigCi::Reports::SqlActiveRecord
+    ].collect(&:save!)
+  end
+
   def self.print_reports!
     [
       PigCi::Reports::Memory,

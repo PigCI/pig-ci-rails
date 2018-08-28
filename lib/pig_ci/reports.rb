@@ -12,20 +12,63 @@ class PigCi::Reports
     puts "\n"
   end
 
+  def self.save!
+    historical_data
+
+    @historical_data[PigCi.finish_time] ||= {}
+    @historical_data[PigCi.finish_time][i18n_key] = last_run_data
+
+    File.write(output_file, @historical_data.to_json)
+  end
+
+  def self.last_run_data
+    @last_run_data = {}
+
+    File.foreach(log_file) do |f|
+      key, value = f.strip.split('|')
+      value = value.to_i
+
+      @last_run_data[key] ||= {
+        key: key,
+        max: value,
+        min: value,
+        mean: 0,
+        total: 0,
+        number_of_requests: 0
+      }
+      @last_run_data[key][:max] = value if value > @last_run_data[key][:max]
+      @last_run_data[key][:min] = value if value < @last_run_data[key][:min]
+      @last_run_data[key][:total] += value
+      @last_run_data[key][:number_of_requests] += 1
+      @last_run_data[key][:mean] = @last_run_data[key][:total] / @last_run_data[key][:number_of_requests]
+    end
+
+    @last_run_data.collect{ |k,d| d }.sort_by { |k| k[:max] * -1 }
+  end
+
   def self.aggregated_data
-    [{
-      key: 'Some Key',
-      named_value: 1234
-    }]
+    historical_data[PigCi.finish_time][i18n_key]
+  end
+
+  def self.historical_data
+    @historical_data ||= if File.exists? output_file
+      JSON.parse(File.open(output_file, 'r').read)
+    else
+      {}
+    end
   end
 
   private
   def self.column_keys
-    [:key, :named_value]
+    [:key, :max, :min, :mean, :number_of_requests]
   end
 
   def self.log_file
-    PigCi.tmp_directory.join("pig-ci-#{i18n_key}.txt")
+    @log_file ||= PigCi.tmp_directory.join("pig-ci-#{i18n_key}.txt")
+  end
+
+  def self.output_file
+    @output_file ||= PigCi.output_directory.join("pig-ci-#{i18n_key}.json")
   end
 
   def self.i18n_key
