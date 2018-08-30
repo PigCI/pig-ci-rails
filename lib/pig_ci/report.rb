@@ -15,7 +15,7 @@ class PigCi::Report
 
   def self.to_json
     {
-      type: i18n_key,
+      profiler: i18n_key,
       data: last_run_data
     }
   end

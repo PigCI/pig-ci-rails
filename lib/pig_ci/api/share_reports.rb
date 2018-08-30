@@ -7,6 +7,7 @@ class PigCi::Api::ShareReports < PigCi::Api
     begin
       self.class.post('/reports', {
         base_uri: PigCi.api_base_uri,
+        verify: PigCi.api_verify_ssl,
         body: {
           commit_sha1: PigCi.commit_sha1, 
           reporter_name: PigCi.reporter_name, 
@@ -14,8 +15,9 @@ class PigCi::Api::ShareReports < PigCi::Api
         },
         headers: headers
       })
-    rescue
-      puts '[PigCi] Unable to connect to PigCi API'
+    rescue => e
+      puts '[PigCi] Unable to connect to PigCi API: '
+      puts e.inspect
     end
   end
 end

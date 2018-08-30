@@ -57,6 +57,11 @@ module PigCi
     @api_base_uri || 'https://api.pigci.com/v1'
   end
 
+  attr_accessor :api_verify_ssl
+  def api_verify_ssl
+    !@api_verify_ssl.nil? ? @api_verify_ssl : true
+  end
+
   attr_accessor :api_key
 
   attr_accessor :commit_sha1
@@ -70,10 +75,12 @@ module PigCi
   end
 
   module_function
-  def start
+  def start(&block)
     self.running = true
     self.pid = Process.pid
     puts '[PigCi] Starting up'
+
+    block.call(self) if block_given?
 
     # Add our translations
     I18n.load_path += Dir["#{File.expand_path("../../config/locales/pig_ci", __FILE__)}/*.{rb,yml}"]
