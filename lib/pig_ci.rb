@@ -24,7 +24,7 @@ module PigCi
 
   attr_accessor :change_precision
   def change_precision
-    @change_precision || 5
+    @change_precision || 1
   end
 
   attr_accessor :report_print_limit

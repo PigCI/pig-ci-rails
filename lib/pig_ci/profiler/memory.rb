@@ -11,6 +11,6 @@ class PigCi::Profiler::Memory < PigCi::Profiler
   end
 
   def self.log_value
-    ::GetProcessMem.new.kb
+    ::GetProcessMem.new.bytes
   end
 end

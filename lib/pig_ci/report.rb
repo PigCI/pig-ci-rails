@@ -5,7 +5,7 @@ class PigCi::Report
   def self.print!
     puts "[PigCI] #{I18n.t('.name', scope: i18n_scope)}:\n"
     table = Terminal::Table.new headings: column_keys.collect { |key| I18n.t(".attributes.#{key}", scope: i18n_scope) } do |t|
-      aggregated_data.sort_by { |d| PigCi.report_print_sort_by(d) }[0..PigCi.report_print_limit].each do |data|
+      formatted_aggregated_data.each do |data|
         t << column_keys.collect {|key| data[key] }
       end
     end
@@ -52,6 +52,16 @@ class PigCi::Report
     end
 
     @last_run_data.collect { |k,d| d }
+  end
+
+  def self.formatted_aggregated_data
+    aggregated_data.sort_by { |d| PigCi.report_print_sort_by(d) }[0..PigCi.report_print_limit].collect do |data|
+      format_data(data)
+    end
+  end
+
+  def self.format_data(data)
+    data
   end
 
   def self.aggregated_data
