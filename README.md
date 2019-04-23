@@ -22,7 +22,21 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### On it's own
+
+    # In spec/rails_helper.rb
+    require 'pig_ci'
+    PigCi.start
+
+### With PigCI.com - For sharing runs as a team via CI.
+
+    # In spec/rails_helper.rb
+    require 'pig_ci'
+    PigCi.start do |config|
+      config.api_base_uri = 'https://api.pigciapp.test/v1'
+      config.api_verify_ssl = false
+      config.api_key = 'gClHJNkudAUYT7zrQ8cL7HBgOofqwaeQ1Ne7FjG9LD0'
+    end
 
 ## Development
 
