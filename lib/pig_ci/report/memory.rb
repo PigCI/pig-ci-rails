@@ -8,6 +8,6 @@ class PigCi::Report::Memory < PigCi::Report
   end
 
   def self.bytes_in_a_megabyte
-    @bytes_in_a_megabyte ||= BigDecimal.new(1048576)
+    @bytes_in_a_megabyte ||= BigDecimal(1048576)
   end
 end
