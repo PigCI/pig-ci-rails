@@ -1,3 +1,5 @@
+require 'httparty'
+
 class PigCi::Api
   include HTTParty
 

@@ -1,4 +1,7 @@
-$LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
-require "pig_ci"
+$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 
-require "minitest/autorun"
+require 'simplecov'
+SimpleCov.start
+
+require 'pig_ci'
+require 'minitest/autorun'
