@@ -26,7 +26,7 @@ class PigCi::ProfilerEngine::Rails < PigCi::ProfilerEngine
 
   def self.attach_listeners!
     ::ActiveSupport::Notifications.subscribe 'start_processing.action_controller' do |*args|
-      event = ActiveSupport::Notifications::Event.new *args
+      event = ActiveSupport::Notifications::Event.new(*args)
       self.request_key = PigCi.request_key(event.payload)
 
       profilers.collect(&:start!)
@@ -34,7 +34,7 @@ class PigCi::ProfilerEngine::Rails < PigCi::ProfilerEngine
 
     ::ActiveSupport::Notifications.subscribe 'instantiation.active_record' do |*args|
       if self.request_key
-        event = ActiveSupport::Notifications::Event.new *args
+        event = ActiveSupport::Notifications::Event.new(*args)
         PigCi::Profiler::InstantiationActiveRecord.increment!(by: event.payload[:record_count])
       end
     end
