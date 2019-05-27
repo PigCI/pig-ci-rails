@@ -10,6 +10,7 @@ class PigCi::Api::ShareReports < PigCi::Api
         verify: PigCi.api_verify_ssl,
         body: {
           commit_sha1: PigCi.commit_sha1, 
+          head_branch: PigCi.head_branch, 
           reporter_name: PigCi.reporter_name, 
           reports: @reports.collect(&:to_json)
         },

@@ -21,6 +21,16 @@ en:
           number_of_requests: Requests
           max_change_percentage_with_unit: "% Change"
 
+      request_time:
+        name: Request Time
+        attributes:
+          key: Key
+          max: Max (ms)
+          min: Min (ms)
+          mean: Mean (ms)
+          number_of_requests: Requests
+          max_change_percentage_with_unit: "% Change"
+
       sql_active_record:
         name: Queries to the database
         attributes:

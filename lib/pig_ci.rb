@@ -66,7 +66,12 @@ module PigCi
 
   attr_accessor :commit_sha1
   def commit_sha1
-    @commit_sha1 || ENV['CIRCLE_SHA1'] || ENV['TRAVIS_COMMIT'] || `git rev-parse HEAD`
+    @commit_sha1 || ENV['CIRCLE_SHA1'] || ENV['TRAVIS_COMMIT'] || `git rev-parse HEAD`.strip
+  end
+
+  attr_accessor :head_branch
+  def head_branch
+    @head_branch || ENV['CIRCLE_BRANCH'] || ENV['TRAVIS_BRANCH'] || `git rev-parse --abbrev-ref HEAD`.strip
   end
 
   attr_accessor :reporter_name

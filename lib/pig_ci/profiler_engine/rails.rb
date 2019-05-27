@@ -3,6 +3,7 @@ class PigCi::ProfilerEngine::Rails < PigCi::ProfilerEngine
     [
       PigCi::Profiler::Memory,
       PigCi::Profiler::InstantiationActiveRecord,
+      PigCi::Profiler::RequestTime,
       PigCi::Profiler::SqlActiveRecord
     ]
   end
@@ -11,6 +12,7 @@ class PigCi::ProfilerEngine::Rails < PigCi::ProfilerEngine
     [
       PigCi::Report::Memory,
       PigCi::Report::InstantiationActiveRecord,
+      PigCi::Report::RequestTime,
       PigCi::Report::SqlActiveRecord
     ]
   end
@@ -47,6 +49,9 @@ class PigCi::ProfilerEngine::Rails < PigCi::ProfilerEngine
     end
 
     ::ActiveSupport::Notifications.subscribe 'process_action.action_controller' do |*args|
+      event = ActiveSupport::Notifications::Event.new(*args)
+      PigCi::Profiler::RequestTime.stop!
+
       profilers.each do |profiler|
         profiler.append_row(request_key)
       end
