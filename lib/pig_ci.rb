@@ -1,5 +1,6 @@
 require 'pig_ci/version'
 require 'pig_ci/api'
+require 'pig_ci/formatter'
 require 'pig_ci/profiler_engine'
 require 'pig_ci/profiler'
 require 'pig_ci/report'
@@ -102,6 +103,10 @@ module PigCi
     reports.collect(&:save!)
     puts "[PigCi] Printing your reports…\n\n"
     reports.collect(&:print!)
+
+    puts "[PigCi] Saving to project root…\n\n"
+    PigCi::Formatter.new(reports: reports).save!
+
     if PigCi.api_key.present?
       puts "[PigCi] Sharing your reports…"
       PigCi::Api::ShareReports.new(reports: reports).share
