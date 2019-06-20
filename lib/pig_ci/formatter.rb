@@ -4,6 +4,6 @@ class PigCi::Formatter
   end
 
   def save!
-    raise @reports.collect(&:to_json).inspect
+    # Turns out these are already saved? - I guess this is just adding the HTML to view them.
   end
 end

@@ -5,7 +5,7 @@ class PigCi::Profiler
 
   private
   def self.log_file
-    @log_file ||= PigCi.tmp_directory.join("pig-ci-#{i18n_key}.txt")
+    @log_file ||= PigCi.tmp_directory.join("#{i18n_key}.txt")
   end
 
   def self.i18n_key

@@ -15,12 +15,12 @@ module PigCi
 
   attr_accessor :tmp_directory
   def tmp_directory
-    @tmp_directory || Pathname.new(Dir.getwd).join('tmp')
+    @tmp_directory || Pathname.new(Dir.getwd).join('tmp', 'pig-ci')
   end
 
   attr_accessor :output_directory
   def output_directory
-    @output_directory || Pathname.new(Dir.getwd).join('tmp')
+    @output_directory || Pathname.new(Dir.getwd).join('pig-ci')
   end
 
   attr_accessor :change_precision
@@ -91,6 +91,10 @@ module PigCi
     # Add our translations
     I18n.load_path += Dir["#{File.expand_path("../../config/locales/pig_ci", __FILE__)}/*.{rb,yml}"]
     
+    # Make sure our directories exist
+    Dir.mkdir(tmp_directory) unless File.exist?(tmp_directory)
+    Dir.mkdir(output_directory) unless File.exist?(output_directory)
+
     # Purge any previous logs and attach some listeners
     self.profiler_engine.setup!
   end
