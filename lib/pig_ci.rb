@@ -1,3 +1,6 @@
+require 'active_support'
+require 'active_support/core_ext/string/inflections'
+
 require 'pig_ci/version'
 require 'pig_ci/api'
 require 'pig_ci/formatter'

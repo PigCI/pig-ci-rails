@@ -6,7 +6,11 @@ SimpleCov.start do
   add_filter '/spec/'
 end
 
+require 'tmpdir'
+
 require 'pig_ci'
+PigCi.output_directory = Pathname.new(Dir.mktmpdir)
+PigCi.tmp_directory = Pathname.new(Dir.mktmpdir)
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -18,4 +22,9 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+end
+
+at_exit do
+  FileUtils.remove_entry PigCi.output_directory
+  FileUtils.remove_entry PigCi.tmp_directory
 end

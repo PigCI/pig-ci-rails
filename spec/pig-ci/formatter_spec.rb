@@ -9,11 +9,20 @@ describe PigCi::Formatter do
       PigCi::Report::SqlActiveRecord
     ]
   end
-  subject { PigCi::Formatter.new(reports: reports) }
 
   describe '#save!' do
+    subject { PigCi::Formatter.new(reports: reports).save! }
+
+    let(:log_file) { PigCi.output_directory.join('reports.json') }
+
+    before do
+      File.open(log_file, 'w') {|file| file.truncate(0) }
+    end
+
     it do
+      expect(log_file.read).to eq('')
       expect { subject }.to_not raise_error
+      expect(JSON.parse(log_file.read)).to be_a(Array)
     end
   end
 end
