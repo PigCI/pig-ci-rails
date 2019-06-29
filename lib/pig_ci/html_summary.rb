@@ -7,6 +7,7 @@ require 'erb'
 class PigCi::HTMLSummary
   def initialize(reports:)
     @reports = reports
+    @historic_reports = @reports.collect(&:output_file)
   end
 
   def save!
@@ -17,15 +18,15 @@ class PigCi::HTMLSummary
 
   private
 
+  def render_report(report)
+    template('report').result(binding)
+  end
+
   def template(name)
     ERB.new(File.read(File.join(File.dirname(__FILE__), 'views', "#{name}.erb")))
   end
 
   def index_file_path
     PigCi.output_directory.join('index.html')
-  end
-
-  def report_filenames_as_json
-    @reports.collect(&:output_file).to_json
   end
 end

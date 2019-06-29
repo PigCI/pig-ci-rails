@@ -17,11 +17,22 @@
 
       <h1>PigCI Results</h1>
       
-      <div data-pig-ci-results>
-        <%= @reports.each do |timestamp, report| %>
-          <h2><%= timestamp %></h2>
-          <div><%= report.inspect %></div>
-        <% end %>
+      <div data-pig-ci-results class="mt-4">
+        <ul class="nav nav-tabs" role="tablist">
+          <% @reports.each_with_index do |report, index| %>
+            <li class="nav-item">
+              <a class="nav-link <%= 'active' if index.zero? %>" data-toggle="tab" href="#<%= report.i18n_key %>" role="tab" aria-controls="<%= report.i18n_key %>-tab" aria-selected="<%= index.zero? ? 'true' : 'false' %>"><%= report.i18n_name %></a>
+            </li>
+          <% end %>
+        </ul>
+
+        <div class="tab-content mt-4">
+          <% @reports.each_with_index do |report, index| %>
+            <div class="tab-pane fade <%= 'show active' if index.zero? %>" id="<%= report.i18n_key %>" role="tabpanel" aria-labelledby="<%= report.i18n_key %>-tab">
+              <%= render_report(report) %>
+            </div>
+          <% end %>
+        </div>
         
       </div>
     </div>

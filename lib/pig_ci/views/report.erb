@@ -1,0 +1,28 @@
+<div data-profiler="<%= report.i18n_key %>">
+  <h2 class="sr-only"><%= report.i18n_name %></h2>
+  <% report.historical_data.each do |timestamp, historic_data| %>
+    <h3><%= Time.at(timestamp.to_s.to_i) %></h3>
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <% report.headings.each do |heading| %>
+              <th><%= heading %></th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% (historic_data.dig(report.i18n_key.to_sym) || historic_data.dig(report.i18n_key)).each do |historic_row| %>
+            <tr>
+              <% report.column_keys.each do |column_key| %>
+                <td><%= historic_row[column_key] %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  <% end %>
+</div>

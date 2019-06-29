@@ -3,14 +3,22 @@ require 'colorized_string'
 
 class PigCi::Report
   def self.print!
-    puts "[PigCI] #{I18n.t('.name', scope: i18n_scope)}:\n"
-    table = Terminal::Table.new headings: column_keys.collect { |key| I18n.t(".attributes.#{key}", scope: i18n_scope) } do |t|
+    puts "[PigCI] #{i18n_name}:\n"
+    table = Terminal::Table.new headings: headings do |t|
       formatted_aggregated_data.each do |data|
         t << column_keys.collect {|key| data[key] }
       end
     end
     puts table
     puts "\n"
+  end
+
+  def self.headings
+    column_keys.collect { |key| I18n.t(".attributes.#{key}", scope: i18n_scope) }
+  end
+
+  def self.i18n_name
+    I18n.t('.name', scope: i18n_scope)
   end
 
   def self.to_json
