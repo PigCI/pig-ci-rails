@@ -25,18 +25,20 @@ describe PigCI::Profiler do
   end
 
   describe '#save!(request_key)' do
-    before { pig_ci_profiler.save!('request-key') }
+    subject { pig_ci_profiler.save!('request-key') }
+
+    before { pig_ci_profiler.setup! }
 
     it 'saves the log value with the request key' do
       pig_ci_profiler.log_value = 23
       
-      expect { subject }.to change(pig_ci_profiler.log_file, :read).from('').to('request-key|23')
+      expect { subject }.to change(pig_ci_profiler.log_file, :read).from('').to("request-key|23\n")
     end
   end
 
   describe '#i18n_key' do
     subject { pig_ci_profiler.i18n_key }
 
-    it { is_expected.to eq('pig_ci/profiler') }
+    it { is_expected.to eq('profiler') }
   end
 end

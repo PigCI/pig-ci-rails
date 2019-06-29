@@ -1,24 +1,26 @@
 class PigCI::Profiler
-  def self.setup!
+  attr_accessor :log_value
+
+  def setup!
     File.open(log_file, 'w') {|file| file.truncate(0) }
   end
 
-  private
+  def reset!
+    @log_value = nil
+  end
 
-  def self.log_file
+  def save!(request_key)
+    File.open(log_file, 'a+') do |f|
+      f.puts([request_key, log_value].join('|'))
+    end
+  end
+
+  def log_file
     @log_file ||= PigCI.tmp_directory.join("#{i18n_key}.txt")
   end
 
-  def self.i18n_key
-    @i18n_key ||= name.underscore.split('/').last
-  end
-
-  def self.log_value; end
-
-  def self.append_row(key)
-    File.open(log_file, 'a+') do |f|
-      f.puts([key, log_value].join('|'))
-    end
+  def i18n_key
+    @i18n_key ||= self.class.name.underscore.split('/').last
   end
 end
 
