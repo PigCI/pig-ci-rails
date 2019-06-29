@@ -12,9 +12,7 @@ module PigCI
 
   extend self
 
-  attr_accessor :running
   attr_accessor :pid
-  attr_accessor :request_was_completed
 
   attr_accessor :tmp_directory
   def tmp_directory
@@ -80,7 +78,6 @@ module PigCI
 
   module_function
   def start(&block)
-    self.running = true
     self.pid = Process.pid
     puts '[PigCI] Starting up'
 
@@ -94,7 +91,7 @@ module PigCI
     Dir.mkdir(output_directory) unless File.exist?(output_directory)
 
     # Purge any previous logs and attach some listeners
-    self.profiler_engine.start!
+    self.profiler_engine.setup!
   end
 
   def run_exit_tasks!
@@ -105,6 +102,7 @@ module PigCI
     reports.collect(&:save!)
     puts "[PigCI] Printing your reports…\n\n"
     reports.collect(&:print!)
+    # PigCI::Summary::Terminal.new(reports: reports).save!
 
     puts "[PigCI] Saving to project root…\n\n"
     PigCI::Summary::HTML.new(reports: reports).save!
@@ -124,5 +122,5 @@ at_exit do
   # If we are in a different process than called start, don't interfere.
   next if PigCI.pid != Process.pid
 
-  PigCI.run_exit_tasks! if PigCI.request_was_completed
+  PigCI.run_exit_tasks! if PigCI.pid.present? && PigCI.profiler_engine.request_captured?
 end

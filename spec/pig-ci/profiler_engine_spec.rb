@@ -20,6 +20,14 @@ describe PigCI::ProfilerEngine do
     end
   end
 
+  describe '#request_captured!' do
+    subject { profiler_engine.request_key! }
+
+    it do
+      expect { subject }.to change(profiler_engine, :request_captured?).from(false).to(true)
+    end
+  end
+
   describe '#profilers' do
     subject { profiler_engine.profilers }
 

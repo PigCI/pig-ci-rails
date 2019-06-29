@@ -1,17 +1,26 @@
 class PigCI::ProfilerEngine
-  attr_accessor :request_key, :profilers, :reports
+  attr_accessor :request_key, :profilers, :reports, :request_captured
 
   def initialize(profilers: nil, reports: nil)
     @profilers = profilers || []
     @reports = reports || []
+    @request_captured = false
   end
 
   def request_key?
     !@request_key.nil? && @request_key != ''
   end
 
+  def request_captured?
+    @request_captured
+  end
+
+  def request_captured!
+    @request_captured = true
+  end
+
   def setup!
-    Dir.mkdir(PigCI.tmp_directory) unless File.exists?(PigCI.tmp_directory)
+    Dir.mkdir(PigCI.tmp_directory) unless File.exist?(PigCI.tmp_directory)
 
     profilers.collect(&:setup!)
 
