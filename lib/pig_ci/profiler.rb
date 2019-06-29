@@ -15,6 +15,10 @@ class PigCI::Profiler
     end
   end
 
+  def increment!(by: 1)
+    raise NotImplemented
+  end
+
   def log_file
     @log_file ||= PigCI.tmp_directory.join("#{i18n_key}.txt")
   end

@@ -24,6 +24,12 @@ describe PigCI::Profiler do
     end
   end
 
+  describe '#increment!' do
+    subject { profiler.increment! }
+
+    it { expect { subject }.to raise_error(NotImplemented) }
+  end
+
   describe '#save!(request_key)' do
     subject { profiler.save!('request-key') }
 
