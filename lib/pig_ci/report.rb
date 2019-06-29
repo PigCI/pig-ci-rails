@@ -15,15 +15,16 @@ class PigCI::Report
   end
 
   def sorted_and_formatted_data_for(timestamp)
-    latest_report.sort_by { |d| PigCI.report_print_sort_by(d) }[0..PigCI.report_print_limit].collect do |data|
-      data
+    historical_data[timestamp.to_sym][@i18n_key.to_sym].sort_by do 
+      |d| PigCI.report_print_sort_by(d) 
+    end[0..PigCI.report_print_limit].collect do |data|
+      format_row(data)
     end
   end
 
   def historical_data
-    @historical_data ||= PigCI::Metric::Historical.new(historical_log_file: @historical_log_file).to_h.sort_by do |timestamp, data|
-      timestamp.to_s.to_i * -1
-    end
+    # TODO: Sort this later
+    @historical_data ||= PigCI::Metric::Historical.new(historical_log_file: @historical_log_file).to_h
   end
 
   def latest_report
@@ -37,6 +38,12 @@ class PigCI::Report
 
   def i18n_scope
     @i18n_scope ||= "pig_ci.report.#{i18n_key}"
+  end
+
+  private
+
+  def format_row(row)
+    row
   end
 end
 

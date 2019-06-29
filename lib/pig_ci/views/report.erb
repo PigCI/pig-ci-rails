@@ -1,9 +1,9 @@
 <div data-profiler="<%= report.i18n_key %>">
   <h2 class="sr-only"><%= report.i18n_name %></h2>
   <% report.historical_data.each do |timestamp, historic_data| %>
-    <h3><%= Time.at(timestamp.to_s.to_i) %></h3>
+    <h3 class="h5 text-muted"><%= Time.at(timestamp.to_s.to_i) %></h3>
 
-    <div class="table-responsive">
+    <div class="table-responsive mb-3">
       <table class="table">
         <thead>
           <tr>
@@ -13,7 +13,7 @@
           </tr>
         </thead>
         <tbody>
-          <% historic_data[report.i18n_key.to_sym].each do |historic_row| %>
+          <% report.sorted_and_formatted_data_for(timestamp).each do |historic_row| %>
             <tr>
               <% report.column_keys.each do |column_key| %>
                 <td><%= historic_row[column_key] %></td>

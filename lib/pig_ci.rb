@@ -36,7 +36,7 @@ module PigCI
 
   attr_accessor :report_print_sort_by
   def report_print_sort_by(data)
-    (@report_print_sort_by || Proc.new { |d| d[:max] * -1 }).call(data)
+    (@report_print_sort_by || Proc.new { |d| d[:max].to_i * -1 }).call(data)
   end
 
   attr_accessor :run_timestamp
