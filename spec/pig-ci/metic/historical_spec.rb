@@ -12,8 +12,8 @@ describe PigCI::Metric::Historical do
     let(:expected_response) do
       { "100": {
         profiler: [
-          { key: 'request-key', max: 12, mean: 9, min: 6, number_of_requests: 2, total: 18 },
-          { key: 'request-key-2', max: 2, mean: 2, min: 2, number_of_requests: 1, total: 2 }
+          { key: 'request-key', max: 12, mean: 9, min: 6, number_of_requests: 2, total: 18, max_change_percentage: 0.0 },
+          { key: 'request-key-2', max: 2, mean: 2, min: 2, number_of_requests: 1, total: 2, max_change_percentage: 0.0 }
         ]
       } }
     end
@@ -25,7 +25,7 @@ describe PigCI::Metric::Historical do
     let(:metric) { 'profiler' }
     let(:data) do
       [
-        { key: 'request-key-3', max: 2, mean: 2, min: 2, number_of_requests: 1, total: 2 }
+        { key: 'request-key-3', max: 2, mean: 2, min: 2, number_of_requests: 1, total: 2, max_change_percentage: 0.0 }
       ]
     end
 
@@ -33,13 +33,13 @@ describe PigCI::Metric::Historical do
       {
         "100": {
           profiler: [
-            { key: 'request-key', max: 12, mean: 9, min: 6, number_of_requests: 2, total: 18 },
-            { key: 'request-key-2', max: 2, mean: 2, min: 2, number_of_requests: 1, total: 2 }
+            { key: 'request-key', max: 12, mean: 9, min: 6, number_of_requests: 2, total: 18, max_change_percentage: 0.0 },
+            { key: 'request-key-2', max: 2, mean: 2, min: 2, number_of_requests: 1, total: 2, max_change_percentage: 0.0 }
           ]
         },
         "101": {
           profiler: [
-            { key: 'request-key-3', max: 2, mean: 2, min: 2, number_of_requests: 1, total: 2 }
+            { key: 'request-key-3', max: 2, mean: 2, min: 2, number_of_requests: 1, total: 2, max_change_percentage: 0.0 }
           ]
         }
       }.to_json

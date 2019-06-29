@@ -21,8 +21,9 @@ class PigCI::Report
   end
 
   def historical_data
-    # Also by by latest maybe
-    @historical_data ||= PigCI::Metric::Historical.new(historical_log_file: @historical_log_file).to_h
+    @historical_data ||= PigCI::Metric::Historical.new(historical_log_file: @historical_log_file).to_h.sort_by do |timestamp, data|
+      timestamp.to_s.to_i * -1
+    end
   end
 
   def latest_report
