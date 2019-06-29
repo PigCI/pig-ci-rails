@@ -20,8 +20,16 @@ class PigCI::Metric::Historical
   end
 
   def add_change_percentage_and_append!(timestamp:, metric:, data:)
-    data = PigCI::Metric::Historical::ChangePercentage.new(previous_data: to_h, data: data).updated_data
+    #max_change_percentage_data = {}
+    #max_change_percentage_data[timestamp] = {}
+    #max_change_percentage_data[timestamp][metric] = data
+
+    #data = PigCI::Metric::Historical::ChangePercentage.new(previous_data: to_h, data: max_change_percentage_data).updated_data
     append!(timestamp: timestamp, metric: metric, data: data)
+  end
+
+  def find_by_timestamp_and_profiler(timestamp, profiler)
+    to_h.dig(timestamp.to_sym, profiler.to_sym) || []
   end
 
   private

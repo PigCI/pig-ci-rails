@@ -24,7 +24,7 @@ class PigCI::Profiler
 
   def save!
     historical_data = PigCI::Metric::Historical.new(historical_log_file: @historical_log_file)
-    historical_data.append!(
+    historical_data.add_change_percentage_and_append!(
       timestamp: PigCI.run_timestamp,
       metric: i18n_key,
       data: PigCI::Metric::Current.new(log_file: log_file).to_h

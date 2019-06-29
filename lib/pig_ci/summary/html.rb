@@ -7,7 +7,6 @@ require 'erb'
 class PigCI::Summary::HTML < PigCI::Summary
   def initialize(reports:)
     @reports = reports
-    @historic_reports = @reports.collect(&:output_file)
   end
 
   def save!

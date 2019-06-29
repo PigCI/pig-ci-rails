@@ -13,7 +13,7 @@
           </tr>
         </thead>
         <tbody>
-          <% (historic_data.dig(report.i18n_key.to_sym) || historic_data.dig(report.i18n_key)).each do |historic_row| %>
+          <% historic_data[report.i18n_key.to_sym].each do |historic_row| %>
             <tr>
               <% report.column_keys.each do |column_key| %>
                 <td><%= historic_row[column_key] %></td>

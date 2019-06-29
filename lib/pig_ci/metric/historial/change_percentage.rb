@@ -1,5 +1,5 @@
 class PigCI::Metric::Historical::ChangePercentage
-  def initialize(previous_data: previous_data, data: data)
+  def initialize(previous_data:, data:)
     @previous_data = previous_data
     @data = data
     @timestamp = @data.keys.first

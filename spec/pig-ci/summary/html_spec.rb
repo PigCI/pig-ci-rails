@@ -3,10 +3,10 @@ require 'spec_helper'
 describe PigCI::Summary::HTML do
   let(:reports) do
     [
-      PigCI::Report::Memory,
-      PigCI::Report::InstantiationActiveRecord,
-      PigCI::Report::RequestTime,
-      PigCI::Report::SqlActiveRecord
+      PigCI::Report::Memory.new,
+      PigCI::Report::InstantiationActiveRecord.new,
+      PigCI::Report::RequestTime.new,
+      PigCI::Report::SqlActiveRecord.new
     ]
   end
 

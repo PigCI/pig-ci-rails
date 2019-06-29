@@ -102,15 +102,14 @@ module PigCI
     self.profiler_engine.profilers.each(&:save!)
 
     puts "[PigCI] Printing your reports…\n\n"
-    reports.collect(&:print!)
-    # PigCI::Summary::Terminal.new(reports: reports).save!
+    PigCI::Summary::Terminal.new(reports: self.profiler_engine.reports).print!
 
     puts "[PigCI] Saving to project root…\n\n"
-    PigCI::Summary::HTML.new(reports: reports).save!
+    PigCI::Summary::HTML.new(reports: self.profiler_engine.reports).save!
 
     if PigCI.api_key.present?
       puts "[PigCI] Sharing your reports…"
-      PigCI::Api::ShareReports.new(reports: reports).share
+      PigCI::Api::ShareReports.new(reports: self.profiler_engine.reports).share
     else
       puts "[PigCI] You can share your reports PigCI with your colleagues via https://pigci.com/"
     end
