@@ -17,12 +17,12 @@ describe PigCI::Summary::HTML do
 
     before do
       # Maybe also load up some files with some sample JSON.
-      File.open(index_file, 'w') {|file| file.truncate(0) }
+      File.open(index_file, 'w') { |file| file.truncate(0) }
     end
 
     it 'writes an html index file containing the the json' do
       expect { subject }.to change(index_file, :read).from('').to(/<html(.*)data-pig-ci-results/sm)
-        .and output("[PigCI] PigCI report generated to #{PigCI.output_directory}\n").to_stdout
+                                                     .and output("[PigCI] PigCI report generated to #{PigCI.output_directory}\n").to_stdout
     end
   end
 end

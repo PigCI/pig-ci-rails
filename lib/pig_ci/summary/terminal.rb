@@ -11,7 +11,6 @@ class PigCI::Summary::Terminal < PigCI::Summary
     @reports.each do |report|
       print_report(report)
     end
-
   end
 
   private

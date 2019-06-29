@@ -37,7 +37,7 @@ describe PigCI::Profiler do
 
     it 'saves the log value with the request key' do
       profiler.log_value = 23
-      
+
       expect { subject }.to change(profiler.log_file, :read).from('').to("request-key|23\n")
     end
   end

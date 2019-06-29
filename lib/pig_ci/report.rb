@@ -28,7 +28,7 @@ class PigCI::Report
 
   def latest_report
     @latest_report ||= PigCI::Metric::Historical.new(historical_log_file: @historical_log_file)
-      .find_by_timestamp_and_profiler(PigCI.run_timestamp, @i18n_key)
+                                                .find_by_timestamp_and_profiler(PigCI.run_timestamp, @i18n_key)
   end
 
   def column_keys

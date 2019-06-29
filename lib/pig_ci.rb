@@ -10,7 +10,6 @@ require 'pig_ci/metric'
 require 'pig_ci/report'
 
 module PigCI
-
   extend self
 
   attr_accessor :pid
@@ -37,7 +36,7 @@ module PigCI
 
   attr_accessor :report_print_sort_by
   def report_print_sort_by(data)
-    (@report_print_sort_by || Proc.new{ |d| d[:max] * -1 }).call(data)
+    (@report_print_sort_by || Proc.new { |d| d[:max] * -1 }).call(data)
   end
 
   attr_accessor :run_timestamp
@@ -78,6 +77,7 @@ module PigCI
   end
 
   module_function
+
   def start(&block)
     self.pid = Process.pid
     puts '[PigCI] Starting up'
@@ -86,7 +86,7 @@ module PigCI
 
     # Add our translations
     I18n.load_path += Dir["#{File.expand_path("../../config/locales/pig_ci", __FILE__)}/*.{rb,yml}"]
-    
+
     # Make sure our directories exist
     Dir.mkdir(tmp_directory) unless File.exist?(tmp_directory)
     Dir.mkdir(output_directory) unless File.exist?(output_directory)

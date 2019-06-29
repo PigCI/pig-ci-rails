@@ -6,12 +6,12 @@ describe PigCI::Profiler::InstantiationActiveRecord do
   describe '#increment!' do
     subject { profiler.increment! }
 
-    it { expect{ subject }.to change(profiler, :log_value).by(1) }
+    it { expect { subject }.to change(profiler, :log_value).by(1) }
 
     context 'with by argument' do
       subject { profiler.increment!(by: 2) }
 
-      it { expect{ subject }.to change(profiler, :log_value).by(2) }
+      it { expect { subject }.to change(profiler, :log_value).by(2) }
     end
   end
 

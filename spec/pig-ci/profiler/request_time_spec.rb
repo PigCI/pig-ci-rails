@@ -8,7 +8,7 @@ describe PigCI::Profiler::RequestTime do
 
     it do
       profiler.start_time = nil
-      expect{ subject }.to change(profiler, :start_time).from(nil).to(Time)
+      expect { subject }.to change(profiler, :start_time).from(nil).to(Time)
     end
   end
 
@@ -17,8 +17,8 @@ describe PigCI::Profiler::RequestTime do
     before { profiler.setup! && profiler.reset! }
 
     it 'sets end_time and saves the delta to the log file' do
-      expect{ subject }.to change(profiler, :end_time).from(nil).to(Time)
-        .and change(profiler.log_file, :read).from('').to(/request-key/)
+      expect { subject }.to change(profiler, :end_time).from(nil).to(Time)
+                                                       .and change(profiler.log_file, :read).from('').to(/request-key/)
     end
   end
 

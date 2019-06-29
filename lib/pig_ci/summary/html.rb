@@ -1,6 +1,6 @@
 # This will make human friendly HTML report for developers to compare runs locally.
 # It aims to save to the project root in /pig-ci.
-# It is inspired by https://github.com/colszowka/simplecov-html 
+# It is inspired by https://github.com/colszowka/simplecov-html
 
 require 'erb'
 

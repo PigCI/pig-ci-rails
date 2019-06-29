@@ -18,7 +18,7 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
   private
 
   def payload_to_request_key(payload)
-    @request_key = Proc.new{ |pl| "#{pl[:method]} #{pl[:controller]}##{pl[:action]}{format:#{pl[:format]}}" }.call(payload)
+    @request_key = Proc.new { |pl| "#{pl[:method]} #{pl[:controller]}##{pl[:action]}{format:#{pl[:format]}}" }.call(payload)
   end
 
   def attach_listeners!
