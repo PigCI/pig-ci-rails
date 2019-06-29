@@ -46,6 +46,12 @@ describe PigCI::Profiler do
     subject { profiler.log_file.to_s }
 
     it { is_expected.to match('profiler.txt') }
+
+    context 'can be defined on initialize' do
+      let(:profiler) { PigCI::Profiler.new(log_file: 'something-else') }
+
+      it { is_expected.to eq('something-else') }
+    end
   end
 
 
@@ -53,5 +59,11 @@ describe PigCI::Profiler do
     subject { profiler.i18n_key }
 
     it { is_expected.to eq('profiler') }
+
+    context 'can be defined on initialize' do
+      let(:profiler) { PigCI::Profiler.new(i18n_key: 'something-else') }
+
+      it { is_expected.to eq('something-else') }
+    end
   end
 end

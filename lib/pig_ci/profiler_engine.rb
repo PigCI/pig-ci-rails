@@ -1,5 +1,29 @@
 class PigCI::ProfilerEngine
-  attr_accessor :request_key
+  attr_accessor :request_key, :profilers, :reports
+
+  def initialize(profilers: nil, reports: nil)
+    @profilers = profilers || []
+    @reports = reports || []
+  end
+
+  def request_key?
+    !@request_key.nil? && @request_key != ''
+  end
+
+  def setup!
+    Dir.mkdir(PigCI.tmp_directory) unless File.exists?(PigCI.tmp_directory)
+
+    profilers.collect(&:setup!)
+
+    # Attach listeners to the rails events.
+    attach_listeners!
+  end
+
+  private
+
+  def attach_listeners!
+    raise NotImplementedError
+  end
 end
 
 require 'pig_ci/profiler_engine/rails'

@@ -2,36 +2,23 @@
 class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
   def profilers
     @profilers ||= [
-      PigCI::Profiler::Memory,
-      PigCI::Profiler::InstantiationActiveRecord,
-      PigCI::Profiler::RequestTime,
-      PigCI::Profiler::SqlActiveRecord
+      PigCI::Profiler::Memory.new,
+      PigCI::Profiler::InstantiationActiveRecord.new,
+      PigCI::Profiler::RequestTime.new,
+      PigCI::Profiler::SqlActiveRecord.new
     ]
   end
 
   def reports
     @reports ||= [
-      PigCI::Report::Memory,
-      PigCI::Report::InstantiationActiveRecord,
-      PigCI::Report::RequestTime,
-      PigCI::Report::SqlActiveRecord
+      PigCI::Report::Memory.new,
+      PigCI::Report::InstantiationActiveRecord.new,
+      PigCI::Report::RequestTime.new,
+      PigCI::Report::SqlActiveRecord.new
     ]
   end
 
-  def start!
-    Dir.mkdir(PigCI.tmp_directory) unless File.exists?(PigCI.tmp_directory)
-
-    profilers.collect(&:setup!)
-
-    # Attach listeners to the rails events.
-    attach_listeners!
-  end
-
   private
-
-  def request_key?
-    @request_key.present?
-  end
 
   def payload_to_request_key(payload)
     @request_key = Proc.new{ |pl| "#{pl[:method]} #{pl[:controller]}##{pl[:action]}{format:#{pl[:format]}}" }.call(payload)

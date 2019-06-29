@@ -1,8 +1,13 @@
 class PigCI::Profiler
-  attr_accessor :log_value
+  attr_accessor :log_value, :log_file, :i18n_key
+
+  def initialize(i18n_key: nil, log_file: nil)
+    @i18n_key = i18n_key || self.class.name.underscore.split('/').last
+    @log_file = log_file || PigCI.tmp_directory.join("#{@i18n_key}.txt")
+  end
 
   def setup!
-    File.open(log_file, 'w') {|file| file.truncate(0) }
+    File.open(log_file, 'w') { |file| file.truncate(0) }
   end
 
   def reset!
@@ -17,14 +22,6 @@ class PigCI::Profiler
 
   def increment!(by: 1)
     raise NotImplementedError
-  end
-
-  def log_file
-    @log_file ||= PigCI.tmp_directory.join("#{i18n_key}.txt")
-  end
-
-  def i18n_key
-    @i18n_key ||= self.class.name.underscore.split('/').last
   end
 end
 
