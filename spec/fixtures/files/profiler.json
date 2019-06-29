@@ -1,0 +1,1 @@
+{"100":{"profiler":[{"key":"request-key","max":12,"min":6,"mean":9,"total":18,"number_of_requests":2},{"key":"request-key-2","max":2,"min":2,"mean":2,"total":2,"number_of_requests":1}]}}

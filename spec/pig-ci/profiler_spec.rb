@@ -54,6 +54,17 @@ describe PigCI::Profiler do
     end
   end
 
+  describe '#historical_log_file' do
+    subject { profiler.historical_log_file.to_s }
+
+    it { is_expected.to match('profiler.json') }
+
+    context 'can be defined on initialize' do
+      let(:profiler) { PigCI::Profiler.new(historical_log_file: 'something-else') }
+
+      it { is_expected.to eq('something-else') }
+    end
+  end
 
   describe '#i18n_key' do
     subject { profiler.i18n_key }
@@ -64,6 +75,21 @@ describe PigCI::Profiler do
       let(:profiler) { PigCI::Profiler.new(i18n_key: 'something-else') }
 
       it { is_expected.to eq('something-else') }
+    end
+  end
+
+  describe '#save!' do
+    subject { profiler.save! }
+
+    let(:expected_output) { JSON.parse(File.open(File.join('spec', 'fixtures', 'files', 'profiler.json')).read) }
+
+    before do
+      profiler.log_file = File.join('spec', 'fixtures', 'files', 'profiler.txt')
+      File.write(profiler.historical_log_file, '{}')
+    end
+
+    it 'takes the profiler data, and saves in a JSON format with previous test runs' do
+      expect { subject }.to change { JSON.parse(profiler.historical_log_file.read) }.from({}).to(expected_output)
     end
   end
 end

@@ -6,6 +6,7 @@ require 'pig_ci/api'
 require 'pig_ci/summary'
 require 'pig_ci/profiler_engine'
 require 'pig_ci/profiler'
+require 'pig_ci/metric'
 require 'pig_ci/report'
 
 module PigCI
@@ -97,9 +98,9 @@ module PigCI
   def run_exit_tasks!
     puts '[PigCI] Finished, expect an output or something in a moment'
 
-    reports = self.profiler_engine.reports
     puts "[PigCI] Saving your reports…"
-    reports.collect(&:save!)
+    self.profiler_engine.profilers.each(&:save!)
+
     puts "[PigCI] Printing your reports…\n\n"
     reports.collect(&:print!)
     # PigCI::Summary::Terminal.new(reports: reports).save!
