@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PigCI::HTMLSummary do
+describe PigCI::Summary::HTML do
   let(:reports) do
     [
       PigCI::Report::Memory,
@@ -11,11 +11,12 @@ describe PigCI::HTMLSummary do
   end
 
   describe '#save!' do
-    subject { PigCI::HTMLSummary.new(reports: reports).save! }
+    subject { PigCI::Summary::HTML.new(reports: reports).save! }
 
     let(:index_file) { PigCI.output_directory.join('index.html') }
 
     before do
+      # Maybe also load up some files with some sample JSON.
       File.open(index_file, 'w') {|file| file.truncate(0) }
     end
 

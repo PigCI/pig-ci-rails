@@ -3,7 +3,8 @@ require 'active_support/core_ext/string/inflections'
 
 require 'pig_ci/version'
 require 'pig_ci/api'
-require 'pig_ci/html_summary'
+require 'pig_ci/summary/html'
+require 'pig_ci/summary/terminal'
 require 'pig_ci/profiler_engine'
 require 'pig_ci/profiler'
 require 'pig_ci/report'
@@ -112,7 +113,7 @@ module PigCI
     reports.collect(&:print!)
 
     puts "[PigCI] Saving to project root…\n\n"
-    PigCI::HTMLSummary.new(reports: reports).save!
+    PigCI::Summary::HTML.new(reports: reports).save!
 
     if PigCI.api_key.present?
       puts "[PigCI] Sharing your reports…"
