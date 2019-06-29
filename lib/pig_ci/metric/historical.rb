@@ -19,9 +19,17 @@ class PigCI::Metric::Historical
     save!
   end
 
+  def add_change_percentage_and_append!(timestamp:, metric:, data:)
+    data = PigCI::Metric::Historical::ChangePercentage.new(previous_data: to_h, data: data).updated_data
+    append!(timestamp: timestamp, metric: metric, data: data)
+  end
+
   private
-  
+
   def save!
     File.write(@historical_log_file, @to_h.to_json)
+    @to_h = nil
   end
 end
+
+require 'pig_ci/metric/historial/change_percentage'
