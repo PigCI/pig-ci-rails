@@ -15,8 +15,8 @@ class PigCI::Report
   end
 
   def sorted_and_formatted_data_for(timestamp)
-    historical_data[timestamp.to_sym][@i18n_key.to_sym].sort_by do 
-      |d| PigCI.report_print_sort_by(d) 
+    historical_data[timestamp.to_sym][@i18n_key.to_sym].sort_by do |d| # TODO: WTF is 'd'
+      PigCI.report_print_sort_by(d)
     end[0..PigCI.report_print_limit].collect do |data|
       format_row(data)
     end
