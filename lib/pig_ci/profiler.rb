@@ -6,7 +6,7 @@ class PigCI::Profiler
   end
 
   def reset!
-    @log_value = nil
+    @log_value = 0
   end
 
   def save!(request_key)

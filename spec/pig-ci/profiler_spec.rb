@@ -1,43 +1,50 @@
 require 'spec_helper'
 
 describe PigCI::Profiler do
-  let(:pig_ci_profiler) { PigCI::Profiler.new }
+  let(:profiler) { PigCI::Profiler.new }
 
   describe '#setup!' do
-    subject { pig_ci_profiler.setup! }
+    subject { profiler.setup! }
 
     it 'clears the previous run data' do
       # Write some blank data
-      File.write(pig_ci_profiler.log_file, 'some-data')
+      File.write(profiler.log_file, 'some-data')
 
-      expect { subject }.to change(pig_ci_profiler.log_file, :read).from('some-data').to('')
+      expect { subject }.to change(profiler.log_file, :read).from('some-data').to('')
     end
   end
 
   describe '#reset!' do
-    subject { pig_ci_profiler.reset! }
+    subject { profiler.reset! }
 
     it 'clears the log value' do
-      pig_ci_profiler.log_value = 'some-value'
+      profiler.log_value = 12
 
-      expect { subject }.to change(pig_ci_profiler, :log_value).from('some-value').to(nil)
+      expect { subject }.to change(profiler, :log_value).from(12).to(0)
     end
   end
 
   describe '#save!(request_key)' do
-    subject { pig_ci_profiler.save!('request-key') }
+    subject { profiler.save!('request-key') }
 
-    before { pig_ci_profiler.setup! }
+    before { profiler.setup! }
 
     it 'saves the log value with the request key' do
-      pig_ci_profiler.log_value = 23
+      profiler.log_value = 23
       
-      expect { subject }.to change(pig_ci_profiler.log_file, :read).from('').to("request-key|23\n")
+      expect { subject }.to change(profiler.log_file, :read).from('').to("request-key|23\n")
     end
   end
 
+  describe '#log_file' do
+    subject { profiler.log_file.to_s }
+
+    it { is_expected.to match('profiler.txt') }
+  end
+
+
   describe '#i18n_key' do
-    subject { pig_ci_profiler.i18n_key }
+    subject { profiler.i18n_key }
 
     it { is_expected.to eq('profiler') }
   end

@@ -1,16 +1,16 @@
 require 'get_process_mem'
 
 class PigCI::Profiler::Memory < PigCI::Profiler
-  def self.start!
+  def reset!
     GC.disable
   end
 
-  def self.append_row(key)
-    super
+  def save!(request_key)
     GC.enable
+    super
   end
 
-  def self.log_value
+  def log_value
     ::GetProcessMem.new.bytes
   end
 end
