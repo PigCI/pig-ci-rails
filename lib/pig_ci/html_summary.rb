@@ -13,7 +13,7 @@ class PigCi::HTMLSummary
   def save!
     File.write(index_file_path, template('index').result(binding))
 
-    # Turns out these are already saved? - I guess this is just adding the HTML to view them.
+    puts "[PigCI] PigCI report generated to #{PigCi.output_directory}"
   end
 
   private

@@ -21,6 +21,7 @@ describe PigCi::HTMLSummary do
 
     it 'writes an html index file containing the the json' do
       expect { subject }.to change(index_file, :read).from('').to(/<html(.*)data-pig-ci-results/sm)
+        .and output("[PigCI] PigCI report generated to #{PigCi.output_directory}\n").to_stdout
     end
   end
 end
