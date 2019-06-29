@@ -3,8 +3,7 @@ require 'active_support/core_ext/string/inflections'
 
 require 'pig_ci/version'
 require 'pig_ci/api'
-require 'pig_ci/summary/html'
-require 'pig_ci/summary/terminal'
+require 'pig_ci/summary'
 require 'pig_ci/profiler_engine'
 require 'pig_ci/profiler'
 require 'pig_ci/report'
@@ -49,12 +48,7 @@ module PigCI
 
   attr_accessor :profile_engine
   def profiler_engine
-    @profiler_engine ||= PigCI::ProfilerEngine::Rails
-  end
-
-  attr_accessor :request_key
-  def request_key(payload)
-    (@request_key || Proc.new{ |pl| "#{pl[:method]} #{pl[:controller]}##{pl[:action]}{format:#{pl[:format]}}" }).call(payload)
+    @profiler_engine ||= PigCI::ProfilerEngine::Rails.new
   end
 
   attr_accessor :api_base_uri
@@ -100,7 +94,7 @@ module PigCI
     Dir.mkdir(output_directory) unless File.exist?(output_directory)
 
     # Purge any previous logs and attach some listeners
-    self.profiler_engine.setup!
+    self.profiler_engine.start!
   end
 
   def run_exit_tasks!

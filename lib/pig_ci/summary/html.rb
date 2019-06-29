@@ -23,7 +23,7 @@ class PigCI::Summary::HTML < PigCI::Summary
   end
 
   def template(name)
-    ERB.new(File.read(File.join(File.dirname(__FILE__), 'views', "#{name}.erb")))
+    ERB.new(File.read(File.join(File.dirname(__FILE__), '../views', "#{name}.erb")))
   end
 
   def index_file_path

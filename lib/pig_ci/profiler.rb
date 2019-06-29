@@ -4,6 +4,7 @@ class PigCI::Profiler
   end
 
   private
+
   def self.log_file
     @log_file ||= PigCI.tmp_directory.join("#{i18n_key}.txt")
   end

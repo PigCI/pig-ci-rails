@@ -1,7 +1,5 @@
 class PigCI::ProfilerEngine
-  class << self
-    attr_accessor :request_key
-  end
+  attr_accessor :request_key
 end
 
 require 'pig_ci/profiler_engine/rails'
