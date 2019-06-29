@@ -19,6 +19,8 @@ class PigCI::Metric::Historical
     save!
   end
 
+  private
+  
   def save!
     File.write(@historical_log_file, @to_h.to_json)
   end
