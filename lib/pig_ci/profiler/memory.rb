@@ -5,7 +5,7 @@ class PigCI::Profiler::Memory < PigCI::Profiler
     GC.disable
   end
 
-  def save!(request_key)
+  def log_request!(request_key)
     GC.enable
     super
   end

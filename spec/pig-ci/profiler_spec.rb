@@ -30,8 +30,8 @@ describe PigCI::Profiler do
     it { expect { subject }.to raise_error(NotImplementedError) }
   end
 
-  describe '#save!(request_key)' do
-    subject { profiler.save!('request-key') }
+  describe '#log_request!(request_key)' do
+    subject { profiler.log_request!('request-key') }
 
     before { profiler.setup! }
 

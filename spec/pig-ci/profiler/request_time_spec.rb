@@ -12,8 +12,8 @@ describe PigCI::Profiler::RequestTime do
     end
   end
 
-  describe '#save!' do
-    subject { profiler.save!('request-key') }
+  describe '#log_request!' do
+    subject { profiler.log_request!('request-key') }
     before { profiler.setup! && profiler.reset! }
 
     it 'sets end_time and saves the delta to the log file' do

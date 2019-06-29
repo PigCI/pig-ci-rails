@@ -6,8 +6,6 @@ describe PigCI::Profiler::SqlActiveRecord do
   describe '#increment!' do
     subject { profiler.increment! }
 
-    before { profiler.reset! }
-
     it { expect{ subject }.to change(profiler, :log_value).by(1) }
 
     context 'with by argument' do

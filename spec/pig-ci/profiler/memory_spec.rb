@@ -12,8 +12,8 @@ describe PigCI::Profiler::Memory do
     end
   end
 
-  describe '#save!(request_key)' do
-    subject { profiler.save!('request-key') }
+  describe '#log_request!(request_key)' do
+    subject { profiler.log_request!('request-key') }
     let(:get_process_mem) { double :get_process_mem, bytes: 55 }
 
     before { profiler.setup! }

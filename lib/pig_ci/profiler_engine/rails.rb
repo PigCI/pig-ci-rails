@@ -46,7 +46,7 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
 
     ::ActiveSupport::Notifications.subscribe 'process_action.action_controller' do |name, started, finished, unique_id, payload|
       profilers.each do |profiler|
-        profiler.save!(request_key)
+        profiler.log_request!(request_key)
       end
 
       request_captured!

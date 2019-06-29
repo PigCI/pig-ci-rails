@@ -6,7 +6,7 @@ class PigCI::Profiler::RequestTime < PigCI::Profiler
     @start_time = Time.now.utc
   end
 
-  def save!(request_key)
+  def log_request!(request_key)
     @end_time = Time.now.utc
     super
   end
