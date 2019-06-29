@@ -16,7 +16,7 @@ class PigCI::Profiler
   end
 
   def increment!(by: 1)
-    raise NotImplemented
+    raise NotImplementedError
   end
 
   def log_file
