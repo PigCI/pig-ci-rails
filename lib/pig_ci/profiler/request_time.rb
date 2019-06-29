@@ -1,13 +1,17 @@
 class PigCI::Profiler::RequestTime < PigCI::Profiler
-  def self.start!
-    @start_time = Time.zone.now
+  attr_accessor :start_time, :end_time
+
+  def reset!
+    super
+    @start_time = Time.now.utc
   end
 
-  def self.stop!
-    @end_time = Time.zone.now
+  def save!(request_key)
+    @end_time = Time.now.utc
+    super
   end
 
-  def self.log_value
+  def log_value
     (@end_time - @start_time) * 1000.0
   end
 end
