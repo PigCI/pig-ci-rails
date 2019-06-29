@@ -1,4 +1,4 @@
-class PigCi::Profiler::RequestTime < PigCi::Profiler
+class PigCI::Profiler::RequestTime < PigCI::Profiler
   def self.start!
     @start_time = Time.zone.now
   end

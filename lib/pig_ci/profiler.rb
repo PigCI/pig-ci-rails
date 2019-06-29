@@ -1,11 +1,11 @@
-class PigCi::Profiler
+class PigCI::Profiler
   def self.setup!
     File.open(log_file, 'w') {|file| file.truncate(0) }
   end
 
   private
   def self.log_file
-    @log_file ||= PigCi.tmp_directory.join("#{i18n_key}.txt")
+    @log_file ||= PigCI.tmp_directory.join("#{i18n_key}.txt")
   end
 
   def self.i18n_key

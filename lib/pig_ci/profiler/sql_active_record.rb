@@ -1,4 +1,4 @@
-class PigCi::Profiler::SqlActiveRecord < PigCi::Profiler
+class PigCI::Profiler::SqlActiveRecord < PigCI::Profiler
   def self.start!
     @query_count = 0
   end

@@ -1,4 +1,4 @@
-class PigCi::Api::ShareReports < PigCi::Api
+class PigCI::Api::ShareReports < PigCI::Api
   def initialize(reports: [])
     @reports = reports
   end
@@ -6,18 +6,18 @@ class PigCi::Api::ShareReports < PigCi::Api
   def share
     begin
       self.class.post('/reports', {
-        base_uri: PigCi.api_base_uri,
-        verify: PigCi.api_verify_ssl,
+        base_uri: PigCI.api_base_uri,
+        verify: PigCI.api_verify_ssl,
         body: {
-          commit_sha1: PigCi.commit_sha1, 
-          head_branch: PigCi.head_branch, 
-          reporter_name: PigCi.reporter_name, 
+          commit_sha1: PigCI.commit_sha1, 
+          head_branch: PigCI.head_branch, 
+          reporter_name: PigCI.reporter_name, 
           reports: @reports.collect(&:to_json)
         },
         headers: headers
       })
     rescue => e
-      puts '[PigCi] Unable to connect to PigCi API: '
+      puts '[PigCI] Unable to connect to PigCI API: '
       puts e.inspect
     end
   end

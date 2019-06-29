@@ -1,4 +1,4 @@
-class PigCi::Report::Memory < PigCi::Report
+class PigCI::Report::Memory < PigCI::Report
   def self.format_data(data)
     data[:max] = (data[:max] / bytes_in_a_megabyte).round(2)
     data[:min] = (data[:min] / bytes_in_a_megabyte).round(2)

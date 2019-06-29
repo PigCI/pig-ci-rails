@@ -1,2 +1,2 @@
-class PigCi::Report::SqlActiveRecord < PigCi::Report
+class PigCI::Report::SqlActiveRecord < PigCI::Report
 end

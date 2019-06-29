@@ -6,7 +6,7 @@ require 'pig_ci/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'pig-ci'
-  spec.version       = PigCi::VERSION
+  spec.version       = PigCI::VERSION
   spec.authors       = ['Mike Rogers']
   spec.email         = ['me@mikerogers.io']
 

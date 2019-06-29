@@ -1,4 +1,4 @@
-# PigCi
+# PigCI
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/pig_ci`. To experiment with that code, run `bin/console` for an interactive prompt.
 
@@ -26,13 +26,13 @@ Or install it yourself as:
 
     # In spec/rails_helper.rb
     require 'pig_ci'
-    PigCi.start
+    PigCI.start
 
 ### With PigCI.com - For sharing runs as a team via CI.
 
     # In spec/rails_helper.rb
     require 'pig_ci'
-    PigCi.start do |config|
+    PigCI.start do |config|
       config.api_base_uri = 'https://api.pigciapp.test/v1'
       config.api_verify_ssl = false
       config.api_key = 'gClHJNkudAUYT7zrQ8cL7HBgOofqwaeQ1Ne7FjG9LD0'
@@ -50,4 +50,4 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 
 ## Code of Conduct
 
-Everyone interacting in the PigCi project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/pig_ci/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the PigCI project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/pig_ci/blob/master/CODE_OF_CONDUCT.md).

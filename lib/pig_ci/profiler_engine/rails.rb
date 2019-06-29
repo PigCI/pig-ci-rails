@@ -1,24 +1,24 @@
-class PigCi::ProfilerEngine::Rails < PigCi::ProfilerEngine
+class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
   def self.profilers
     [
-      PigCi::Profiler::Memory,
-      PigCi::Profiler::InstantiationActiveRecord,
-      PigCi::Profiler::RequestTime,
-      PigCi::Profiler::SqlActiveRecord
+      PigCI::Profiler::Memory,
+      PigCI::Profiler::InstantiationActiveRecord,
+      PigCI::Profiler::RequestTime,
+      PigCI::Profiler::SqlActiveRecord
     ]
   end
 
   def self.reports
     [
-      PigCi::Report::Memory,
-      PigCi::Report::InstantiationActiveRecord,
-      PigCi::Report::RequestTime,
-      PigCi::Report::SqlActiveRecord
+      PigCI::Report::Memory,
+      PigCI::Report::InstantiationActiveRecord,
+      PigCI::Report::RequestTime,
+      PigCI::Report::SqlActiveRecord
     ]
   end
 
   def self.setup!
-    Dir.mkdir(PigCi.tmp_directory) unless File.exists?(PigCi.tmp_directory)
+    Dir.mkdir(PigCI.tmp_directory) unless File.exists?(PigCI.tmp_directory)
 
     profilers.collect(&:setup!)
 
@@ -29,7 +29,7 @@ class PigCi::ProfilerEngine::Rails < PigCi::ProfilerEngine
   def self.attach_listeners!
     ::ActiveSupport::Notifications.subscribe 'start_processing.action_controller' do |*args|
       event = ActiveSupport::Notifications::Event.new(*args)
-      self.request_key = PigCi.request_key(event.payload)
+      self.request_key = PigCI.request_key(event.payload)
 
       profilers.collect(&:start!)
     end
@@ -37,25 +37,25 @@ class PigCi::ProfilerEngine::Rails < PigCi::ProfilerEngine
     ::ActiveSupport::Notifications.subscribe 'instantiation.active_record' do |*args|
       if self.request_key
         event = ActiveSupport::Notifications::Event.new(*args)
-        PigCi::Profiler::InstantiationActiveRecord.increment!(by: event.payload[:record_count])
+        PigCI::Profiler::InstantiationActiveRecord.increment!(by: event.payload[:record_count])
       end
     end
 
     ::ActiveSupport::Notifications.subscribe 'sql.active_record' do |*args|
       if self.request_key
         # event = ActiveSupport::Notifications::Event.new *args
-        PigCi::Profiler::SqlActiveRecord.increment!
+        PigCI::Profiler::SqlActiveRecord.increment!
       end
     end
 
     ::ActiveSupport::Notifications.subscribe 'process_action.action_controller' do |*args|
       event = ActiveSupport::Notifications::Event.new(*args)
-      PigCi::Profiler::RequestTime.stop!
+      PigCI::Profiler::RequestTime.stop!
 
       profilers.each do |profiler|
         profiler.append_row(request_key)
       end
-      PigCi.request_was_completed = true
+      PigCI.request_was_completed = true
       self.request_key = nil
     end
   end

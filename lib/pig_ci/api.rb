@@ -1,11 +1,11 @@
 require 'httparty'
 
-class PigCi::Api
+class PigCI::Api
   include HTTParty
 
   def headers
     {
-      'X-ApiKey': PigCi.api_key
+      'X-ApiKey': PigCI.api_key
     }
   end
 end

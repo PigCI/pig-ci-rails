@@ -1,4 +1,4 @@
-class PigCi::ProfilerEngine
+class PigCI::ProfilerEngine
   class << self
     attr_accessor :request_key
   end

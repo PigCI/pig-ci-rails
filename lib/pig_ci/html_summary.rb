@@ -4,7 +4,7 @@
 
 require 'erb'
 
-class PigCi::HTMLSummary
+class PigCI::HTMLSummary
   def initialize(reports:)
     @reports = reports
     @historic_reports = @reports.collect(&:output_file)
@@ -13,7 +13,7 @@ class PigCi::HTMLSummary
   def save!
     File.write(index_file_path, template('index').result(binding))
 
-    puts "[PigCI] PigCI report generated to #{PigCi.output_directory}"
+    puts "[PigCI] PigCI report generated to #{PigCI.output_directory}"
   end
 
   private
@@ -27,6 +27,6 @@ class PigCi::HTMLSummary
   end
 
   def index_file_path
-    PigCi.output_directory.join('index.html')
+    PigCI.output_directory.join('index.html')
   end
 end

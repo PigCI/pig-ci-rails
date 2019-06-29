@@ -9,8 +9,8 @@ end
 require 'tmpdir'
 
 require 'pig_ci'
-PigCi.output_directory = Pathname.new(Dir.mktmpdir)
-PigCi.tmp_directory = Pathname.new(Dir.mktmpdir)
+PigCI.output_directory = Pathname.new(Dir.mktmpdir)
+PigCI.tmp_directory = Pathname.new(Dir.mktmpdir)
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -25,6 +25,6 @@ RSpec.configure do |config|
 end
 
 at_exit do
-  FileUtils.remove_entry PigCi.output_directory
-  FileUtils.remove_entry PigCi.tmp_directory
+  FileUtils.remove_entry PigCI.output_directory
+  FileUtils.remove_entry PigCI.tmp_directory
 end

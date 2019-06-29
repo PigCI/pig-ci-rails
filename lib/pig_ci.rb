@@ -8,7 +8,7 @@ require 'pig_ci/profiler_engine'
 require 'pig_ci/profiler'
 require 'pig_ci/report'
 
-module PigCi
+module PigCI
 
   extend self
 
@@ -48,7 +48,7 @@ module PigCi
 
   attr_accessor :profile_engine
   def profiler_engine
-    @profiler_engine ||= PigCi::ProfilerEngine::Rails
+    @profiler_engine ||= PigCI::ProfilerEngine::Rails
   end
 
   attr_accessor :request_key
@@ -87,7 +87,7 @@ module PigCi
   def start(&block)
     self.running = true
     self.pid = Process.pid
-    puts '[PigCi] Starting up'
+    puts '[PigCI] Starting up'
 
     block.call(self) if block_given?
 
@@ -106,28 +106,28 @@ module PigCi
     puts '[PigCI] Finished, expect an output or something in a moment'
 
     reports = self.profiler_engine.reports
-    puts "[PigCi] Saving your reports…"
+    puts "[PigCI] Saving your reports…"
     reports.collect(&:save!)
-    puts "[PigCi] Printing your reports…\n\n"
+    puts "[PigCI] Printing your reports…\n\n"
     reports.collect(&:print!)
 
-    puts "[PigCi] Saving to project root…\n\n"
-    PigCi::HTMLSummary.new(reports: reports).save!
+    puts "[PigCI] Saving to project root…\n\n"
+    PigCI::HTMLSummary.new(reports: reports).save!
 
-    if PigCi.api_key.present?
-      puts "[PigCi] Sharing your reports…"
-      PigCi::Api::ShareReports.new(reports: reports).share
+    if PigCI.api_key.present?
+      puts "[PigCI] Sharing your reports…"
+      PigCI::Api::ShareReports.new(reports: reports).share
     else
-      puts "[PigCi] You can share your reports PigCI with your colleagues via https://pigci.com/"
+      puts "[PigCI] You can share your reports PigCI with your colleagues via https://pigci.com/"
     end
   end
 end
 
-# PigCi.report_print_sort_by = Proc.new { |d| d[:max_change_percentage] * -1 }
+# PigCI.report_print_sort_by = Proc.new { |d| d[:max_change_percentage] * -1 }
 
 at_exit do
   # If we are in a different process than called start, don't interfere.
-  next if PigCi.pid != Process.pid
+  next if PigCI.pid != Process.pid
 
-  PigCi.run_exit_tasks! if PigCi.request_was_completed
+  PigCI.run_exit_tasks! if PigCI.request_was_completed
 end

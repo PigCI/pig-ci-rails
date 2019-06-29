@@ -1,2 +1,2 @@
-class PigCi::Report::InstantiationActiveRecord < PigCi::Report
+class PigCI::Report::InstantiationActiveRecord < PigCI::Report
 end

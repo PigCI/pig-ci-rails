@@ -1,2 +1,2 @@
-class PigCi::Report::RequestTime < PigCi::Report
+class PigCI::Report::RequestTime < PigCI::Report
 end

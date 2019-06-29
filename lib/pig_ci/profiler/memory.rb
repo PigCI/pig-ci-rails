@@ -1,6 +1,6 @@
 require 'get_process_mem'
 
-class PigCi::Profiler::Memory < PigCi::Profiler
+class PigCI::Profiler::Memory < PigCI::Profiler
   def self.start!
     GC.disable
   end

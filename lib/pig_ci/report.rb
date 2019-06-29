@@ -1,7 +1,7 @@
 require 'terminal-table'
 require 'colorized_string'
 
-class PigCi::Report
+class PigCI::Report
   def self.print!
     puts "[PigCI] #{i18n_name}:\n"
     table = Terminal::Table.new headings: headings do |t|
@@ -31,8 +31,8 @@ class PigCi::Report
   def self.save!
     historical_data
 
-    @historical_data[PigCi.run_timestamp] ||= {}
-    @historical_data[PigCi.run_timestamp][i18n_key] = last_run_data
+    @historical_data[PigCI.run_timestamp] ||= {}
+    @historical_data[PigCI.run_timestamp][i18n_key] = last_run_data
 
     File.write(output_file, @historical_data.to_json)
   end
@@ -63,7 +63,7 @@ class PigCi::Report
   end
 
   def self.formatted_aggregated_data
-    aggregated_data.sort_by { |d| PigCi.report_print_sort_by(d) }[0..PigCi.report_print_limit].collect do |data|
+    aggregated_data.sort_by { |d| PigCI.report_print_sort_by(d) }[0..PigCI.report_print_limit].collect do |data|
       format_data(data)
     end
   end
@@ -73,18 +73,18 @@ class PigCi::Report
   end
 
   def self.aggregated_data
-    historical_data[PigCi.run_timestamp][i18n_key].collect do |data|
+    historical_data[PigCI.run_timestamp][i18n_key].collect do |data|
       previous_run_data = previous_run_data_for_key(data[:key]) || data
 
       data[:max_change_percentage] = (( BigDecimal(previous_run_data[:max]) / BigDecimal(data[:max]) ) - 1)
       data[:max_change_percentage] = BigDecimal('0') if data[:max_change_percentage].to_s == 'NaN'
 
       if data[:max_change_percentage] >= BigDecimal('0.01')
-        data[:max_change_percentage_with_unit] = ColorizedString["#{data[:max_change_percentage].round(PigCi.change_precision)}%"].colorize(:red)
+        data[:max_change_percentage_with_unit] = ColorizedString["#{data[:max_change_percentage].round(PigCI.change_precision)}%"].colorize(:red)
       elsif data[:max_change_percentage] <= BigDecimal('-0.01')
-        data[:max_change_percentage_with_unit] = ColorizedString["#{data[:max_change_percentage].round(PigCi.change_precision)}%"].colorize(:green)
+        data[:max_change_percentage_with_unit] = ColorizedString["#{data[:max_change_percentage].round(PigCI.change_precision)}%"].colorize(:green)
       else
-        data[:max_change_percentage_with_unit] = "#{data[:max_change_percentage].round(PigCi.change_precision)}%"
+        data[:max_change_percentage_with_unit] = "#{data[:max_change_percentage].round(PigCI.change_precision)}%"
       end
       data
     end
@@ -100,7 +100,7 @@ class PigCi::Report
   end
 
   def self.previous_run_keys
-    @previous_run_keys ||= historical_data.keys.reject { |key| key == PigCi.run_timestamp }.sort.reverse
+    @previous_run_keys ||= historical_data.keys.reject { |key| key == PigCI.run_timestamp }.sort.reverse
   end
 
   def self.historical_data
@@ -116,11 +116,11 @@ class PigCi::Report
   end
 
   def self.log_file
-    @log_file ||= PigCi.tmp_directory.join("#{i18n_key}.txt")
+    @log_file ||= PigCI.tmp_directory.join("#{i18n_key}.txt")
   end
 
   def self.output_file
-    @output_file ||= PigCi.output_directory.join("#{i18n_key}.json")
+    @output_file ||= PigCI.output_directory.join("#{i18n_key}.json")
   end
 
   def self.i18n_key
