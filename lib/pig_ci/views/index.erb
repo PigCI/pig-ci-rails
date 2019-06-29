@@ -18,6 +18,10 @@
       <h1>PigCI Results</h1>
       
       <div data-pig-ci-results>
+        <%= @reports.each do |timestamp, report| %>
+          <h2><%= timestamp %></h2>
+          <div><%= report.inspect %></div>
+        <% end %>
         
       </div>
     </div>
