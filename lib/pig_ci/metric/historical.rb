@@ -13,10 +13,13 @@ class PigCI::Metric::Historical
 
   # In future this might honour some limit.
   def append!(timestamp:, metric:, data:)
-    @historical_data = to_h
-    @historical_data[timestamp] ||= {}
-    @historical_data[timestamp][metric] = data
+    to_h
+    @to_h[timestamp] ||= {}
+    @to_h[timestamp][metric] = data
+    save!
+  end
 
-    File.write(@historical_log_file, @historical_data.to_json)
+  def save!
+    File.write(@historical_log_file, @to_h.to_json)
   end
 end
