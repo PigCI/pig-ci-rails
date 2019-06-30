@@ -13,17 +13,18 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
       PigCI::Report::RequestTime.new,
       PigCI::Report::SqlActiveRecord.new
     ]
+    @request_captured = false
+  end
+
+  def set_request_key_from_payload!(payload)
+    @request_key = "#{payload[:method]} #{payload[:controller]}##{payload[:action]}{format:#{payload[:format]}}"
   end
 
   private
 
-  def payload_to_request_key(payload)
-    @request_key = Proc.new { |pl| "#{pl[:method]} #{pl[:controller]}##{pl[:action]}{format:#{pl[:format]}}" }.call(payload)
-  end
-
   def attach_listeners!
     ::ActiveSupport::Notifications.subscribe 'start_processing.action_controller' do |name, started, finished, unique_id, payload|
-      request_key = payload_to_request_key(payload)
+      set_request_key_from_payload!(payload)
 
       profilers.each(&:reset!)
     end
@@ -50,7 +51,7 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
       end
 
       request_captured!
-      request_key = nil
+      self.request_key = nil
     end
   end
 end
