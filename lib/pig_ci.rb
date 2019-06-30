@@ -66,6 +66,9 @@ module PigCI
   end
 
   attr_accessor :api_key
+  def api_key?
+    !@api_key.nil? && @api_key != ''
+  end
 
   attr_accessor :commit_sha1
   def commit_sha1
@@ -108,22 +111,18 @@ module PigCI
   def run_exit_tasks!
     return if PigCI.pid != Process.pid || !PigCI.profiler_engine.request_captured?
 
-    puts '[PigCI] Finished, expect an output or something in a moment'
-
-    puts "[PigCI] Saving your reports…"
+    # Save all the reports as JSON
     self.profiler_engine.profilers.each(&:save!)
 
-    puts "[PigCI] Printing your reports…\n\n"
+    # Print the report summary to Terminal
     PigCI::Summary::Terminal.new(reports: self.profiler_engine.reports).print!
 
-    puts "[PigCI] Saving to project root…\n\n"
+    # Save the report summary to the project root.
     PigCI::Summary::HTML.new(reports: self.profiler_engine.reports).save!
 
-    if PigCI.api_key.present?
-      puts "[PigCI] Sharing your reports…"
-      PigCI::Api::ShareReports.new(reports: self.profiler_engine.reports).share
-    else
-      puts "[PigCI] You can share your reports PigCI with your colleagues via https://pigci.com/"
+    # If they have an API key, share it with PigCI.com
+    if PigCI.api_key?
+      PigCI::Api::ShareReports.new(reports: self.profiler_engine.reports).share!
     end
   end
 end

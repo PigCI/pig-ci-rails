@@ -3,7 +3,7 @@ class PigCI::Api::ShareReports < PigCI::Api
     @reports = reports
   end
 
-  def share
+  def share!
     begin
       self.class.post('/reports', {
                         base_uri: PigCI.api_base_uri,
