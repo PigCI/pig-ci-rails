@@ -18,7 +18,7 @@ class PigCI::Report
     historical_data[timestamp.to_sym][@i18n_key.to_sym].sort_by do |d| # TODO: WTF is 'd'
       PigCI.report_print_sort_by(d)
     end[0..PigCI.report_print_limit].collect do |data|
-      format_row(data)
+      self.format_row(data)
     end
   end
 
@@ -40,9 +40,7 @@ class PigCI::Report
     @i18n_scope ||= "pig_ci.report.#{i18n_key}"
   end
 
-  private
-
-  def format_row(row)
+  def self.format_row(row)
     row
   end
 end
