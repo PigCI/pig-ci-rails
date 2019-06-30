@@ -44,6 +44,10 @@ describe PigCI do
     end
   end
 
+  describe '::load_i18n!' do
+    pending
+  end
+
   describe '::run_exit_tasks!' do
     after { PigCI.pid = nil }
     subject { PigCI.run_exit_tasks! }
