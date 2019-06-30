@@ -29,6 +29,11 @@ module PigCI
     @max_change_percentage_precision || 1
   end
 
+  attr_accessor :report_memory_precision
+  def report_memory_precision
+    @report_memory_precision || 2
+  end
+
   attr_accessor :report_print_limit
   def report_print_limit
     @report_print_limit || -1
