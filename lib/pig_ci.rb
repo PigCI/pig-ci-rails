@@ -24,9 +24,9 @@ module PigCI
     @output_directory || Pathname.new(Dir.getwd).join('pig-ci')
   end
 
-  attr_accessor :change_precision
-  def change_precision
-    @change_precision || 1
+  attr_accessor :max_change_percentage_precision
+  def max_change_percentage_precision
+    @max_change_percentage_precision || 1
   end
 
   attr_accessor :report_print_limit
@@ -34,6 +34,7 @@ module PigCI
     @report_print_limit || -1
   end
 
+  # PigCI.report_print_sort_by = Proc.new { |d| d[:max_change_percentage] * -1 }
   attr_accessor :report_print_sort_by
   def report_print_sort_by(data)
     (@report_print_sort_by || Proc.new { |d| d[:max].to_i * -1 }).call(data)
@@ -44,7 +45,7 @@ module PigCI
     @run_timestamp ||= Time.now.to_i.to_s
   end
 
-  attr_accessor :profile_engine
+  attr_accessor :profiler_engine
   def profiler_engine
     @profiler_engine ||= PigCI::ProfilerEngine::Rails.new
   end
@@ -71,16 +72,15 @@ module PigCI
     @head_branch || ENV['CIRCLE_BRANCH'] || ENV['TRAVIS_BRANCH'] || `git rev-parse --abbrev-ref HEAD`.strip
   end
 
-  attr_accessor :reporter_name
-  def reporter_name
-    @reporter_name || ('Circle CI' if ENV['CIRCLE_SHA1']) || ('TravisCi' if ENV['TRAVIS_COMMIT'])
+  attr_accessor :locale
+  def locale
+    @locale || :en
   end
 
   module_function
 
   def start(&block)
     self.pid = Process.pid
-    puts '[PigCI] Starting up'
 
     block.call(self) if block_given?
 
@@ -96,10 +96,13 @@ module PigCI
   end
 
   def load_i18ns!
+    I18n.available_locales << PigCI.locale
     I18n.load_path += Dir["#{File.expand_path('../../config/locales/pig_ci', __FILE__)}/*.{rb,yml}"]
   end
 
   def run_exit_tasks!
+    return if PigCI.pid != Process.pid || !PigCI.profiler_engine.request_captured?
+
     puts '[PigCI] Finished, expect an output or something in a moment'
 
     puts "[PigCI] Saving your reports…"
@@ -120,11 +123,6 @@ module PigCI
   end
 end
 
-# PigCI.report_print_sort_by = Proc.new { |d| d[:max_change_percentage] * -1 }
-
 at_exit do
-  # If we are in a different process than called start, don't interfere.
-  next if PigCI.pid != Process.pid
-
-  PigCI.run_exit_tasks! if PigCI.pid.present? && PigCI.profiler_engine.request_captured?
+  PigCI.run_exit_tasks!
 end

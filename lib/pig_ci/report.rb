@@ -7,18 +7,18 @@ class PigCI::Report
   end
 
   def headings
-    column_keys.collect { |key| I18n.t(".attributes.#{key}", scope: i18n_scope) }
+    column_keys.collect { |key| I18n.t(".attributes.#{key}", scope: i18n_scope, locale: PigCI.locale) }
   end
 
   def i18n_name
-    I18n.t('.name', scope: i18n_scope)
+    I18n.t('.name', scope: i18n_scope, locale: PigCI.locale)
   end
 
   def sorted_and_formatted_data_for(timestamp)
     historical_data[timestamp.to_sym][@i18n_key.to_sym].sort_by do |d| # TODO: WTF is 'd'
       PigCI.report_print_sort_by(d)
     end[0..PigCI.report_print_limit].collect do |data|
-      self.format_row(data)
+      self.class.format_row(data)
     end
   end
 

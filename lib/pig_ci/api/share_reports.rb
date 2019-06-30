@@ -11,7 +11,6 @@ class PigCI::Api::ShareReports < PigCI::Api
                         body: {
                           commit_sha1: PigCI.commit_sha1,
                           head_branch: PigCI.head_branch,
-                          reporter_name: PigCI.reporter_name,
                           reports: @reports.collect(&:to_json)
                         },
                         headers: headers

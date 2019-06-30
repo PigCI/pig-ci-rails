@@ -10,8 +10,8 @@ class PigCI::Metric::Historical::ChangePercentage
     @data[@timestamp][@profiler].collect do |data|
       previous_run_data = previous_run_data_for_key(data[:key]) || data
 
-      data[:max_change_percentage] = (((BigDecimal(data[:max]) - BigDecimal(previous_run_data[:max])) / BigDecimal(previous_run_data[:max])) * 100).round(PigCI.change_precision)
-      data[:max_change_percentage] = BigDecimal('0') if data[:max_change_percentage].to_s == 'NaN'
+      data[:max_change_percentage] = (((BigDecimal(data[:max]) - BigDecimal(previous_run_data[:max])) / BigDecimal(previous_run_data[:max])) * 100).round(PigCI.max_change_percentage_precision)
+      data[:max_change_percentage] = BigDecimal('0') if data[:max_change_percentage].to_s == 'NaN' || data[:max_change_percentage] == BigDecimal('-0.0')
       data[:max_change_percentage] = data[:max_change_percentage].to_f
 
       data
