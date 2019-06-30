@@ -34,15 +34,15 @@ module PigCI
     @report_memory_precision || 2
   end
 
-  attr_accessor :report_print_limit
-  def report_print_limit
-    @report_print_limit || -1
+  attr_accessor :terminal_report_row_limit
+  def terminal_report_row_limit
+    @terminal_report_row_limit || -1
   end
 
-  # PigCI.report_print_sort_by = Proc.new { |d| d[:max_change_percentage] * -1 }
-  attr_accessor :report_print_sort_by
-  def report_print_sort_by(data)
-    (@report_print_sort_by || Proc.new { |d| d[:max].to_i * -1 }).call(data)
+  # PigCI.report_row_sort_by = Proc.new { |d| d[:max_change_percentage] * -1 }
+  attr_accessor :report_row_sort_by
+  def report_row_sort_by(data)
+    (@report_row_sort_by || Proc.new { |d| d[:max].to_i * -1 }).call(data)
   end
 
   attr_accessor :run_timestamp
