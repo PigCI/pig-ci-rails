@@ -29,10 +29,10 @@ describe PigCI::ProfilerEngine do
       ActiveSupport::Notifications.unsubscribe('sql.active_record')
       ActiveSupport::Notifications.unsubscribe('process_action.action_controller')
     end
-    
+
     describe 'start_processing.action_controller' do
       subject do
-        ActiveSupport::Notifications.instrument('start_processing.action_controller', payload) { }
+        ActiveSupport::Notifications.instrument('start_processing.action_controller', payload) {}
       end
 
       it do
@@ -55,7 +55,7 @@ describe PigCI::ProfilerEngine do
       end
 
       subject do
-        ActiveSupport::Notifications.instrument('instantiation.active_record', payload) { }
+        ActiveSupport::Notifications.instrument('instantiation.active_record', payload) {}
       end
 
       it do
@@ -65,7 +65,7 @@ describe PigCI::ProfilerEngine do
 
       context 'with a request_key set' do
         before { profiler_engine.request_key = 'request-key' }
-        
+
         it do
           expect(profiler_instantiation_active_record).to receive(:increment!)
           subject
@@ -80,7 +80,7 @@ describe PigCI::ProfilerEngine do
       let(:payload) {}
 
       subject do
-        ActiveSupport::Notifications.instrument('sql.active_record', payload) { }
+        ActiveSupport::Notifications.instrument('sql.active_record', payload) {}
       end
 
       it do
@@ -90,7 +90,7 @@ describe PigCI::ProfilerEngine do
 
       context 'with a request_key set' do
         before { profiler_engine.request_key = 'request-key' }
-        
+
         it do
           expect(profiler_sql_active_record).to receive(:increment!)
           subject
@@ -105,7 +105,7 @@ describe PigCI::ProfilerEngine do
       end
 
       subject do
-        ActiveSupport::Notifications.instrument('process_action.action_controller', payload) { }
+        ActiveSupport::Notifications.instrument('process_action.action_controller', payload) {}
       end
 
       it do
@@ -114,7 +114,7 @@ describe PigCI::ProfilerEngine do
         end
 
         expect { subject }.to change(profiler_engine, :request_captured).from(false).to(true)
-          .and change(profiler_engine, :request_key).from('request-key').to(nil)
+                                                                        .and change(profiler_engine, :request_key).from('request-key').to(nil)
       end
     end
   end
