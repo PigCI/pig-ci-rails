@@ -1,8 +1,8 @@
 class PigCI::Report
   attr_accessor :historical_log_file, :i18n_key
 
-  def initialize(historical_log_file: nil)
-    @i18n_key = self.class.name.underscore.split('/').last
+  def initialize(historical_log_file: nil, i18n_key: nil)
+    @i18n_key = i18n_key || self.class.name.underscore.split('/').last
     @historical_log_file = historical_log_file || PigCI.tmp_directory.join("#{@i18n_key}.json")
   end
 

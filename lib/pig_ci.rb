@@ -85,7 +85,7 @@ module PigCI
     block.call(self) if block_given?
 
     # Add our translations
-    I18n.load_path += Dir["#{File.expand_path("../../config/locales/pig_ci", __FILE__)}/*.{rb,yml}"]
+    self.load_i18ns!
 
     # Make sure our directories exist
     Dir.mkdir(tmp_directory) unless File.exist?(tmp_directory)
@@ -93,6 +93,10 @@ module PigCI
 
     # Purge any previous logs and attach some listeners
     self.profiler_engine.setup!
+  end
+
+  def load_i18ns!
+    I18n.load_path += Dir["#{File.expand_path('../../config/locales/pig_ci', __FILE__)}/*.{rb,yml}"]
   end
 
   def run_exit_tasks!

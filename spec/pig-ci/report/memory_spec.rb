@@ -1,8 +1,10 @@
 require 'spec_helper'
 
 describe PigCI::Report::Memory do
+  let(:report) { PigCI::Report::Memory.new }
 
   describe '::format_row' do
+    subject { PigCI::Report::Memory.format_row(row) }
     let(:row) do
       {
         max: 1048576,
@@ -13,8 +15,6 @@ describe PigCI::Report::Memory do
         max_change_percentage: 0.0
       }
     end
-
-    subject { PigCI::Report::Memory.format_row(row) }
 
     it do
       is_expected.to eq (
@@ -34,5 +34,11 @@ describe PigCI::Report::Memory do
     subject { PigCI::Report::Memory.bytes_in_a_megabyte }
 
     it { is_expected.to eq(BigDecimal(1048576)) }
+  end
+
+  describe '#i18n_scope' do
+    subject { report.i18n_scope }
+
+    it { is_expected.to eq('pig_ci.report.memory') }
   end
 end

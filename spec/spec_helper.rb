@@ -12,6 +12,7 @@ require 'pig_ci'
 PigCI.output_directory = Pathname.new(Dir.mktmpdir)
 PigCI.tmp_directory = Pathname.new(Dir.mktmpdir)
 PigCI.run_timestamp = '100'
+PigCI.load_i18ns!
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
