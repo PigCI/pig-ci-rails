@@ -1,9 +1,10 @@
 class PigCI::Report
   attr_accessor :historical_log_file, :i18n_key
 
-  def initialize(historical_log_file: nil, i18n_key: nil)
+  def initialize(historical_log_file: nil, i18n_key: nil, timestamp: nil)
     @i18n_key = i18n_key || self.class.name.underscore.split('/').last
     @historical_log_file = historical_log_file || PigCI.tmp_directory.join("#{@i18n_key}.json")
+    @timestamp = timestamp|| PigCI.run_timestamp
   end
 
   def headings
@@ -15,11 +16,15 @@ class PigCI::Report
   end
 
   def sorted_and_formatted_data_for(timestamp)
-    historical_data[timestamp.to_sym][@i18n_key.to_sym].sort_by do |data|
+    data_for(timestamp)[@i18n_key.to_sym].sort_by do |data|
       PigCI.report_row_sort_by(data)
     end[0..PigCI.terminal_report_row_limit].collect do |data| # TODO: This should be done in just the terminal report
       self.class.format_row(data)
     end
+  end
+
+  def to_json_for(timestamp)
+    data_for(timestamp).to_json
   end
 
   def historical_data
@@ -37,6 +42,12 @@ class PigCI::Report
 
   def self.format_row(row)
     row
+  end
+
+  private
+
+  def data_for(timestamp)
+    historical_data[timestamp.to_sym]
   end
 end
 

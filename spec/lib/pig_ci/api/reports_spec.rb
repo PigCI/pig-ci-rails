@@ -31,7 +31,7 @@ describe PigCI::Api::Reports do
         expect(params['commit_sha1']).to eq(["test_sha1"])
         expect(params['head_branch']).to eq(["test/branch"])
         # To be valid JSON
-        expect(params['reports[]']).to match_response_schema("reports")
+        expect(params['reports[]'].first).to match_response_schema("reports")
       end).to have_been_made
 
     end

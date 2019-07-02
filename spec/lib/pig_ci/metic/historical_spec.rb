@@ -20,6 +20,14 @@ describe PigCI::Metric::Historical do
     it { is_expected.to eq(expected_response) }
   end
 
+  describe '#freshest' do
+    pending 'Should sort by latest first'
+  end
+
+  describe '#add_change_percentage_and_append!' do
+    pending "It should limit the amount of data stored somehow"
+  end
+
   describe '#append!' do
     let(:timestamp) { '101' }
     let(:metric) { 'profiler' }

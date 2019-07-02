@@ -11,7 +11,7 @@ class PigCI::Api::Reports < PigCI::Api
                         body: {
                           commit_sha1: PigCI.commit_sha1,
                           head_branch: PigCI.head_branch,
-                          reports: @reports.collect(&:to_json)
+                          reports: @reports.collect { |report| report.to_json_for(PigCI.run_timestamp) }
                         },
                         headers: headers
                       })
