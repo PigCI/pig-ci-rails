@@ -28,10 +28,6 @@ class PigCI::Metric::Historical
     append!(timestamp: timestamp, metric: metric, data: data[timestamp][metric])
   end
 
-  def find_by_timestamp_and_profiler(timestamp, profiler)
-    to_h.dig(timestamp.to_sym, profiler.to_sym) || []
-  end
-
   private
 
   def save!
