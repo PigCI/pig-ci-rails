@@ -1,4 +1,4 @@
-class PigCI::Api::ShareReports < PigCI::Api
+class PigCI::Api::Reports < PigCI::Api
   def initialize(reports: [])
     @reports = reports
   end

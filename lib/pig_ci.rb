@@ -122,7 +122,7 @@ module PigCI
 
     # If they have an API key, share it with PigCI.com
     if PigCI.api_key?
-      PigCI::Api::ShareReports.new(reports: self.profiler_engine.reports).share!
+      PigCI::Api::Reports.new(reports: self.profiler_engine.reports).share!
     end
   end
 end

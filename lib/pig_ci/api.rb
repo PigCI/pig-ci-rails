@@ -10,4 +10,4 @@ class PigCI::Api
   end
 end
 
-require 'pig_ci/api/share_reports'
+require 'pig_ci/api/reports'

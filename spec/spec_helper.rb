@@ -8,10 +8,16 @@ end
 
 require 'tmpdir'
 
+require 'webmock/rspec'
+WebMock.disable_net_connect!(allow_localhost: true)
+
+# Override the PigCI settings so it plays nicely in tests.
 require 'pig_ci'
 PigCI.output_directory = Pathname.new(Dir.mktmpdir)
 PigCI.tmp_directory = Pathname.new(Dir.mktmpdir)
 PigCI.run_timestamp = '100'
+PigCI.commit_sha1 = 'test_sha1'
+PigCI.head_branch = 'test/branch'
 PigCI.load_i18ns!
 
 RSpec.configure do |config|
