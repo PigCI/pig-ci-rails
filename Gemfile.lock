@@ -83,6 +83,8 @@ GEM
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     json (2.2.0)
+    json-schema (2.8.1)
+      addressable (>= 2.4)
     launchy (2.4.3)
       addressable (~> 2.3)
     loofah (2.2.3)
@@ -188,6 +190,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 2.0)
   capybara
+  json-schema (~> 2.8.1)
   launchy
   pig-ci!
   rails (~> 5.2)
@@ -198,4 +201,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   2.0.1
+   2.0.2

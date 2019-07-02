@@ -43,6 +43,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'webmock'
 
   spec.add_development_dependency 'capybara'
+  spec.add_development_dependency 'json-schema', '~> 2.8.1'
   spec.add_development_dependency 'launchy'
   spec.add_development_dependency 'rails', '~> 5.2'
   spec.add_development_dependency 'rspec-rails'

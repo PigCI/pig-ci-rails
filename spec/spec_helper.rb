@@ -6,10 +6,13 @@ SimpleCov.start do
   add_filter '/spec/'
 end
 
+require 'json-schema'
 require 'tmpdir'
 
 require 'webmock/rspec'
 WebMock.disable_net_connect!(allow_localhost: true)
+
+require 'support/api_schema_matcher'
 
 # Override the PigCI settings so it plays nicely in tests.
 require 'pig_ci'
