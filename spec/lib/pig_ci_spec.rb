@@ -39,7 +39,7 @@ describe PigCI do
         expect(PigCI).to receive(:load_i18ns!).once
         expect(PigCI.profiler_engine).to receive(:setup!).once
         expect { subject }.to change(PigCI, :pid).from(nil).to(Integer)
-          .and change(PigCI, :api_key).from(nil).to('sample-api')
+                                                 .and change(PigCI, :api_key).from(nil).to('sample-api')
       end
     end
   end
@@ -51,7 +51,7 @@ describe PigCI do
   describe '::run_exit_tasks!' do
     after { PigCI.pid = nil }
     subject { PigCI.run_exit_tasks! }
-    
+
     context 'without PigCI being started' do
       it do
         expect { subject }.to_not output(/\[PigCI\]/).to_stdout
@@ -103,7 +103,6 @@ describe PigCI do
           subject
         end
       end
-
     end
   end
 end
