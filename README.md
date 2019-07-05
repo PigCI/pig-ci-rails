@@ -4,6 +4,14 @@ Welcome to your new gem! In this directory, you'll find the files you need to be
 
 TODO: Delete this and the text above, and describe your gem
 
+## TODO
+
+* Terminal change highlighting
+* Limit amount of stored data
+* HTML output ordered by date
+* HTML output to include branch & Quick navigate
+* Change name to `pig-ci-rails`
+
 ## Installation
 
 Add this line to your application's Gemfile:
