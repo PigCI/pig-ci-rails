@@ -4,11 +4,7 @@ class PigCI::Metric::Historical
   end
 
   def to_h
-    @to_h ||= if File.exist?(@historical_log_file)
-                JSON.parse(File.open(@historical_log_file, 'r').read, symbolize_names: true)
-              else
-                {}
-              end
+    @to_h ||= read_historical_log_file.sort_by { |timestamp, _data| timestamp.to_s.to_i * -1 }.to_h
   end
 
   # In future this might honour some limit.
@@ -29,6 +25,14 @@ class PigCI::Metric::Historical
   end
 
   private
+
+  def read_historical_log_file
+    if File.exist?(@historical_log_file)
+      JSON.parse(File.open(@historical_log_file, 'r').read, symbolize_names: true)
+    else
+      {}
+    end
+  end
 
   def save!
     File.write(@historical_log_file, @to_h.to_json)

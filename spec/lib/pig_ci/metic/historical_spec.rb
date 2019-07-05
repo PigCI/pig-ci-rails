@@ -20,8 +20,10 @@ describe PigCI::Metric::Historical do
     it { is_expected.to eq(expected_response) }
 
     context 'With two entries' do
+      let(:historical_log_file) { File.join('spec', 'fixtures', 'files', 'profiler-two-entries.json') }
+
       it 'sorts with latest request first' do
-        pending
+        expect(subject.keys.first).to eq(:'101')
       end
     end
   end
