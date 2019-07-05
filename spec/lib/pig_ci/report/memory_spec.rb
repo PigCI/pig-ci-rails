@@ -24,7 +24,7 @@ describe PigCI::Report::Memory do
           min: BigDecimal(1),
           total: BigDecimal(1),
           number_of_requests: 1,
-          max_change_percentage: 0.0
+          max_change_percentage: '0.0%'
         }
       )
     end

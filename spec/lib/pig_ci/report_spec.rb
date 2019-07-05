@@ -26,7 +26,7 @@ describe PigCI::Report do
           min: 1_048_576,
           total: 1_048_576,
           number_of_requests: 1,
-          max_change_percentage: 0.0
+          max_change_percentage: '0.0%'
         }
       )
     end

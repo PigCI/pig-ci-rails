@@ -45,6 +45,7 @@ class PigCI::Report
   end
 
   def self.format_row(row)
+    row[:max_change_percentage] = "#{row[:max_change_percentage]}%"
     row
   end
 
