@@ -18,10 +18,12 @@ describe PigCI::Metric::Historical do
       } }
     end
     it { is_expected.to eq(expected_response) }
-  end
 
-  describe '#freshest' do
-    pending 'Should sort by latest first'
+    context 'With two entries' do
+      it 'sorts with latest request first' do
+        pending
+      end
+    end
   end
 
   describe '#add_change_percentage_and_append!' do
