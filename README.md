@@ -7,7 +7,6 @@ TODO: Delete this and the text above, and describe your gem
 ## TODO
 
 * Terminal change highlighting
-* Limit amount of stored data
 * HTML output to include branch & Quick navigate
 * Change name to `pig-ci-rails`
 

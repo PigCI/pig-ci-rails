@@ -75,7 +75,7 @@ describe PigCI::Metric::Historical do
         {
           "101": {
             profiler: [
-              { key: 'request-key-3', max: 2, mean: 2, min: 2, number_of_requests: 1, total: 2, max_change_percentage: 0.0 }
+              { key: 'request-key-3', max: 12, mean: 9, min: 6, number_of_requests: 2, total: 18, max_change_percentage: 0 }
             ]
           },
           "102": {
