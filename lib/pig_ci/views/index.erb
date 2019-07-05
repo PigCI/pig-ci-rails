@@ -17,12 +17,12 @@
       <header class="py-3">
         <div class="row">
           <div class="row-6">
-            <h1>PigCI Results</h1>
+            <h1><%= I18n.t('.pig_ci.summary.title') %></h1>
           </div>
           <div class="row-6 ml-auto">
             <div class="dropdown">
               <a class="btn btn-primary dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Historic Reports
+                <%= I18n.t('.pig_ci.summary.view_historic_reports') %>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <form class="inline-form">
@@ -60,8 +60,7 @@
       </div>
 
       <footer class="mt-3 py-3 text-muted text-small">
-        <p>Generated <time datetime="<%= Time.now.utc %>"><%= Time.now.utc %></time> by PigCI.</p>
-        <p>Support PigCI by adding us on GitHub.</p>
+        <%= I18n.t('.pig_ci.summary.footer_html', generated_at: Time.now.utc) %>
       </footer>
     </div>
   </body>

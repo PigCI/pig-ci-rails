@@ -1,5 +1,12 @@
 en:
   pig_ci:
+    summary:
+      title: PigCI Results
+      view_historic_reports: 'Historic Reports'
+      footer_html: |
+        <p>Generated <time datetime="%{generated_at}">%{generated_at}</time> by PigCI.</p>
+        <p>Support PigCI by adding us on GitHub.</p>
+
     report:
       instantiation_active_record:
         name: Active Record Object Instantiation
