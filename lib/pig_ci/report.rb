@@ -28,7 +28,6 @@ class PigCI::Report
   end
 
   def historical_data
-    # TODO: Sort this later
     @historical_data ||= PigCI::Metric::Historical.new(historical_log_file: @historical_log_file).to_h
   end
 
@@ -45,6 +44,7 @@ class PigCI::Report
   end
 
   def self.format_row(row)
+    row = row.dup
     row[:max_change_percentage] = "#{row[:max_change_percentage]}%"
     row
   end
