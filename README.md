@@ -8,7 +8,6 @@ TODO: Delete this and the text above, and describe your gem
 
 * Terminal change highlighting
 * Limit amount of stored data
-* HTML output ordered by date
 * HTML output to include branch & Quick navigate
 * Change name to `pig-ci-rails`
 
@@ -41,7 +40,7 @@ Or install it yourself as:
     # In spec/rails_helper.rb
     require 'pig_ci'
     PigCI.start do |config|
-      config.api_base_uri = 'https://api.pigciapp.test/v1'
+      config.api_base_uri = 'https://api.pigciapp.test'
       config.api_verify_ssl = false
       config.api_key = 'gClHJNkudAUYT7zrQ8cL7HBgOofqwaeQ1Ne7FjG9LD0'
     end
