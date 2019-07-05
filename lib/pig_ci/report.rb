@@ -32,6 +32,10 @@ class PigCI::Report
     @historical_data ||= PigCI::Metric::Historical.new(historical_log_file: @historical_log_file).to_h
   end
 
+  def timestamps
+    historical_data.keys
+  end
+
   def column_keys
     [:key, :max, :min, :mean, :number_of_requests, :max_change_percentage]
   end
