@@ -57,7 +57,7 @@ module PigCI
 
   attr_accessor :api_base_uri
   def api_base_uri
-    @api_base_uri || 'https://api.pigci.com/v1'
+    @api_base_uri || 'https://api.pigci.com'
   end
 
   attr_accessor :api_verify_ssl

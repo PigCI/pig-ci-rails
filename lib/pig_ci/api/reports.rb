@@ -5,7 +5,7 @@ class PigCI::Api::Reports < PigCI::Api
 
   def share!
     begin
-      self.class.post('/reports', {
+      self.class.post('/v1/reports', {
                         base_uri: PigCI.api_base_uri,
                         verify: PigCI.api_verify_ssl,
                         body: {
