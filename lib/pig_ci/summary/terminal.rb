@@ -19,7 +19,7 @@ class PigCI::Summary::Terminal < PigCI::Summary
     puts "[PigCI] #{report.i18n_name}:\n"
 
     table = ::Terminal::Table.new headings: report.headings do |t|
-      report.sorted_and_formatted_data_for(@timestamp).each do |data|
+      report.sorted_and_formatted_data_for(@timestamp)[0..PigCI.terminal_report_row_limit].each do |data|
         t << report.column_keys.collect { |key| data[key] }
       end
     end

@@ -18,7 +18,7 @@ class PigCI::Report
   def sorted_and_formatted_data_for(timestamp)
     data_for(timestamp)[@i18n_key.to_sym].sort_by do |data|
       PigCI.report_row_sort_by(data)
-    end[0..PigCI.terminal_report_row_limit].collect do |data| # TODO: This should be done in just the terminal report
+    end.collect do |data|
       self.class.format_row(data)
     end
   end
