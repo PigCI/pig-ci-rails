@@ -33,7 +33,7 @@ describe PigCI::Metric::Historical do
   end
 
   describe '#append!' do
-    let(:timestamp) { '101' }
+    let(:timestamp) { '102' }
     let(:metric) { 'profiler' }
     let(:data) do
       [
@@ -49,7 +49,7 @@ describe PigCI::Metric::Historical do
             { key: 'request-key-2', max: 2, mean: 2, min: 2, number_of_requests: 1, total: 2, max_change_percentage: 0.0 }
           ]
         },
-        "101": {
+        "102": {
           profiler: [
             { key: 'request-key-3', max: 2, mean: 2, min: 2, number_of_requests: 1, total: 2, max_change_percentage: 0.0 }
           ]
@@ -66,6 +66,37 @@ describe PigCI::Metric::Historical do
       end
 
       subject
+    end
+
+    context 'With a historical_data_run_limit of 0' do
+      let(:historical_log_file) { File.join('spec', 'fixtures', 'files', 'profiler-two-entries.json') }
+
+      let(:new_data_as_json) do
+        {
+          "101": {
+            profiler: [
+              { key: 'request-key-3', max: 2, mean: 2, min: 2, number_of_requests: 1, total: 2, max_change_percentage: 0.0 }
+            ]
+          },
+          "102": {
+            profiler: [
+              { key: 'request-key-3', max: 2, mean: 2, min: 2, number_of_requests: 1, total: 2, max_change_percentage: 0.0 }
+            ]
+          }
+        }.to_json
+      end
+
+      before { PigCI.historical_data_run_limit = 2 }
+      after { PigCI.historical_data_run_limit = 10 }
+
+      it 'removes oldest record' do
+        expect(File).to receive(:write).once do |file, new_data|
+          expect(file).to eq(historical_log_file)
+          expect(JSON.parse(new_data)).to eq(JSON.parse(new_data_as_json))
+        end
+
+        subject
+      end
     end
   end
 end

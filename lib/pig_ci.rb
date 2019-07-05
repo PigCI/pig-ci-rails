@@ -45,6 +45,11 @@ module PigCI
     (@report_row_sort_by || Proc.new { |d| d[:max].to_i * -1 }).call(data)
   end
 
+  attr_accessor :historical_data_run_limit
+  def historical_data_run_limit
+    @historical_data_run_limit ||= 10
+  end
+
   attr_accessor :run_timestamp
   def run_timestamp
     @run_timestamp ||= Time.now.to_i.to_s
