@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Mike Rogers']
   spec.email         = ['me@mikerogers.io']
 
-  spec.summary       = 'Write a short summary, because RubyGems requires one.'
-  spec.description   = 'Write a longer description or delete this line.'
+  spec.summary       = 'Mintor metrics such a memory usage as part of testing'
+  spec.description   = 'A gem for Ruby on Rails that will report key metrics (memory, request time & SQL Requests) for request & feature tests.'
   # spec.homepage      = "TODO: Put your gem's website or public repo URL here."
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -29,7 +29,7 @@ Gem::Specification.new do |spec|
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   end
   spec.require_paths = ['lib']
-  spec.required_ruby_version = '>= 2.0'
+  spec.required_ruby_version = '>= 2.3'
 
   spec.add_dependency 'activesupport', '>= 4.2'
   spec.add_dependency 'colorize', '>= 0.8.1'
@@ -40,13 +40,9 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bundler', '~> 2.0'
   spec.add_development_dependency 'rake', '~> 12.3'
-  spec.add_development_dependency 'webmock'
+  spec.add_development_dependency 'webmock', '~> 3.6.0'
 
-  spec.add_development_dependency 'capybara'
   spec.add_development_dependency 'json-schema', '~> 2.8.1'
-  spec.add_development_dependency 'launchy'
-  spec.add_development_dependency 'rails', '~> 5.2'
-  spec.add_development_dependency 'rspec-rails'
-  spec.add_development_dependency 'simplecov'
-  spec.add_development_dependency 'sqlite3', '~> 1.3.6'
+  spec.add_development_dependency 'rspec', '~> 3.8.0'
+  spec.add_development_dependency 'simplecov', '~> 0.16.1'
 end
