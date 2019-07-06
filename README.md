@@ -18,27 +18,35 @@ gem 'pig_ci'
 
 And then execute:
 
-    $ bundle
+```bash
+bundle
+```
 
 Or install it yourself as:
 
-    $ gem install pig_ci
+```bash
+gem install pig_ci
+```
 
 ## Usage
 
 ### On it's own
 
-    # In spec/rails_helper.rb
-    require 'pig_ci'
-    PigCI.start
+```ruby
+# In spec/rails_helper.rb
+require 'pig_ci'
+PigCI.start
+```
 
 ### With PigCI.com - For sharing runs as a team via CI.
 
-    # In spec/rails_helper.rb
-    require 'pig_ci'
-    PigCI.start do |config|
-      config.api_key = 'gClHJNkudAUYT7zrQ8cL7HBgOofqwaeQ1Ne7FjG9LD0'
-    end
+```ruby
+# In spec/rails_helper.rb
+require 'pig_ci'
+PigCI.start do |config|
+  config.api_key = 'gClHJNkudAUYT7zrQ8cL7HBgOofqwaeQ1Ne7FjG9LD0'
+end
+```
 
 ## Development
 
