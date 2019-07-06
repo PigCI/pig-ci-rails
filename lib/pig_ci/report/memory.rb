@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PigCI::Report::Memory < PigCI::Report
   def self.format_row(row)
     row = super
@@ -10,6 +12,6 @@ class PigCI::Report::Memory < PigCI::Report
   end
 
   def self.bytes_in_a_megabyte
-    @bytes_in_a_megabyte ||= BigDecimal(1048576)
+    @bytes_in_a_megabyte ||= BigDecimal(1_048_576)
   end
 end

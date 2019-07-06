@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'active_support'
 require 'active_support/core_ext/string/inflections'
 
@@ -43,7 +45,7 @@ module PigCI
   # PigCI.report_row_sort_by = Proc.new { |d| d[:max_change_percentage] * -1 }
   attr_accessor :report_row_sort_by
   def report_row_sort_by(data)
-    (@report_row_sort_by || Proc.new { |d| d[:max].to_i * -1 }).call(data)
+    (@report_row_sort_by || proc { |d| d[:max].to_i * -1 }).call(data)
   end
 
   attr_accessor :historical_data_run_limit
@@ -99,37 +101,35 @@ module PigCI
     block.call(self) if block_given?
 
     # Add our translations
-    self.load_i18ns!
+    load_i18ns!
 
     # Make sure our directories exist
     Dir.mkdir(tmp_directory) unless File.exist?(tmp_directory)
     Dir.mkdir(output_directory) unless File.exist?(output_directory)
 
     # Purge any previous logs and attach some listeners
-    self.profiler_engine.setup!
+    profiler_engine.setup!
   end
 
   def load_i18ns!
     I18n.available_locales << PigCI.locale
-    I18n.load_path += Dir["#{File.expand_path('../../config/locales/pig_ci', __FILE__)}/*.{rb,yml}"]
+    I18n.load_path += Dir["#{File.expand_path('../config/locales/pig_ci', __dir__)}/*.{rb,yml}"]
   end
 
   def run_exit_tasks!
     return if PigCI.pid != Process.pid || !PigCI.profiler_engine.request_captured?
 
     # Save all the reports as JSON
-    self.profiler_engine.profilers.each(&:save!)
+    profiler_engine.profilers.each(&:save!)
 
     # Print the report summary to Terminal
-    PigCI::Summary::Terminal.new(reports: self.profiler_engine.reports).print!
+    PigCI::Summary::Terminal.new(reports: profiler_engine.reports).print!
 
     # Save the report summary to the project root.
-    PigCI::Summary::HTML.new(reports: self.profiler_engine.reports).save!
+    PigCI::Summary::HTML.new(reports: profiler_engine.reports).save!
 
     # If they have an API key, share it with PigCI.com
-    if PigCI.api_key?
-      PigCI::Api::Reports.new(reports: self.profiler_engine.reports).share!
-    end
+    PigCI::Api::Reports.new(reports: profiler_engine.reports).share! if PigCI.api_key?
   end
 end
 

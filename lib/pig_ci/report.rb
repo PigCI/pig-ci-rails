@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PigCI::Report
   attr_accessor :historical_log_file, :i18n_key
 
@@ -36,7 +38,7 @@ class PigCI::Report
   end
 
   def column_keys
-    [:key, :max, :min, :mean, :number_of_requests, :max_change_percentage]
+    %i[key max min mean number_of_requests max_change_percentage]
   end
 
   def i18n_scope

@@ -1,0 +1,10 @@
+AllCops:
+  Exclude:
+    - '.git/**/*'
+    - 'bin/*'
+
+Style/BracesAroundHashParameters:
+  EnforcedStyle: context_dependent
+
+Metrics/LineLength:
+  Max: 120

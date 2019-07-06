@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PigCI::Decorator
   attr_accessor :object
 

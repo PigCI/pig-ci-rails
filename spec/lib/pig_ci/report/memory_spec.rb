@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe PigCI::Report::Memory do
@@ -7,10 +9,10 @@ describe PigCI::Report::Memory do
     subject { PigCI::Report::Memory.format_row(row) }
     let(:row) do
       {
-        max: 1048576,
-        mean: 1048576,
-        min: 1048576,
-        total: 1048576,
+        max: 1_048_576,
+        mean: 1_048_576,
+        min: 1_048_576,
+        total: 1_048_576,
         number_of_requests: 1,
         max_change_percentage: 0.0
       }
@@ -33,7 +35,7 @@ describe PigCI::Report::Memory do
   describe '::bytes_in_a_megabyte' do
     subject { PigCI::Report::Memory.bytes_in_a_megabyte }
 
-    it { is_expected.to eq(BigDecimal(1048576)) }
+    it { is_expected.to eq(BigDecimal(1_048_576)) }
   end
 
   describe '#i18n_scope' do

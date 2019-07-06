@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This subscribes to the ActiveSupport::Notifications and passes it onto our profilers.
 class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
   def initialize(profilers: nil, reports: nil)
@@ -23,13 +25,13 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
   private
 
   def attach_listeners!
-    ::ActiveSupport::Notifications.subscribe 'start_processing.action_controller' do |name, started, finished, unique_id, payload|
+    ::ActiveSupport::Notifications.subscribe 'start_processing.action_controller' do |_name, _started, _finished, _unique_id, payload|
       set_request_key_from_payload!(payload)
 
       profilers.each(&:reset!)
     end
 
-    ::ActiveSupport::Notifications.subscribe 'instantiation.active_record' do |name, started, finished, unique_id, payload|
+    ::ActiveSupport::Notifications.subscribe 'instantiation.active_record' do |_name, _started, _finished, _unique_id, payload|
       if request_key?
         profilers.select { |profiler| profiler.class == PigCI::Profiler::InstantiationActiveRecord }.each do |profiler|
           profiler.increment!(by: payload[:record_count])
@@ -37,7 +39,7 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
       end
     end
 
-    ::ActiveSupport::Notifications.subscribe 'sql.active_record' do |name, started, finished, unique_id, payload|
+    ::ActiveSupport::Notifications.subscribe 'sql.active_record' do |_name, _started, _finished, _unique_id, _payload|
       if request_key?
         profilers.select { |profiler| profiler.class == PigCI::Profiler::SqlActiveRecord }.each do |profiler|
           profiler.increment!
@@ -45,7 +47,7 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
       end
     end
 
-    ::ActiveSupport::Notifications.subscribe 'process_action.action_controller' do |name, started, finished, unique_id, payload|
+    ::ActiveSupport::Notifications.subscribe 'process_action.action_controller' do |_name, _started, _finished, _unique_id, _payload|
       profilers.each do |profiler|
         profiler.log_request!(request_key)
       end

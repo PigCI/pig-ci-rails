@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PigCI::Metric::Historical::ChangePercentage
   def initialize(previous_data:, data:)
     @previous_data = previous_data

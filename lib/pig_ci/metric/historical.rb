@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PigCI::Metric::Historical
   def initialize(historical_log_file:)
     @historical_log_file = historical_log_file

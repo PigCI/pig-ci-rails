@@ -29,7 +29,7 @@ describe PigCI::Metric::Historical do
   end
 
   describe '#add_change_percentage_and_append!' do
-    pending "It should limit the amount of data stored somehow"
+    pending 'It should limit the amount of data stored somehow'
   end
 
   describe '#append!' do

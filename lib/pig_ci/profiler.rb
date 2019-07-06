@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PigCI::Profiler
   attr_accessor :log_value, :log_file, :historical_log_file, :i18n_key
 
