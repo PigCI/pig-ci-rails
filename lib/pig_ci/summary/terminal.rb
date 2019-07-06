@@ -19,8 +19,8 @@ class PigCI::Summary::Terminal < PigCI::Summary
 
     table = ::Terminal::Table.new headings: report.headings do |t|
       report.sorted_and_formatted_data_for(@timestamp)[0..PigCI.terminal_report_row_limit]
-        .collect { |data| PigCI::Decorator::ReportTerminalDecorator.new(data) }
-        .each do |data|
+            .collect { |data| PigCI::Decorator::ReportTerminalDecorator.new(data) }
+            .each do |data|
         t << report.column_keys.collect { |key| data.send(key) }
       end
     end

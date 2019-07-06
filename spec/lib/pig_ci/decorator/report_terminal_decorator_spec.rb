@@ -24,7 +24,7 @@ describe PigCI::Decorator::ReportTerminalDecorator do
   describe '#max_change_percentage' do
     subject { decorator.max_change_percentage }
 
-    it { is_expected.to eq("0.0%") }
+    it { is_expected.to eq('0.0%') }
 
     context 'minus result' do
       let(:object) do

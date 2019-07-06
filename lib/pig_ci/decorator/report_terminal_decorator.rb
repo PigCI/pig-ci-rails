@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'colorized_string'
 
 class PigCI::Decorator::ReportTerminalDecorator < PigCI::Decorator
-  [:key, :max, :min, :mean, :number_of_requests].each do |field|
+  %i[key max min mean number_of_requests].each do |field|
     define_method(field) do
       @object[field]
     end

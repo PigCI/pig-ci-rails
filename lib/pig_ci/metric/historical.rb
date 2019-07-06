@@ -29,12 +29,11 @@ class PigCI::Metric::Historical
 
   def remove_old_historical_data!
     new_historical_data = @to_h
-      .sort_by { |timestamp, _data| timestamp.to_s.to_i * -1 }[0..(PigCI.historical_data_run_limit - 1)]
-      .to_h
-      .sort_by { |timestamp, _data| timestamp.to_s.to_i * -1 }.to_h
+                          .sort_by { |timestamp, _data| timestamp.to_s.to_i * -1 }[0..(PigCI.historical_data_run_limit - 1)]
+                          .to_h
+                          .sort_by { |timestamp, _data| timestamp.to_s.to_i * -1 }.to_h
     @to_h = new_historical_data
   end
-
 
   def read_historical_log_file
     if File.exist?(@historical_log_file)
