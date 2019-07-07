@@ -2,7 +2,7 @@
 
 Monitor your Ruby Applications metrics (Memory, SQL Requests & Request Time) as part of your test suite.
 
-Please consider supporting this project by adding [PigCI](https://pigci.com/) to your GitHub project & using this as part of CI.
+Please consider supporting this project by adding [PigCI](https://pigci.com/) to your GitHub project & using this as part of CI. The CI tool will fail PRs that exceed metric threshold (e.g. a big increase in memory).
 
 ## TODO
 
@@ -42,12 +42,15 @@ require 'pig_ci'
 PigCI.start
 ```
 
-### With PigCI.com - For sharing runs as a team via CI.
+### With [PigCI.com](https://pigci.com) - For sharing runs as a team via CI.
+
+You can hookup your project to PigCI.com, this will fail PRs when metric thresholds are exceeded (e.g. your app see a big increase in memory).
 
 ```ruby
 # In spec/rails_helper.rb
 require 'pig_ci'
 PigCI.start do |config|
+  # When you connect your project, you'll be given an API key.
   config.api_key = 'you-api-key-here'
 end
 ```
