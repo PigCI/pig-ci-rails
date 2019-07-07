@@ -73,6 +73,12 @@ You can see the full configuration options [lib/pig_ci.rb](https://github.com/Pi
 
 Currently this gem only support the Rails gem.
 
+### Metric notes
+
+#### Memory & Request Time
+
+Minor fluctuations in memory usage and request time are to be expected and are nothing to worry about. Though any large spike is a signal of something worth investigating.
+
 ## Authors
 
   * This gem was made by [@MikeRogers0](https://github.com/MikeRogers0).
