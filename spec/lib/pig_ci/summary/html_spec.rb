@@ -8,7 +8,7 @@ describe PigCI::Summary::HTML do
       PigCI::Report::Memory.new,
       PigCI::Report::InstantiationActiveRecord.new,
       PigCI::Report::RequestTime.new,
-      PigCI::Report::SqlActiveRecord.new
+      PigCI::Report::DatabaseRequest.new
     ]
   end
 

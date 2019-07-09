@@ -1,0 +1,69 @@
+{
+  "$id": "https://pigci.com/api/v1/reports/schema.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "profiler_row": {
+      "type": "object",
+      "required": [
+        "key",
+        "max",
+        "min",
+        "mean",
+        "total",
+        "number_of_requests",
+        "max_change_percentage"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "pattern": "^(.*)$"
+        },
+        "max": {
+          "type": "integer"
+        },
+        "min": {
+          "type": "integer"
+        },
+        "mean": {
+          "type": "integer"
+        },
+        "total": {
+          "type": "integer"
+        },
+        "number_of_requests": {
+          "type": "integer"
+        },
+        "max_change_percentage": {
+          "type": "float"
+        }
+      }
+    }
+  },
+  "type": "object",
+  "properties": {
+    "instantiation_active_record": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/profiler_row"
+      }
+    },
+    "memory": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/profiler_row"
+      }
+    },
+    "request_time": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/profiler_row"
+      }
+    },
+    "database_request": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/profiler_row"
+      }
+    }
+  }
+}

@@ -76,8 +76,8 @@ describe PigCI::ProfilerEngine do
     end
 
     describe 'sql.active_record' do
-      let(:profiler_sql_active_record) do
-        profiler_engine.profilers.select { |profiler| profiler.class == PigCI::Profiler::SqlActiveRecord }.first
+      let(:profiler_database_request) do
+        profiler_engine.profilers.select { |profiler| profiler.class == PigCI::Profiler::DatabaseRequest }.first
       end
       let(:payload) {}
 
@@ -86,7 +86,7 @@ describe PigCI::ProfilerEngine do
       end
 
       it do
-        expect(profiler_sql_active_record).to_not receive(:increment!)
+        expect(profiler_database_request).to_not receive(:increment!)
         subject
       end
 
@@ -94,7 +94,7 @@ describe PigCI::ProfilerEngine do
         before { profiler_engine.request_key = 'request-key' }
 
         it do
-          expect(profiler_sql_active_record).to receive(:increment!)
+          expect(profiler_database_request).to receive(:increment!)
           subject
         end
       end

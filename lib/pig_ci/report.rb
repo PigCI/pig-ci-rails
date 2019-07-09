@@ -61,4 +61,4 @@ end
 require 'pig_ci/report/instantiation_active_record'
 require 'pig_ci/report/memory'
 require 'pig_ci/report/request_time'
-require 'pig_ci/report/sql_active_record'
+require 'pig_ci/report/database_request'

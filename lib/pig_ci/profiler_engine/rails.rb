@@ -7,13 +7,13 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
       PigCI::Profiler::Memory.new,
       PigCI::Profiler::InstantiationActiveRecord.new,
       PigCI::Profiler::RequestTime.new,
-      PigCI::Profiler::SqlActiveRecord.new
+      PigCI::Profiler::DatabaseRequest.new
     ]
     @reports = reports || [
       PigCI::Report::Memory.new,
       PigCI::Report::InstantiationActiveRecord.new,
       PigCI::Report::RequestTime.new,
-      PigCI::Report::SqlActiveRecord.new
+      PigCI::Report::DatabaseRequest.new
     ]
     @request_captured = false
   end
@@ -41,7 +41,7 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
 
     ::ActiveSupport::Notifications.subscribe 'sql.active_record' do |_name, _started, _finished, _unique_id, _payload|
       if request_key?
-        profilers.select { |profiler| profiler.class == PigCI::Profiler::SqlActiveRecord }.each do |profiler|
+        profilers.select { |profiler| profiler.class == PigCI::Profiler::DatabaseRequest }.each do |profiler|
           profiler.increment!
         end
       end

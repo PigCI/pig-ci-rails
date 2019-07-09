@@ -2,8 +2,8 @@
 
 require 'spec_helper'
 
-describe PigCI::Profiler::SqlActiveRecord do
-  let(:profiler) { PigCI::Profiler::SqlActiveRecord.new }
+describe PigCI::Profiler::DatabaseRequest do
+  let(:profiler) { PigCI::Profiler::DatabaseRequest.new }
 
   describe '#increment!' do
     subject { profiler.increment! }
@@ -20,6 +20,6 @@ describe PigCI::Profiler::SqlActiveRecord do
   describe '#i18n_key' do
     subject { profiler.i18n_key }
 
-    it { is_expected.to eq('sql_active_record') }
+    it { is_expected.to eq('database_request') }
   end
 end
