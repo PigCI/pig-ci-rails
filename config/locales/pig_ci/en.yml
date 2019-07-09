@@ -8,8 +8,8 @@ en:
         <p>Support PigCI by adding us on GitHub.</p>
 
     report:
-      instantiation_active_record:
-        name: Active Record Object Instantiation
+      database_object_instantiation:
+        name: Database Object Instantiation
         attributes:
           key: Key
           max: Max

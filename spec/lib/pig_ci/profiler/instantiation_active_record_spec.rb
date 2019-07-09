@@ -2,8 +2,8 @@
 
 require 'spec_helper'
 
-describe PigCI::Profiler::InstantiationActiveRecord do
-  let(:profiler) { PigCI::Profiler::InstantiationActiveRecord.new }
+describe PigCI::Profiler::DatabaseObjectInstantiation do
+  let(:profiler) { PigCI::Profiler::DatabaseObjectInstantiation.new }
 
   describe '#increment!' do
     subject { profiler.increment! }
@@ -20,6 +20,6 @@ describe PigCI::Profiler::InstantiationActiveRecord do
   describe '#i18n_key' do
     subject { profiler.i18n_key }
 
-    it { is_expected.to eq('instantiation_active_record') }
+    it { is_expected.to eq('database_object_instantiation') }
   end
 end

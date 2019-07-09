@@ -41,7 +41,7 @@
   },
   "type": "object",
   "properties": {
-    "instantiation_active_record": {
+    "database_object_instantiation": {
       "type": "array",
       "items": {
         "$ref": "#/definitions/profiler_row"
