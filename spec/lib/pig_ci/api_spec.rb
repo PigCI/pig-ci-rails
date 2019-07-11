@@ -9,7 +9,7 @@ describe PigCI::Api do
     subject { api.headers }
 
     it do
-      is_expected.to eq('X-ApiKey': nil)
+      is_expected.to eq('Content-Type': 'application/json', 'X-ApiKey': nil)
     end
 
     context 'with API key set' do
@@ -17,7 +17,7 @@ describe PigCI::Api do
       after { PigCI.api_key = nil }
 
       it do
-        is_expected.to eq('X-ApiKey': 'api-key')
+        is_expected.to eq('Content-Type': 'application/json', 'X-ApiKey': 'api-key')
       end
     end
   end

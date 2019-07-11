@@ -71,17 +71,18 @@
     "commit_sha1": {
       "$id": "#/properties/commit_sha1",
       "type": "string",
-      "title": "The Commit_sha1 Schema",
+      "title": "Git Commit SHA1",
       "default": "",
       "examples": [
-        "test_sha1"
+        "test_sha1",
+        "0a4f7163d34501d09caa080ee266f1b798fc4efe"
       ],
       "pattern": "^(.*)$"
     },
     "head_branch": {
       "$id": "#/properties/head_branch",
       "type": "string",
-      "title": "The Head_branch Schema",
+      "title": "Branch metrics are coming from",
       "default": "",
       "examples": [
         "master",
@@ -118,7 +119,7 @@
           "data": {
             "$id": "#/properties/reports/items/properties/data",
             "type": "array",
-            "title": "The Data Schema",
+            "title": "Reports for the profiler",
             "items": {
               "$ref": "#/definitions/profiler_row"
             }
