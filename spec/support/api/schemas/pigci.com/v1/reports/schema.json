@@ -1,6 +1,8 @@
 {
   "$id": "https://pigci.com/api/v1/reports/schema.json",
   "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "The Root Schema",
   "definitions": {
     "profiler_row": {
       "type": "object",
@@ -16,53 +18,112 @@
       "properties": {
         "key": {
           "type": "string",
-          "pattern": "^(.*)$"
+          "pattern": "^(.*)$",
+          "examples": [
+            "POST Api::V1::ReportsController#create{format:html}"
+          ]
         },
         "max": {
-          "type": "integer"
+          "type": "integer",
+          "examples": [
+            1
+          ]
         },
         "min": {
-          "type": "integer"
+          "type": "integer",
+          "examples": [
+            1
+          ]
         },
         "mean": {
-          "type": "integer"
+          "type": "integer",
+          "examples": [
+            1
+          ]
         },
         "total": {
-          "type": "integer"
+          "type": "integer",
+          "examples": [
+            1
+          ]
         },
         "number_of_requests": {
-          "type": "integer"
+          "type": "integer",
+          "examples": [
+            1
+          ]
         },
         "max_change_percentage": {
-          "type": "float"
+          "type": "float",
+          "examples": [
+            "0.0"
+          ]
         }
       }
     }
   },
-  "type": "object",
+  "required": [
+    "commit_sha1",
+    "head_branch",
+    "reports"
+  ],
   "properties": {
-    "database_object_instantiation": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/profiler_row"
-      }
+    "commit_sha1": {
+      "$id": "#/properties/commit_sha1",
+      "type": "string",
+      "title": "The Commit_sha1 Schema",
+      "default": "",
+      "examples": [
+        "test_sha1"
+      ],
+      "pattern": "^(.*)$"
     },
-    "memory": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/profiler_row"
-      }
+    "head_branch": {
+      "$id": "#/properties/head_branch",
+      "type": "string",
+      "title": "The Head_branch Schema",
+      "default": "",
+      "examples": [
+        "master",
+        "test/branch"
+      ],
+      "pattern": "^(.*)$"
     },
-    "request_time": {
+    "reports": {
+      "$id": "#/properties/reports",
       "type": "array",
+      "title": "The Reports Schema",
       "items": {
-        "$ref": "#/definitions/profiler_row"
-      }
-    },
-    "database_request": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/profiler_row"
+        "$id": "#/properties/reports/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "profiler",
+          "data"
+        ],
+        "properties": {
+          "profiler": {
+            "$id": "#/properties/reports/items/properties/profiler",
+            "type": "string",
+            "title": "The Profiler Schema",
+            "default": "",
+            "examples": [
+              "database_object_instantiation",
+              "memory",
+              "request_time",
+              "database_request"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "data": {
+            "$id": "#/properties/reports/items/properties/data",
+            "type": "array",
+            "title": "The Data Schema",
+            "items": {
+              "$ref": "#/definitions/profiler_row"
+            }
+          }
+        }
       }
     }
   }

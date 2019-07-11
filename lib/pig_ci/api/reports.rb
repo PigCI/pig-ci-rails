@@ -9,14 +9,20 @@ class PigCI::Api::Reports < PigCI::Api
     self.class.post('/v1/reports',
                     base_uri: PigCI.api_base_uri,
                     verify: PigCI.api_verify_ssl,
-                    body: {
-                      commit_sha1: PigCI.commit_sha1,
-                      head_branch: PigCI.head_branch,
-                      reports: @reports.collect { |report| report.to_json_for(PigCI.run_timestamp) }
-                    },
+                    body: payload,
                     headers: headers)
-  rescue StandardError => e
+  rescue Net::OpenTimeout => e
     puts '[PigCI] Unable to connect to PigCI API: '
     puts e.inspect
+  end
+
+  private
+
+  def payload
+    {
+      commit_sha1: PigCI.commit_sha1,
+      head_branch: PigCI.head_branch,
+      reports: @reports.collect { |report| report.to_payload_for(PigCI.run_timestamp) }
+    }.to_json
   end
 end

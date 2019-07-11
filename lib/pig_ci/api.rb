@@ -7,6 +7,7 @@ class PigCI::Api
 
   def headers
     {
+      'Content-Type': 'application/json',
       'X-ApiKey': PigCI.api_key
     }
   end

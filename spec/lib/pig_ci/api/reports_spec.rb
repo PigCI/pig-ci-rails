@@ -5,7 +5,7 @@ require 'spec_helper'
 describe PigCI::Api::Reports do
   let(:reports) do
     [
-      PigCI::Report.new(i18n_key: 'memory', historical_log_file: File.join('spec', 'fixtures', 'files', 'profiler.json'))
+      PigCI::Report.new(i18n_key: 'memory', historical_log_file: File.join('spec', 'fixtures', 'files', 'memory.json'))
     ]
   end
   let(:api) { PigCI::Api::Reports.new(reports: reports) }
@@ -47,12 +47,13 @@ describe PigCI::Api::Reports do
       it 'makes the API request with valid JSON as param' do
         subject
         expect(a_request(:post, 'https://api.pigci.com/v1/reports').with do |req|
-          params = CGI.parse(req.body)
 
-          expect(params['commit_sha1']).to eq(['test_sha1'])
-          expect(params['head_branch']).to eq(['test/branch'])
-          expect(params['reports[]']).to be_an(Array)
-          expect(params['reports[]'].first).to match_response_schema('pigci.com/v1/reports/schema')
+          expect(req.body).to match_response_schema('pigci.com/v1/reports/schema')
+
+          payload = JSON.parse(req.body)
+          expect(payload['commit_sha1']).to eq('test_sha1')
+          expect(payload['head_branch']).to eq('test/branch')
+          expect(payload['reports']).to be_an(Array)
         end).to have_been_made
       end
     end

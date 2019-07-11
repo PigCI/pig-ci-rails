@@ -25,8 +25,11 @@ class PigCI::Report
     end
   end
 
-  def to_json_for(timestamp)
-    data_for(timestamp).to_json
+  def to_payload_for(timestamp)
+    { 
+      profiler: @i18n_key.to_sym,
+      data: data_for(timestamp)[@i18n_key.to_sym]
+    }
   end
 
   def historical_data
