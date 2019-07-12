@@ -33,7 +33,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'activesupport', '>= 4.2'
   spec.add_dependency 'colorize', '>= 0.8.1'
-  spec.add_dependency 'get_process_mem', '~> 0.2.2'
+  spec.add_dependency 'get_process_mem', '~> 0.2.3'
   spec.add_dependency 'httparty', '>= 0.16'
   spec.add_dependency 'i18n', '>= 1.0'
   spec.add_dependency 'terminal-table', '~> 1.8.0'
