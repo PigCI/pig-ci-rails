@@ -21,7 +21,6 @@ describe PigCI::Api::Reports do
       end
 
       it do
-        pending
         expect { subject }.to output(/Unable to connect to PigCI API/).to_stdout
       end
     end
@@ -29,12 +28,13 @@ describe PigCI::Api::Reports do
     context 'API key is invalid' do
       before do
         stub_request(:post, 'https://api.pigci.com/v1/reports')
-          .to_return(status: 401)
+          .to_return(status: 401, body: {
+            error: 'API Key is invalid'
+          }.to_json)
       end
 
       it do
-        pending
-        expect { subject }.to output('Unable to connect to PigCI API').to_stdout
+        expect { subject }.to output("Unable to connect to PigCI API: \nAPI Key is invalid").to_stdout
       end
     end
 
