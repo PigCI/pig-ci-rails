@@ -34,7 +34,7 @@ describe PigCI::Api::Reports do
       end
 
       it do
-        expect { subject }.to output("Unable to connect to PigCI API: \nAPI Key is invalid").to_stdout
+        expect { subject }.to output(/API Key is invalid/).to_stdout
       end
     end
 

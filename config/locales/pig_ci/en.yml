@@ -1,5 +1,8 @@
 en:
   pig_ci:
+    api:
+      reports:
+        error: 'Unable to connect to PigCI API: %{error}'
     summary:
       title: PigCI Results
       view_historic_reports: 'Historic Reports'

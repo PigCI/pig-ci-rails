@@ -9,11 +9,9 @@ class PigCI::Api::Reports < PigCI::Api
     response = post_payload
     return if response.success?
 
-    puts '[PigCI] Unable to connect to PigCI API: '
-    puts JSON.parse(response.parsed_response || '{}')['error']
+    puts I18n.t('pig_ci.api.reports.error', error: JSON.parse(response.parsed_response || '{}')['error'])
   rescue Net::OpenTimeout => e
-    puts '[PigCI] Unable to connect to PigCI API: '
-    puts e.inspect
+    puts I18n.t('pig_ci.api.reports.error', error: e.inspect)
   end
 
   private
