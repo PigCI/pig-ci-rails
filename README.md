@@ -96,7 +96,7 @@ Features I'd like to add at some point:
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at (https://github.com/PigCI/pig-ci-rails)[https://github.com/PigCI/pig-ci-rails]. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at [PigCI/pig-ci-rails](https://github.com/PigCI/pig-ci-rails). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## Code of Conduct
 
