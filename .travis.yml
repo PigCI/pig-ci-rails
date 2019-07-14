@@ -15,10 +15,7 @@ rvm:
 before_install: 
   - gem install bundler -v 2.0.1
 
-before_script:
-  - "bundle update"
-
-script: "bundle exec rspec"
+script: "bundle exec rake rspec"
 
 notifications:
   email: false
