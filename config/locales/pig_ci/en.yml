@@ -4,11 +4,12 @@ en:
       reports:
         error: 'Unable to connect to PigCI API: %{error}'
     summary:
+      saved_successfully: PigCI report generated to %{output_directory}
       title: PigCI Results
       view_historic_reports: 'Historic Reports'
       footer_html: |
         <p>Generated <time datetime="%{generated_at}">%{generated_at}</time> by PigCI.</p>
-        <p>Support PigCI by adding us on GitHub.</p>
+        <p>Support <a href="https://pigci.com/">PigCI</a> by adding us on GitHub.</p>
 
     report:
       database_object_instantiation:

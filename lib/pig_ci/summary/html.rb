@@ -15,7 +15,7 @@ class PigCI::Summary::HTML < PigCI::Summary
     copy_assets!
     File.write(index_file_path, template('index').result(binding))
 
-    puts "[PigCI] PigCI report generated to #{PigCI.output_directory}"
+    puts I18n.t('pig_ci.summary.saved_successfully', output_directory: PigCI.output_directory)
   end
 
   private

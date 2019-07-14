@@ -8,7 +8,6 @@ Please consider supporting this project by adding [PigCI](https://pigci.com/) to
 
   * HTML output to include branch - Right now they're just timestamps.
       
-  * Replace out text outputs with I18n - I want to make this gem as accessible to non-English speakers as possible.
   * Change gem name to be `pig-ci-rails` - I want to support other frameworks, but while I figure out if people want this I want focus on Ruby on Rails because I'm familiar with it.
   * Make possible to turn off terminal output / report sharing.
 
