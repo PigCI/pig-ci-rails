@@ -4,7 +4,7 @@ PATH
     pig-ci (0.1.0)
       activesupport (>= 4.2)
       colorize (>= 0.8.1)
-      get_process_mem (~> 0.2.2)
+      get_process_mem (~> 0.2.3)
       httparty (>= 0.16)
       i18n (>= 1.0)
       terminal-table (~> 1.8.0)
