@@ -91,7 +91,8 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## TODO
 
 Features I'd like to add at some point:
-
+ 
+  * Codacy fixups
   * HTML output to include branch - Right now they're just timestamps which makes filtering hard.
 
 ## Contributing
