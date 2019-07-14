@@ -27,6 +27,16 @@ module PigCI
     @output_directory || Pathname.new(Dir.getwd).join('pig-ci')
   end
 
+  attr_accessor :generate_terminal_summary
+  def generate_terminal_summary?
+    @generate_terminal_summary.nil? || @generate_terminal_summary
+  end
+
+  attr_accessor :generate_html_summary
+  def generate_html_summary?
+    @generate_html_summary.nil? || @generate_html_summary
+  end
+
   attr_accessor :max_change_percentage_precision
   def max_change_percentage_precision
     @max_change_percentage_precision || 1

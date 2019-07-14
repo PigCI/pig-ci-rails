@@ -94,6 +94,30 @@ describe PigCI do
         subject
       end
 
+      context 'generate_terminal_summary set to false' do
+        before { PigCI.generate_terminal_summary = false }
+        after { PigCI.generate_terminal_summary = false }
+
+        it do
+          expect(PigCI::Summary::Terminal).to_not receive(:new)
+          expect(PigCI::Summary::HTML).to receive(:new).and_return(summary_html)
+          expect(PigCI::Api::Reports).to_not receive(:new)
+          subject
+        end
+      end
+
+      context 'generate_html_summary set to false' do
+        before { PigCI.generate_html_summary = false }
+        after { PigCI.generate_html_summary = false }
+
+        it do
+          expect(PigCI::Summary::Terminal).to receive(:new).and_return(summary_terminal)
+          expect(PigCI::Summary::HTML).to_not receive(:new)
+          expect(PigCI::Api::Reports).to_not receive(:new)
+          subject
+        end
+      end
+
       context 'with API key present' do
         let(:api_reports) { double :api_reports, share!: true }
         before { PigCI.api_key = 'sample-api' }
