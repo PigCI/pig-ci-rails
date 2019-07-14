@@ -24,6 +24,8 @@ class PigCI::ProfilerEngine
   def setup!
     Dir.mkdir(PigCI.tmp_directory) unless File.exist?(PigCI.tmp_directory)
 
+    yield if block_given?
+
     profilers.collect(&:setup!)
 
     # Attach listeners to the rails events.

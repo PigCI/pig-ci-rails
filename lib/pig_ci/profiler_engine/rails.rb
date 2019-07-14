@@ -22,6 +22,15 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
     @request_key = "#{payload[:method]} #{payload[:controller]}##{payload[:action]}{format:#{payload[:format]}}"
   end
 
+  def setup!
+    super do
+      # Eager load rails to give more accurate memory levels.
+      # ::Rails.application.eager_load!
+      # ::Rails::Engine.subclasses.map(&:instance).each { |engine| engine.eager_load! }
+      # ::ActiveRecord::Base.descendants
+    end
+  end
+
   private
 
   def attach_listeners!

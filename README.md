@@ -61,7 +61,7 @@ PigCI.start do |config|
 
   # E.g. disable terminal summary output
   config.generate_terminal_summary = false
-end
+end # if RSpec.configuration.files_to_run.count > 1
 ```
 
 You can see the full configuration options [lib/pig_ci.rb](https://github.com/PigCI/pig-ci-rails/blob/master/lib/pig_ci.rb#L21).
@@ -72,9 +72,19 @@ Currently this gem only supports Ruby on Rails.
 
 ### Metric notes
 
-#### Memory & Request Time
+#### Memory
 
 Minor fluctuations in memory usage and request time are to be expected and are nothing to worry about. Though any large spike is a signal of something worth investigating.
+
+You can improve its accuracy by updating your `config/environments/test.rb` to have the line:
+
+```ruby
+config.eager_load = true
+```
+
+#### Request Time
+
+Often the first request test will be slow, as rails is loading a full environment. While this metric is useful, I'd suggest focusing on other metrics (like memory, or database requests).
 
 ## Authors
 
