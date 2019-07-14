@@ -86,6 +86,14 @@ config.eager_load = true
 
 Often the first request test will be slow, as rails is loading a full environment. While this metric is useful, I'd suggest focusing on other metrics (like memory, or database requests).
 
+Alternatively add:
+
+```ruby
+Rails.application.call(::Rack::MockRequest.env_for('/'))
+```
+
+Before you call `PigCI.start`.
+
 ## Authors
 
   * This gem was made by [@MikeRogers0](https://github.com/MikeRogers0).

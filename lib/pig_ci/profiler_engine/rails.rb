@@ -24,10 +24,12 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
 
   def setup!
     super do
+      # TODO: Decide I want to keep this.
       # Eager load rails to give more accurate memory levels.
       # ::Rails.application.eager_load!
       # ::Rails::Engine.subclasses.map(&:instance).each { |engine| engine.eager_load! }
       # ::ActiveRecord::Base.descendants
+      # Rails.application.call(::Rack::MockRequest.env_for('/'))
     end
   end
 
