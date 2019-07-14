@@ -15,8 +15,8 @@ Please consider supporting this project by adding [PigCI](https://pigci.com/) to
 Add this line to your application's Gemfile:
 
 ```ruby
-group :development, :test do
-  gem 'pig-ci'
+group :test do
+  gem 'pig-ci-rails'
 end
 ```
 
@@ -29,7 +29,7 @@ bundle
 Or install it yourself as:
 
 ```bash
-gem install pig_ci
+gem install pig-ci-rails
 ```
 
 ## Usage
@@ -70,11 +70,11 @@ PigCI.start do |config|
 end
 ```
 
-You can see the full configuration options [lib/pig_ci.rb](https://github.com/PigCI/pig-ci-ruby/blob/master/lib/pig_ci.rb#L21).
+You can see the full configuration options [lib/pig_ci.rb](https://github.com/PigCI/pig-ci-rails/blob/master/lib/pig_ci.rb#L21).
 
 ### Framework support
 
-Currently this gem only support the Rails gem.
+Currently this gem only supports Ruby on Rails.
 
 ### Metric notes
 
@@ -96,8 +96,8 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/PigCI/pig-ci-ruby. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at (https://github.com/PigCI/pig-ci-rails)[https://github.com/PigCI/pig-ci-rails]. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## Code of Conduct
 
-Everyone interacting in the PigCI project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/PigCI/pig-ci-ruby/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the PigCI project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/PigCI/pig-ci-rails/blob/master/CODE_OF_CONDUCT.md).
