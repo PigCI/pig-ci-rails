@@ -4,12 +4,6 @@ Monitor your Ruby Applications metrics (Memory, SQL Requests & Request Time) as 
 
 Please consider supporting this project by adding [PigCI](https://pigci.com/) to your GitHub project & using this as part of CI. The CI tool will fail PRs that exceed metric threshold (e.g. a big increase in memory).
 
-## TODO
-
-  * HTML output to include branch - Right now they're just timestamps.
-      
-  * Change gem name to be `pig-ci-rails` - I want to support other frameworks, but while I figure out if people want this I want focus on Ruby on Rails because I'm familiar with it.
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -93,6 +87,12 @@ Minor fluctuations in memory usage and request time are to be expected and are n
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+## TODO
+
+Features I'd like to add at some point:
+
+  * HTML output to include branch - Right now they're just timestamps which makes filtering hard.
 
 ## Contributing
 
