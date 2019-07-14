@@ -9,7 +9,6 @@ Please consider supporting this project by adding [PigCI](https://pigci.com/) to
   * HTML output to include branch - Right now they're just timestamps.
       
   * Change gem name to be `pig-ci-rails` - I want to support other frameworks, but while I figure out if people want this I want focus on Ruby on Rails because I'm familiar with it.
-  * Make possible to turn off terminal output / report sharing.
 
 ## Installation
 
@@ -65,6 +64,9 @@ This gems was setup to be configured by passing a block to the `PigCI.start` met
 require 'pig_ci'
 PigCI.start do |config|
   config.option = 'new_value'
+
+  # E.g. disable terminal summary output
+  config.generate_terminal_summary = false
 end
 ```
 

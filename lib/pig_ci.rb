@@ -133,10 +133,10 @@ module PigCI
     profiler_engine.profilers.each(&:save!)
 
     # Print the report summary to Terminal
-    PigCI::Summary::Terminal.new(reports: profiler_engine.reports).print!
+    PigCI::Summary::Terminal.new(reports: profiler_engine.reports).print! if PigCI.generate_terminal_summary?
 
     # Save the report summary to the project root.
-    PigCI::Summary::HTML.new(reports: profiler_engine.reports).save!
+    PigCI::Summary::HTML.new(reports: profiler_engine.reports).save! if PigCI.generate_html_summary?
 
     # If they have an API key, share it with PigCI.com
     PigCI::Api::Reports.new(reports: profiler_engine.reports).share! if PigCI.api_key?

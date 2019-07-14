@@ -96,7 +96,7 @@ describe PigCI do
 
       context 'generate_terminal_summary set to false' do
         before { PigCI.generate_terminal_summary = false }
-        after { PigCI.generate_terminal_summary = false }
+        after { PigCI.generate_terminal_summary = true }
 
         it do
           expect(PigCI::Summary::Terminal).to_not receive(:new)
@@ -108,7 +108,7 @@ describe PigCI do
 
       context 'generate_html_summary set to false' do
         before { PigCI.generate_html_summary = false }
-        after { PigCI.generate_html_summary = false }
+        after { PigCI.generate_html_summary = true }
 
         it do
           expect(PigCI::Summary::Terminal).to receive(:new).and_return(summary_terminal)
