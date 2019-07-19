@@ -112,6 +112,8 @@ Features I'd like to add at some point:
  
   * Codacy fixups
   * HTML output to include branch - Right now they're just timestamps which makes filtering hard.
+  * Add the logo of PigCI to HTML summary.
+  * Should I disable terminal output by default? It feels like noise.
 
 ## Contributing
 
