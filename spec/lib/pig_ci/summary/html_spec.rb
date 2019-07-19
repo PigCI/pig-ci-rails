@@ -6,7 +6,6 @@ describe PigCI::Summary::HTML do
   let(:reports) do
     [
       PigCI::Report::Memory.new,
-      PigCI::Report::DatabaseObjectInstantiation.new,
       PigCI::Report::RequestTime.new,
       PigCI::Report::DatabaseRequest.new
     ]

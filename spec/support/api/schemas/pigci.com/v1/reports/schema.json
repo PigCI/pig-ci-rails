@@ -109,7 +109,6 @@
             "title": "The Profiler Schema",
             "default": "",
             "examples": [
-              "database_object_instantiation",
               "memory",
               "request_time",
               "database_request"

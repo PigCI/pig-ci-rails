@@ -12,16 +12,6 @@ en:
         <p>Support <a href="https://pigci.com/">PigCI</a> by adding us on GitHub.</p>
 
     report:
-      database_object_instantiation:
-        name: Database Object Instantiation
-        attributes:
-          key: Key
-          max: Max
-          min: Min
-          mean: Mean
-          number_of_requests: Requests
-          max_change_percentage: "% Change"
-
       memory:
         name: Peak memory per a request
         attributes:

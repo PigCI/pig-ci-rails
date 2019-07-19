@@ -38,7 +38,6 @@ class PigCI::Profiler
   end
 end
 
-require 'pig_ci/profiler/database_object_instantiation'
 require 'pig_ci/profiler/memory'
 require 'pig_ci/profiler/request_time'
 require 'pig_ci/profiler/database_request'

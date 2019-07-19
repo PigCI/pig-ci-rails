@@ -5,13 +5,11 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
   def initialize(profilers: nil, reports: nil)
     @profilers = profilers || [
       PigCI::Profiler::Memory.new,
-      PigCI::Profiler::DatabaseObjectInstantiation.new,
       PigCI::Profiler::RequestTime.new,
       PigCI::Profiler::DatabaseRequest.new
     ]
     @reports = reports || [
       PigCI::Report::Memory.new,
-      PigCI::Report::DatabaseObjectInstantiation.new,
       PigCI::Report::RequestTime.new,
       PigCI::Report::DatabaseRequest.new
     ]
@@ -45,14 +43,6 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
       set_request_key_from_payload!(payload)
 
       profilers.each(&:reset!)
-    end
-
-    ::ActiveSupport::Notifications.subscribe 'instantiation.active_record' do |_name, _started, _finished, _unique_id, payload|
-      if request_key?
-        profilers.select { |profiler| profiler.class == PigCI::Profiler::DatabaseObjectInstantiation }.each do |profiler|
-          profiler.increment!(by: payload[:record_count])
-        end
-      end
     end
 
     ::ActiveSupport::Notifications.subscribe 'sql.active_record' do |_name, _started, _finished, _unique_id, _payload|

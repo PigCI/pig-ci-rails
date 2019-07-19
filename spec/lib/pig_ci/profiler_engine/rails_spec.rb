@@ -12,12 +12,12 @@ describe PigCI::ProfilerEngine do
 
   describe '#profilers' do
     subject { profiler_engine.profilers }
-    it { expect(subject.count).to eq(4) }
+    it { expect(subject.count).to eq(3) }
   end
 
   describe '#reports' do
     subject { profiler_engine.reports }
-    it { expect(subject.count).to eq(4) }
+    it { expect(subject.count).to eq(3) }
   end
 
   describe '::ActiveSupport::Notifications' do
@@ -48,35 +48,6 @@ describe PigCI::ProfilerEngine do
         end
 
         expect { subject }.to change(profiler_engine, :request_key).from(nil).to('GET SampleController#index{format:html}')
-      end
-    end
-
-    describe 'instantiation.active_record' do
-      let(:profiler_database_object_instantiation) do
-        profiler_engine.profilers.select { |profiler| profiler.class == PigCI::Profiler::DatabaseObjectInstantiation }.first
-      end
-      let(:payload) do
-        {
-          record_count: 2
-        }
-      end
-
-      subject do
-        ActiveSupport::Notifications.instrument('instantiation.active_record', payload) {}
-      end
-
-      it do
-        expect(profiler_database_object_instantiation).to_not receive(:increment!)
-        subject
-      end
-
-      context 'with a request_key set' do
-        before { profiler_engine.request_key = 'request-key' }
-
-        it do
-          expect(profiler_database_object_instantiation).to receive(:increment!)
-          subject
-        end
       end
     end
 
