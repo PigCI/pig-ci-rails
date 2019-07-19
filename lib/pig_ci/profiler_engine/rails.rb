@@ -24,15 +24,21 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
 
   def setup!
     super do
-      # Eager load rails to give more accurate memory levels.
-      ::Rails.application.eager_load!
-      ::Rails::Engine.subclasses.map(&:instance).each { |engine| engine.eager_load! }
-      ::ActiveRecord::Base.descendants
-      ::Rails.application.call(::Rack::MockRequest.env_for('/'))
+      eager_load_rails!
     end
   end
 
   private
+
+  def eager_load_rails!
+    # Eager load rails to give more accurate memory levels.
+    ::Rails.application.eager_load!
+    ::Rails::Engine.subclasses.map(&:instance).each { |engine| engine.eager_load! }
+    ::ActiveRecord::Base.descendants
+
+    # Make a call to the root path to load up as much of rails as possible
+    ::Rails.application.call(::Rack::MockRequest.env_for('/'))
+  end
 
   def attach_listeners!
     ::ActiveSupport::Notifications.subscribe 'start_processing.action_controller' do |_name, _started, _finished, _unique_id, payload|

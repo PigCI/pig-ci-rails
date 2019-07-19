@@ -10,11 +10,16 @@ end
 
 require 'json-schema'
 require 'tmpdir'
+require 'rails'
+require 'active_record/railtie'
 
 require 'webmock/rspec'
 WebMock.disable_net_connect!(allow_localhost: true)
 
 require 'support/api_schema_matcher'
+
+require 'support/pig_ci_rails_application'
+PigCIRailsApp.new
 
 # Override the PigCI settings so it plays nicely in tests.
 require 'pig_ci'

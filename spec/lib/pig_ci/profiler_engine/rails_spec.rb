@@ -5,6 +5,11 @@ require 'spec_helper'
 describe PigCI::ProfilerEngine do
   let(:profiler_engine) { PigCI::ProfilerEngine::Rails.new }
 
+  before do
+    # Stub out the complex eager loading a little
+    allow(Rails.application).to receive(:call)
+  end
+
   describe '#profilers' do
     subject { profiler_engine.profilers }
     it { expect(subject.count).to eq(4) }

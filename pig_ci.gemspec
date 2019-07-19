@@ -36,6 +36,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'get_process_mem', '~> 0.2.3'
   spec.add_dependency 'httparty', '>= 0.16'
   spec.add_dependency 'i18n', '>= 1.0'
+  spec.add_dependency 'rails', '>= 4.2.0'
   spec.add_dependency 'terminal-table', '~> 1.8.0'
 
   spec.add_development_dependency 'bundler', '~> 2.0'
