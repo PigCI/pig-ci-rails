@@ -6,7 +6,7 @@ describe PigCI::ProfilerEngine do
   let(:profiler_engine) { PigCI::ProfilerEngine::Rails.new }
 
   before do
-    # Stub out the complex eager loading a little
+    # Stub out the complex eager loading a little
     allow(Rails.application).to receive(:call)
   end
 
