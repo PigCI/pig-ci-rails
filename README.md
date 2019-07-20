@@ -114,6 +114,8 @@ Features I'd like to add at some point:
   * HTML output to include branch - Right now they're just timestamps which makes filtering hard.
   * Add the logo of PigCI to HTML summary.
   * Should I disable terminal output by default? It feels like noise.
+  * Should I reject database requests that have a value of 0? I think so.
+  * Share gem version and stuff back to PigCI.
 
 ## Contributing
 
