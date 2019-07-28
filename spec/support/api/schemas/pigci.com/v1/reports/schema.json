@@ -2,7 +2,7 @@
   "$id": "https://pigci.com/api/v1/reports/schema.json",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
-  "title": "The Root Schema",
+  "title": "The PigCI Reports Schema",
   "definitions": {
     "profiler_row": {
       "type": "object",
@@ -63,11 +63,33 @@
     }
   },
   "required": [
+    "library",
+    "library_version",
     "commit_sha1",
     "head_branch",
     "reports"
   ],
   "properties": {
+    "library": {
+      "$id": "#/properties/library",
+      "type": "string",
+      "title": "Library which performed the analysis",
+      "default": "",
+      "examples": [
+        "pig-ci-rails"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "library_version": {
+      "$id": "#/properties/library_version",
+      "type": "string",
+      "title": "Version number of library",
+      "default": "",
+      "examples": [
+        "1.0.0"
+      ],
+      "pattern": "^(.*)$"
+    },
     "commit_sha1": {
       "$id": "#/properties/commit_sha1",
       "type": "string",
