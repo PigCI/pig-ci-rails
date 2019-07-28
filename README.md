@@ -116,6 +116,7 @@ Features I'd like to add at some point:
   * Should I disable terminal output by default? It feels like noise.
   * Should I reject database requests that have a value of 0? I think so.
   * Share gem version and stuff back to PigCI.
+  * Document setting branch/commit encase of weird CI.
 
 ## Contributing
 
