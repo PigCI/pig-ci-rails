@@ -16,11 +16,14 @@
     <div class="container">
       <header class="py-3">
         <div class="row">
-          <div class="row-6">
+          <div class="col-6">
+            <a href="https://pigci.com/" target="_blank">
+              <img src="https://cdn.pigci.com/logos/pig-ci.svg" class="float-left mr-4" alt="PigCI Logo" />
+            </a>
             <h1><%= I18n.t('.pig_ci.summary.title') %></h1>
           </div>
-          <div class="row-6 ml-auto">
-            <div class="dropdown">
+          <div class="col">
+            <div class="dropdown float-right">
               <a class="btn btn-primary dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <%= I18n.t('.pig_ci.summary.view_historic_reports') %>
               </a>
