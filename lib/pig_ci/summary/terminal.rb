@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'terminal-table'
 
 class PigCI::Summary::Terminal < PigCI::Summary

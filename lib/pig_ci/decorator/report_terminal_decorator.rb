@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'colorized_string'
 
 class PigCI::Decorator::ReportTerminalDecorator < PigCI::Decorator

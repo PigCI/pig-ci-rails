@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class PigCI::Api::Reports < PigCI::Api
   def initialize(reports: [])
     @reports = reports
@@ -20,7 +18,7 @@ class PigCI::Api::Reports < PigCI::Api
     self.class.post(
       '/v1/reports',
       base_uri: PigCI.api_base_uri,
-      verify: PigCI.api_verify_ssl,
+      verify: PigCI.api_verify_ssl?,
       body: payload,
       headers: headers
     )

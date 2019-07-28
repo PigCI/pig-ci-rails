@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class PigCI::Metric::Current
   def initialize(log_file:)
     @log_file = log_file

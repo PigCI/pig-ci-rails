@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'spec_helper'
 
 describe PigCI::Report do
@@ -19,7 +17,7 @@ describe PigCI::Report do
     end
 
     it do
-      is_expected.to eq (
+      is_expected.to eq(
         {
           max: 1_048_576,
           mean: 1_048_576,

@@ -3,8 +3,22 @@ AllCops:
     - '.git/**/*'
     - 'bin/*'
 
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
+
 Style/BracesAroundHashParameters:
   EnforcedStyle: context_dependent
 
 Metrics/LineLength:
   Max: 120
+
+Metrics/BlockLength:
+  CountComments: true
+  Max: 25
+  ExcludedMethods: []
+  Exclude:
+    - "spec/**/*"
+    - '*.gemspec'
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact

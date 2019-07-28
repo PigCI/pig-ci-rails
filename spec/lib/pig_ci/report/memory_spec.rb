@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'spec_helper'
 
 describe PigCI::Report::Memory do
@@ -19,7 +17,7 @@ describe PigCI::Report::Memory do
     end
 
     it do
-      is_expected.to eq (
+      is_expected.to eq(
         {
           max: BigDecimal(1),
           mean: BigDecimal(1),

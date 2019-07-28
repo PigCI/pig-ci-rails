@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'active_support'
 require 'active_support/core_ext/string/inflections'
 
@@ -17,12 +15,12 @@ module PigCI
 
   attr_accessor :pid
 
-  attr_accessor :tmp_directory
+  attr_writer :tmp_directory
   def tmp_directory
     @tmp_directory || Pathname.new(Dir.getwd).join('tmp', 'pig-ci')
   end
 
-  attr_accessor :output_directory
+  attr_writer :output_directory
   def output_directory
     @output_directory || Pathname.new(Dir.getwd).join('pig-ci')
   end
@@ -37,49 +35,49 @@ module PigCI
     @generate_html_summary.nil? || @generate_html_summary
   end
 
-  attr_accessor :max_change_percentage_precision
+  attr_writer :max_change_percentage_precision
   def max_change_percentage_precision
     @max_change_percentage_precision || 1
   end
 
-  attr_accessor :report_memory_precision
+  attr_writer :report_memory_precision
   def report_memory_precision
     @report_memory_precision || 2
   end
 
-  attr_accessor :terminal_report_row_limit
+  attr_writer :terminal_report_row_limit
   def terminal_report_row_limit
     @terminal_report_row_limit || -1
   end
 
   # PigCI.report_row_sort_by = Proc.new { |d| d[:max_change_percentage] * -1 }
-  attr_accessor :report_row_sort_by
+  attr_writer :report_row_sort_by
   def report_row_sort_by(data)
     (@report_row_sort_by || proc { |d| d[:max].to_i * -1 }).call(data)
   end
 
-  attr_accessor :historical_data_run_limit
+  attr_writer :historical_data_run_limit
   def historical_data_run_limit
     @historical_data_run_limit ||= 10
   end
 
-  attr_accessor :run_timestamp
+  attr_writer :run_timestamp
   def run_timestamp
     @run_timestamp ||= Time.now.to_i.to_s
   end
 
-  attr_accessor :profiler_engine
+  attr_writer :profiler_engine
   def profiler_engine
     @profiler_engine ||= PigCI::ProfilerEngine::Rails.new
   end
 
-  attr_accessor :api_base_uri
+  attr_writer :api_base_uri
   def api_base_uri
     @api_base_uri || 'https://api.pigci.com'
   end
 
   attr_accessor :api_verify_ssl
-  def api_verify_ssl
+  def api_verify_ssl?
     !@api_verify_ssl.nil? ? @api_verify_ssl : true
   end
 
@@ -88,17 +86,17 @@ module PigCI
     !@api_key.nil? && @api_key != ''
   end
 
-  attr_accessor :commit_sha1
+  attr_writer :commit_sha1
   def commit_sha1
     @commit_sha1 || ENV['CIRCLE_SHA1'] || ENV['TRAVIS_COMMIT'] || `git rev-parse HEAD`.strip
   end
 
-  attr_accessor :head_branch
+  attr_writer :head_branch
   def head_branch
     @head_branch || ENV['CIRCLE_BRANCH'] || ENV['TRAVIS_BRANCH'] || `git rev-parse --abbrev-ref HEAD`.strip
   end
 
-  attr_accessor :locale
+  attr_writer :locale
   def locale
     @locale || :en
   end

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class PigCI::ProfilerEngine
   attr_accessor :request_key, :profilers, :reports, :request_captured
 

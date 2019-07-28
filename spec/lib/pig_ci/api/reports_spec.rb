@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'spec_helper'
 
 describe PigCI::Api::Reports do
@@ -47,7 +45,6 @@ describe PigCI::Api::Reports do
       it 'makes the API request with valid JSON as param' do
         subject
         expect(a_request(:post, 'https://api.pigci.com/v1/reports').with do |req|
-
           expect(req.body).to match_response_schema('pigci.com/v1/reports/schema')
 
           payload = JSON.parse(req.body)

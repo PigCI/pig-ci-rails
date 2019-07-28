@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class PigCI::Profiler::RequestTime < PigCI::Profiler
   attr_accessor :start_time, :end_time
 

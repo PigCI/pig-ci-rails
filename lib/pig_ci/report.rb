@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class PigCI::Report
   attr_accessor :historical_log_file, :i18n_key
 
@@ -26,7 +24,7 @@ class PigCI::Report
   end
 
   def to_payload_for(timestamp)
-    { 
+    {
       profiler: @i18n_key.to_sym,
       data: data_for(timestamp)[@i18n_key.to_sym]
     }

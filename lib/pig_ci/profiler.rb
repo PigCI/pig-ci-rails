@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class PigCI::Profiler
   attr_accessor :log_value, :log_file, :historical_log_file, :i18n_key
 
@@ -33,7 +31,7 @@ class PigCI::Profiler
     )
   end
 
-  def increment!(by: 1)
+  def increment!(*)
     raise NotImplementedError
   end
 end
