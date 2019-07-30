@@ -9,7 +9,7 @@ en:
       view_historic_reports: 'Historic Reports'
       footer_html: |
         <p>Generated <time datetime="%{generated_at}">%{generated_at}</time> by PigCI.</p>
-        <p>Support <a href="https://pigci.com/">PigCI</a> by adding us on GitHub.</p>
+        <p>Support <a href="https://pigci.com/" target="_blank" rel="noopener">PigCI</a> by <a href="https://github.com/apps/pigci/installations/new" target="_blank" rel="noopener">adding us on GitHub</a>.</p>
 
     report:
       memory:
