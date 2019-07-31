@@ -8,7 +8,7 @@ class PigCI::Api::Reports < PigCI::Api
     return if response.success?
 
     puts I18n.t('pig_ci.api.reports.error', error: JSON.parse(response.parsed_response || '{}')['error'])
-  rescue JSON::ParserError => e
+  rescue JSON::ParserError => _e
     puts I18n.t('pig_ci.api.reports.api_error')
   rescue Net::OpenTimeout => e
     puts I18n.t('pig_ci.api.reports.error', error: e.inspect)
