@@ -23,6 +23,17 @@ describe PigCI::Api::Reports do
       end
     end
 
+    context 'PigCI is down' do
+      before do
+        stub_request(:post, 'https://api.pigci.com/v1/reports')
+          .to_return(status: 500, body: '<html>Not JSON</html>')
+      end
+
+      it do
+        expect { subject }.to output(/Unable to connect to PigCI API/).to_stdout
+      end
+    end
+
     context 'API key is invalid' do
       before do
         stub_request(:post, 'https://api.pigci.com/v1/reports')

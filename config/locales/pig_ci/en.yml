@@ -3,6 +3,7 @@ en:
     api:
       reports:
         error: 'Unable to connect to PigCI API: %{error}'
+        api_error: 'Unable to connect to PigCI API'
     summary:
       saved_successfully: PigCI report generated to %{output_directory}
       title: PigCI Results
