@@ -10,7 +10,8 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'Mintor metrics such a memory usage as part of testing'
   spec.description   = 'A gem for Ruby on Rails that will report key metrics (memory, request time & SQL Requests) for request & feature tests.'
-  spec.homepage      = "https://github.com/PigCI/pig-ci-rails"
+  spec.homepage      = 'https://github.com/PigCI/pig-ci-rails'
+  spec.license       = 'MIT'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
