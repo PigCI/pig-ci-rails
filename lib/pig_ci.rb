@@ -88,12 +88,12 @@ module PigCI
 
   attr_writer :commit_sha1
   def commit_sha1
-    @commit_sha1 || ENV['CIRCLE_SHA1'] || ENV['TRAVIS_COMMIT'] || `git rev-parse HEAD`.strip
+    @commit_sha1 || ENV['CI_COMMIT_ID'] || ENV['CIRCLE_SHA1'] || ENV['TRAVIS_COMMIT'] || `git rev-parse HEAD`.strip
   end
 
   attr_writer :head_branch
   def head_branch
-    @head_branch || ENV['CIRCLE_BRANCH'] || ENV['TRAVIS_BRANCH'] || `git rev-parse --abbrev-ref HEAD`.strip
+    @head_branch || ENV['CI_BRANCH'] || ENV['CIRCLE_BRANCH'] || ENV['TRAVIS_BRANCH'] || `git rev-parse --abbrev-ref HEAD`.strip
   end
 
   attr_writer :locale
