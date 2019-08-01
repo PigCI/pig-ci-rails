@@ -45,6 +45,16 @@ module PigCI
     @report_memory_precision || 2
   end
 
+  attr_writer :during_setup_eager_load_application
+  def during_setup_eager_load_application?
+    @during_setup_eager_load_application.nil? || @during_setup_eager_load_application
+  end
+
+  attr_writer :during_setup_make_blank_application_request
+  def during_setup_make_blank_application_request?
+    @during_setup_make_blank_application_request.nil? || @during_setup_make_blank_application_request
+  end
+
   attr_writer :terminal_report_row_limit
   def terminal_report_row_limit
     @terminal_report_row_limit || -1

@@ -20,8 +20,8 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
 
   def setup!
     super do
-      eager_load_rails!
-      make_blank_application_request!
+      eager_load_rails! if PigCI.during_setup_eager_load_application?
+      make_blank_application_request! if PigCI.during_setup_make_blank_application_request?
     end
   end
 

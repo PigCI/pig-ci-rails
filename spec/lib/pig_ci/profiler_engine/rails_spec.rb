@@ -19,7 +19,7 @@ describe PigCI::ProfilerEngine do
 
     context 'with PigCI.during_setup_eager_load_application set to false' do
       before { PigCI.during_setup_eager_load_application = false }
-      after { PigCI.during_setup_eager_load_application = true }
+      after { PigCI.during_setup_eager_load_application = nil }
       it do
         expect(profiler_engine).to_not receive(:eager_load_rails!)
         subject
@@ -28,7 +28,7 @@ describe PigCI::ProfilerEngine do
 
     context 'with PigCI.during_setup_make_blank_application_request set to false' do
       before { PigCI.during_setup_make_blank_application_request = false }
-      after { PigCI.during_setup_make_blank_application_request = true }
+      after { PigCI.during_setup_make_blank_application_request = nil }
       it do
         expect(profiler_engine).to_not receive(:make_blank_application_request!)
         subject
