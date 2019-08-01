@@ -18,7 +18,7 @@ class PigCI::Api::Reports < PigCI::Api
 
   def post_payload
     self.class.post(
-      '/api/v1/reports',
+      '/v1/reports',
       base_uri: PigCI.api_base_uri,
       verify: PigCI.api_verify_ssl?,
       body: payload,

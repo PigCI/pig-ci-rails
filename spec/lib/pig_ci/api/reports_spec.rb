@@ -15,7 +15,7 @@ describe PigCI::Api::Reports do
 
     context 'PigCI is offline' do
       before do
-        stub_request(:post, 'https://api.pigci.com/v1/reports').to_timeout
+        stub_request(:post, 'https://api.pigci.com/api/v1/reports').to_timeout
       end
 
       it do
@@ -25,7 +25,7 @@ describe PigCI::Api::Reports do
 
     context 'PigCI is down' do
       before do
-        stub_request(:post, 'https://api.pigci.com/v1/reports')
+        stub_request(:post, 'https://api.pigci.com/api/v1/reports')
           .to_return(status: 500, body: '<html>Not JSON</html>')
       end
 
@@ -36,7 +36,7 @@ describe PigCI::Api::Reports do
 
     context 'API key is invalid' do
       before do
-        stub_request(:post, 'https://api.pigci.com/v1/reports')
+        stub_request(:post, 'https://api.pigci.com/api/v1/reports')
           .to_return(status: 401, body: {
             error: 'API Key is invalid'
           }.to_json)
@@ -49,13 +49,13 @@ describe PigCI::Api::Reports do
 
     context 'request is successful' do
       before do
-        stub_request(:post, 'https://api.pigci.com/v1/reports')
+        stub_request(:post, 'https://api.pigci.com/api/v1/reports')
           .to_return(status: 200)
       end
 
       it 'makes the API request with valid JSON as param' do
         subject
-        expect(a_request(:post, 'https://api.pigci.com/v1/reports').with do |req|
+        expect(a_request(:post, 'https://api.pigci.com/api/v1/reports').with do |req|
           expect(req.body).to match_response_schema('pigci.com/v1/reports/schema')
 
           payload = JSON.parse(req.body)
