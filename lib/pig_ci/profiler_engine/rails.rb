@@ -21,6 +21,7 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
   def setup!
     super do
       eager_load_rails!
+      make_blank_application_request!
     end
   end
 
@@ -31,7 +32,9 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
     ::Rails.application.eager_load!
     ::Rails::Engine.subclasses.map(&:instance).each(&:eager_load!)
     ::ActiveRecord::Base.descendants
+  end
 
+  def make_blank_application_request!
     # Make a call to the root path to load up as much of rails as possible
     ::Rails.application.call(::Rack::MockRequest.env_for('/'))
   end
