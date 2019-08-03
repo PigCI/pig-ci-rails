@@ -67,7 +67,7 @@ PigCI.start do |config|
 
   # E.g. disable terminal summary output
   config.generate_terminal_summary = false
-end # if RSpec.configuration.files_to_run.count > 1
+end # if ENV['RUN_PIG_CI'] || RSpec.configuration.files_to_run.count > 1
 ```
 
 You can see the full configuration options [lib/pig_ci.rb](https://github.com/PigCI/pig-ci-rails/blob/master/lib/pig_ci.rb#L21).
@@ -78,27 +78,33 @@ Currently this gem only supports Ruby on Rails.
 
 ### Metric notes
 
-#### Memory
-
 Minor fluctuations in memory usage and request time are to be expected and are nothing to worry about. Though any large spike is a signal of something worth investigating.
 
-You can improve its accuracy by updating your `config/environments/test.rb` to have the line:
+#### Memory
+
+By default, this gem will tell Rails to eager load your application on startup. This aims to help identify leaks, over just pure bulk.
+
+You can disable this functionality by setting your configuration to be:
 
 ```ruby
-config.eager_load = true
+require 'pig_ci'
+PigCI.start do |config|
+  config.during_setup_eager_load_application = false
+end
 ```
 
 #### Request Time
 
-Often the first request test will be slow, as rails is loading a full environment. While this metric is useful, I'd suggest focusing on other metrics (like memory, or database requests).
+Often the first request test will be slow, as rails is loading a full environment. To mitigate this issue, this gem will make a blank request to your application before your test suite starts.
 
-Alternatively add:
+You can disable this functionality by setting your configuration to be:
 
 ```ruby
-Rails.application.call(::Rack::MockRequest.env_for('/'))
+require 'pig_ci'
+PigCI.start do |config|
+  config.during_setup_make_blank_application_request = false
+end
 ```
-
-Before you call `PigCI.start`.
 
 ## Authors
 

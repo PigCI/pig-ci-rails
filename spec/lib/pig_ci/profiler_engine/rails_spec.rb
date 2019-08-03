@@ -8,6 +8,34 @@ describe PigCI::ProfilerEngine do
     allow(Rails.application).to receive(:call)
   end
 
+  describe '#setup!' do
+    subject { profiler_engine.setup! }
+
+    it do
+      expect(profiler_engine).to receive(:eager_load_rails!)
+      expect(profiler_engine).to receive(:make_blank_application_request!)
+      subject
+    end
+
+    context 'with PigCI.during_setup_eager_load_application set to false' do
+      before { PigCI.during_setup_eager_load_application = false }
+      after { PigCI.during_setup_eager_load_application = nil }
+      it do
+        expect(profiler_engine).to_not receive(:eager_load_rails!)
+        subject
+      end
+    end
+
+    context 'with PigCI.during_setup_make_blank_application_request set to false' do
+      before { PigCI.during_setup_make_blank_application_request = false }
+      after { PigCI.during_setup_make_blank_application_request = nil }
+      it do
+        expect(profiler_engine).to_not receive(:make_blank_application_request!)
+        subject
+      end
+    end
+  end
+
   describe '#profilers' do
     subject { profiler_engine.profilers }
     it { expect(subject.count).to eq(3) }
