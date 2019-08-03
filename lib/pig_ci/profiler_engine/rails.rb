@@ -36,7 +36,10 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
 
   def make_blank_application_request!
     # Make a call to the root path to load up as much of rails as possible
-    ::Rails.application.call(::Rack::MockRequest.env_for('/'))
+    # Done within a timezone block as it affects the timezone.
+    Time.use_zone('UTC') do
+      ::Rails.application.call(::Rack::MockRequest.env_for('/'))
+    end
   end
 
   def attach_listeners!
