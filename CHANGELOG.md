@@ -3,6 +3,7 @@
 ## 0.1.2
 
 * Codacy changes
+* Correcting issue where app warm up would negatively affect timezone.
 
 ## 0.1.1
 

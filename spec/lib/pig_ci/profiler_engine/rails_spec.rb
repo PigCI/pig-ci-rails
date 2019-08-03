@@ -36,6 +36,14 @@ describe PigCI::ProfilerEngine do
     end
   end
 
+  describe '#make_blank_application_request!' do
+    subject { profiler_engine.send(:make_blank_application_request!) }
+
+    it 'does not changes the current timezone' do
+      expect { subject }.to_not change(Time, :zone)
+    end
+  end
+
   describe '#profilers' do
     subject { profiler_engine.profilers }
     it { expect(subject.count).to eq(3) }
