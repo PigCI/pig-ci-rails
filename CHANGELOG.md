@@ -2,8 +2,9 @@
 
 ## 0.1.2
 
-* Codacy changes
-* Correcting issue where app warm up would negatively affect timezone.
+* [Improving Codacy Rating](https://github.com/PigCI/pig-ci-rails/pull/4)
+* [Correcting issue where app warm up would negatively affect timezone](https://github.com/PigCI/pig-ci-rails/pull/5)
+* [Adding option to control if app is preloaded or not](https://github.com/PigCI/pig-ci-rails/pull/3)
 
 ## 0.1.1
 
