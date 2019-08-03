@@ -42,7 +42,7 @@ require 'pig_ci'
 PigCI.start
 ```
 
-### With [PigCI.com](https://pigci.com) - For sharing runs as a team via CI.
+### With [PigCI.com](https://pigci.com) - For sharing runs as a team via CI
 
 You can hookup your project to PigCI.com, this will fail PRs when metric thresholds are exceeded (e.g. your app see a big increase in memory).
 
@@ -108,9 +108,9 @@ end
 
 ## Authors
 
-  * This gem was made by [@MikeRogers0](https://github.com/MikeRogers0).
-  * It was originally inspired by [oink](https://github.com/noahd1/oink), after it was used to [monitor acceptance tests](https://mikerogers.io/2015/03/28/monitor-rails-memory-usage-in-integration-tests.html) and it spotted a memory leak. It seemed like something that would be useful to have as part of CI.
-  * The HTML output was inspired by [simplecov](https://github.com/colszowka/simplecov).
+* This gem was made by [@MikeRogers0](https://github.com/MikeRogers0).
+* It was originally inspired by [oink](https://github.com/noahd1/oink), after it was used to [monitor acceptance tests](https://mikerogers.io/2015/03/28/monitor-rails-memory-usage-in-integration-tests.html) and it spotted a memory leak. It seemed like something that would be useful to have as part of CI.
+* The HTML output was inspired by [simplecov](https://github.com/colszowka/simplecov).
 
 ## Development
 
@@ -122,11 +122,11 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Features I'd like to add at some point:
  
-  * HTML output to include branch - Right now they're just timestamps which makes filtering hard.
-  * Should I disable terminal output by default? It feels like noise.
-  * Should I reject database requests that have a value of 0? I think so.
-  * Document setting branch/commit encase of weird CI.
-  * Add rake rake for submitting reports.
+* HTML output to include branch - Right now they're just timestamps which makes filtering hard.
+* Should I disable terminal output by default? It feels like noise.
+* Should I reject database requests that have a value of 0? I think so.
+* Document setting branch/commit encase of weird CI.
+* Add rake rake for submitting reports.
 
 ## Contributing
 
