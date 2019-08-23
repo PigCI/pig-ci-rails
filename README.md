@@ -106,6 +106,12 @@ PigCI.start do |config|
 end
 ```
 
+You can also improve the first request performance (and overall memory usage) by precompiling your assets before running RSpec:
+
+```ruby
+bundle exec rake assets:precompile RAILS_ENV=test
+```
+
 ## Authors
 
 * This gem was made by [@MikeRogers0](https://github.com/MikeRogers0).
