@@ -132,7 +132,7 @@ Features I'd like to add at some point:
 * Should I disable terminal output by default? It feels like noise.
 * Should I reject database requests that have a value of 0? I think so.
 * Document setting branch/commit encase of weird CI.
-* Add rake rake for submitting reports.
+* Add rake for submitting reports.
 * https://rubydoc.info/gems/yard/file/docs/GettingStarted.md - Document the gem so it's easier for people to jump on.
 
 ## Contributing
