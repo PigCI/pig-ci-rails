@@ -3,6 +3,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a3ab882cc57c4cc68d7e30f25cad2568)](https://www.codacy.com/app/MikeRogers0/pig-ci-rails?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=PigCI/pig-ci-rails&amp;utm_campaign=Badge_Grade)
 [![Maintainability](https://api.codeclimate.com/v1/badges/d022db58c712d425dba9/maintainability)](https://codeclimate.com/github/PigCI/pig-ci-rails/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/d022db58c712d425dba9/test_coverage)](https://codeclimate.com/github/PigCI/pig-ci-rails/test_coverage)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=PigCI/pig-ci-rails)](https://dependabot.com)
 
 # PigCI
 
