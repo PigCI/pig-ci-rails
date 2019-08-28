@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.3
+
+* [Gracefully handling SockerError when submitting reports while offline](https://github.com/PigCI/pig-ci-rails/pull/7)
+
 ## 0.1.2
 
 * [Improving Codacy Rating](https://github.com/PigCI/pig-ci-rails/pull/4)

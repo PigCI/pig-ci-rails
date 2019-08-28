@@ -13,6 +13,15 @@ describe PigCI::Api::Reports do
   describe '#share!' do
     subject { api.share! }
 
+    context 'User is offline' do
+      before do
+        stub_request(:post, 'https://api.pigci.com/api/v1/reports').to_raise(SocketError)
+      end
+
+      it do
+        expect { subject }.to output(/Unable to connect to PigCI API/).to_stdout
+      end
+    end
     context 'PigCI is offline' do
       before do
         stub_request(:post, 'https://api.pigci.com/api/v1/reports').to_timeout

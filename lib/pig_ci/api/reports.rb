@@ -10,6 +10,8 @@ class PigCI::Api::Reports < PigCI::Api
     puts I18n.t('pig_ci.api.reports.error', error: JSON.parse(response.parsed_response || '{}')['error'])
   rescue JSON::ParserError => _e
     puts I18n.t('pig_ci.api.reports.api_error')
+  rescue SocketError => e
+    puts I18n.t('pig_ci.api.reports.error', error: e)
   rescue Net::OpenTimeout => e
     puts I18n.t('pig_ci.api.reports.error', error: e.inspect)
   end
