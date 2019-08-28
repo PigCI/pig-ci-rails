@@ -3,6 +3,7 @@
 ## 0.1.3
 
 * [Gracefully handling SockerError when submitting reports while offline](https://github.com/PigCI/pig-ci-rails/pull/7)
+* [Update webmock requirement from ~> 3.6.0 to ~> 3.7.0](https://github.com/PigCI/pig-ci-rails/pull/6)
 
 ## 0.1.2
 
