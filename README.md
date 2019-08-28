@@ -135,6 +135,7 @@ Features I'd like to add at some point:
 * Document setting branch/commit encase of weird CI.
 * Add rake for submitting reports.
 * https://rubydoc.info/gems/yard/file/docs/GettingStarted.md - Document the gem so it's easier for people to jump on.
+* Attempt to precompile assets (They throw off the first request timing)
 
 ## Contributing
 
