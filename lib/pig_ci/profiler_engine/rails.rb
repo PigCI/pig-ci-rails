@@ -20,6 +20,7 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
 
   def setup!
     super do
+      precompile_assets! if true
       eager_load_rails! if PigCI.during_setup_eager_load_application?
       make_blank_application_request! if PigCI.during_setup_make_blank_application_request?
     end
@@ -30,8 +31,15 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
   def eager_load_rails!
     # Eager load rails to give more accurate memory levels.
     ::Rails.application.eager_load!
+    ::Rails.application.routes.eager_load!
     ::Rails::Engine.subclasses.map(&:instance).each(&:eager_load!)
     ::ActiveRecord::Base.descendants
+  end
+
+  def precompile_assets!
+    # From: https://github.com/rails/sprockets-rails/blob/e9ca63edb6e658cdfcf8a35670c525b369c2ccca/test/test_railtie.rb#L7-L13
+    ::Rails.application.load_tasks
+    ::Rake.application['assets:precompile'].execute
   end
 
   def make_blank_application_request!
