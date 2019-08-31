@@ -38,7 +38,9 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
     # Make a call to the root path to load up as much of rails as possible
     # Done within a timezone block as it affects the timezone.
     Time.use_zone('UTC') do
-      ::Rails.application.call(::Rack::MockRequest.env_for('/'))
+      if ::Rails.application.routes.url_helpers.method_defined?(:root_path)
+        ::Rails.application.call(::Rack::MockRequest.env_for(::Rails.application.routes.url_helpers.root_path))
+      end
     end
   end
 
