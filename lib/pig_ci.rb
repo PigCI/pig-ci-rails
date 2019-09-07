@@ -1,5 +1,6 @@
 require 'active_support'
 require 'active_support/core_ext/string/inflections'
+require 'rake'
 
 require 'pig_ci/version'
 require 'pig_ci/api'
@@ -53,6 +54,11 @@ module PigCI
   attr_writer :during_setup_make_blank_application_request
   def during_setup_make_blank_application_request?
     @during_setup_make_blank_application_request.nil? || @during_setup_make_blank_application_request
+  end
+
+  attr_writer :during_setup_precompile_assets
+  def during_setup_precompile_assets?
+    @during_setup_precompile_assets.nil? || @during_setup_precompile_assets
   end
 
   attr_writer :terminal_report_row_limit
