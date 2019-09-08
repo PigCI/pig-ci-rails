@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.4 ( in development )
+
+* [Precompile assets before tests run](https://github.com/PigCI/pig-ci-rails/pull/11)
+
 ## 0.1.3
 
 * [Gracefully handling SockerError when submitting reports while offline](https://github.com/PigCI/pig-ci-rails/pull/7)
