@@ -6,12 +6,14 @@ describe PigCI::ProfilerEngine do
   before do
     # Stub out the complex eager loading a little
     allow(Rails.application).to receive(:call)
+    allow(Rake.application).to receive(:[]).and_return(double(:rake_task, execute: true))
   end
 
   describe '#setup!' do
     subject { profiler_engine.setup! }
 
     it do
+      expect(profiler_engine).to receive(:precompile_assets!)
       expect(profiler_engine).to receive(:eager_load_rails!)
       expect(profiler_engine).to receive(:make_blank_application_request!)
       subject
@@ -31,6 +33,15 @@ describe PigCI::ProfilerEngine do
       after { PigCI.during_setup_make_blank_application_request = nil }
       it do
         expect(profiler_engine).to_not receive(:make_blank_application_request!)
+        subject
+      end
+    end
+
+    context 'with PigCI.during_setup_make_blank_application_request set to false' do
+      before { PigCI.during_setup_precompile_assets = false }
+      after { PigCI.during_setup_precompile_assets = nil }
+      it do
+        expect(profiler_engine).to_not receive(:precompile_assets!)
         subject
       end
     end
