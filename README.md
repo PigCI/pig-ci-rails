@@ -96,7 +96,7 @@ end
 
 #### Request Time
 
-Often the first request test will be slow, as rails is loading a full environment. To mitigate this issue, this gem will make a blank request to your application before your test suite starts.
+Often the first request test will be slow, as rails is loading a full environment & rendering assets. To mitigate this issue, this gem will make a blank request to your application before your test suite starts & compiling assets.
 
 You can disable this functionality by setting your configuration to be:
 
@@ -104,13 +104,8 @@ You can disable this functionality by setting your configuration to be:
 require 'pig_ci'
 PigCI.start do |config|
   config.during_setup_make_blank_application_request = false
+  config.during_setup_precompile_assets = false
 end
-```
-
-You can also improve the first request performance (and overall memory usage) by precompiling your assets before running RSpec:
-
-```ruby
-bundle exec rake assets:precompile RAILS_ENV=test
 ```
 
 ## Authors
