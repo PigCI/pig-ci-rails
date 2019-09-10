@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.4 ( in development )
+## 0.1.4
 
 * [Precompile assets before tests run](https://github.com/PigCI/pig-ci-rails/pull/11)
 
