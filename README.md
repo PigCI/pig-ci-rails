@@ -131,6 +131,7 @@ Features I'd like to add at some point:
 * Add rake for submitting reports.
 * https://rubydoc.info/gems/yard/file/docs/GettingStarted.md - Document the gem so it's easier for people to jump on.
 * Support ActionCable (when requests have no key).
+* Add support for "upsert" for when tests are split over multiple machines
 
 ## Contributing
 
