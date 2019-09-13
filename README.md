@@ -125,12 +125,10 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 Features I'd like to add at some point:
  
 * HTML output to include branch - Right now they're just timestamps which makes filtering hard.
-* Should I disable terminal output by default? It feels like noise.
-* Should I reject database requests that have a value of 0? I think so.
-* Document setting branch/commit encase of weird CI.
+* Document setting branch/commit to handle when CI doesn't set it correctly.
 * Add rake for submitting reports.
 * https://rubydoc.info/gems/yard/file/docs/GettingStarted.md - Document the gem so it's easier for people to jump on.
-* Attempt to precompile assets (They throw off the first request timing)
+* Support ActionCable (when requests have no key).
 
 ## Contributing
 
