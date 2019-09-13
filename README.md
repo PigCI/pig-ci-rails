@@ -52,9 +52,11 @@ You can hookup your project to PigCI.com, this will fail PRs when metric thresho
 require 'pig_ci'
 PigCI.start do |config|
   # When you connect your project, you'll be given an API key.
-  config.api_key = 'you-api-key-here'
+  config.api_key = 'your-api-key-here'
 end
 ```
+
+It's a great way to track metrics over time & support this project.
 
 ### Configuring PigCI
 
@@ -68,7 +70,7 @@ PigCI.start do |config|
 
   # E.g. disable terminal summary output
   config.generate_terminal_summary = false
-end # if ENV['RUN_PIG_CI'] || RSpec.configuration.files_to_run.count > 1
+end # if RSpec.configuration.files_to_run.count > 1
 ```
 
 You can see the full configuration options [lib/pig_ci.rb](https://github.com/PigCI/pig-ci-rails/blob/master/lib/pig_ci.rb#L21).
