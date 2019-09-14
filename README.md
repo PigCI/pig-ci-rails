@@ -7,6 +7,8 @@
 
 # PigCI
 
+![Sample Output of PigCI in TravisCI](https://user-images.githubusercontent.com/325384/64909005-7b4a1280-d6fe-11e9-8a1f-c40d21eeb4a7.png)
+
 Monitor your Ruby Applications metrics (Memory, SQL Requests & Request Time) as part of your test suite.
 
 Please consider supporting this project by adding [PigCI](https://pigci.com/) to your GitHub project & using this as part of CI. The CI tool will fail PRs that exceed metric threshold (e.g. a big increase in memory).
