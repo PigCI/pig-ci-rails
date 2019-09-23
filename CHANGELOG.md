@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.5
+
+* [Widen i18n gem version requirement](https://github.com/PigCI/pig-ci-rails/pull/12)
+
 ## 0.1.4
 
 * [Precompile assets before tests run](https://github.com/PigCI/pig-ci-rails/pull/11)
