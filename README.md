@@ -128,12 +128,12 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Features I'd like to add at some point:
 
+* Add support for "upsert" for when tests are split over multiple machines
 * HTML output to include branch - Right now they're just timestamps which makes filtering hard.
 * Document setting branch/commit to handle when CI doesn't set it correctly.
 * Add rake for submitting reports.
 * https://rubydoc.info/gems/yard/file/docs/GettingStarted.md - Document the gem so it's easier for people to jump on.
 * Support ActionCable (when requests have no key).
-* Add support for "upsert" for when tests are split over multiple machines
 
 ## Contributing
 
