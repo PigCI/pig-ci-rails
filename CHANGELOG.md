@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.6 (In Development)
+
+* [Updating TravisCI to test latest ruby versions](https://github.com/PigCI/pig-ci-rails/pull/15)
+
 ## 0.1.5
 
 * [Widen i18n gem version requirement](https://github.com/PigCI/pig-ci-rails/pull/12)
