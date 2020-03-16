@@ -117,6 +117,15 @@ module PigCI
     @locale || :en
   end
 
+  attr_writer :limits
+  def limits
+    @limits || {
+      memory: 350,
+      request_time: 250,
+      database_request: 35
+    }
+  end
+
   module_function
 
   def start(&block)
@@ -156,8 +165,7 @@ module PigCI
     PigCI::Api::Reports.new(reports: profiler_engine.reports).share! if PigCI.api_key?
 
     # Make sure CI fails when metrics are over limits.
-    $stderr.printf("Pig CI Over Limits\n")
-    Kernel.exit 2
+    PigCI::Summary::CI.new(reports: profiler_engine.reports).call!
   end
 end
 
