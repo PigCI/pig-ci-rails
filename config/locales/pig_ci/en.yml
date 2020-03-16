@@ -5,6 +5,7 @@ en:
         error: 'Unable to connect to PigCI API: %{error}'
         api_error: 'Unable to connect to PigCI API'
     summary:
+      ci_failure: 'PigCI: This commit has exceeded the threshold limits defined in PigCI.limits'
       saved_successfully: PigCI report generated to %{output_directory}
       title: PigCI Results
       view_historic_reports: 'Historic Reports'

@@ -13,10 +13,15 @@ class PigCI::Summary::CI < PigCI::Summary
       over_limit = true if report.over_limit_for?(@timestamp)
     end
 
-    Kernel.exit 2 if over_limit
+    fail_with_error! if over_limit
   end
 
   private
+
+  def fail_with_error!
+    puts I18n.t('pig_ci.summary.ci_failure')
+    Kernel.exit(2)
+  end
 
   def print_report(report)
 
