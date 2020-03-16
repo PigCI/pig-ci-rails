@@ -15,7 +15,7 @@ class PigCI::Summary::Terminal < PigCI::Summary
   private
 
   def print_report(report)
-    puts "#{report.i18n_name}:\n"
+    puts "#{report.i18n_name}: #{report.max_for(@timestamp)}\n"
 
     table = ::Terminal::Table.new headings: report.headings do |t|
       report.sorted_and_formatted_data_for(@timestamp)[0..PigCI.terminal_report_row_limit]
