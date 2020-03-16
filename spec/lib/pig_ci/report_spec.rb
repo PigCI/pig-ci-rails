@@ -30,6 +30,24 @@ describe PigCI::Report do
     end
   end
 
+  describe '#max_for' do
+    subject { report.max_for('1000') }
+
+    let(:rows) do
+      [
+        { max: 576 },
+        { max: 1_048_576 },
+        { max: 576 }
+      ]
+    end
+
+    before do
+      allow(report).to receive(:sorted_and_formatted_data_for).and_return(rows)
+    end
+
+    it { is_expected.to eq(1_048_576) }
+  end
+
   describe '#i18n_scope' do
     subject { report.i18n_scope }
 
@@ -49,6 +67,12 @@ describe PigCI::Report do
       subject { report.headings }
 
       it { is_expected.to eq(['Key', 'Max (MB)', 'Min (MB)', 'Mean (MB)', 'Requests', '% Change']) }
+    end
+
+    describe '#limit' do
+      subject { report.limit }
+
+      it { is_expected.to eq(350) }
     end
   end
 end

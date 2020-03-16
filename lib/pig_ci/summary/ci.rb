@@ -1,9 +1,6 @@
-require 'terminal-table'
+require 'colorized_string'
 
 class PigCI::Summary::CI < PigCI::Summary
-  SUCCESS = 0
-  OVER_LIMTS = 2
-
   def initialize(reports:)
     @reports = reports
     @timestamp = PigCI.run_timestamp
@@ -16,12 +13,23 @@ class PigCI::Summary::CI < PigCI::Summary
       over_limit = true if report.over_limit_for?(@timestamp)
     end
 
-    Kernel.exit OVER_LIMTS if over_limit
+    Kernel.exit 2 if over_limit
   end
 
   private
 
   def print_report(report)
-    puts "#{report.i18n_name}: #{ColorizedString[report.max_for(@timestamp).to_s].colorize(:green)}/LIMIT\n"
+
+    max_and_limit = [
+      report.max_for(@timestamp).to_s,
+      '/',
+      report.limit
+    ].join(' ')
+
+    if report.over_limit_for?(@timestamp)
+      puts "#{report.i18n_name}: #{ColorizedString[max_and_limit].colorize(:red)}\n"
+    else
+      puts "#{report.i18n_name}: #{ColorizedString[max_and_limit].colorize(:green)}\n"
+    end
   end
 end
