@@ -4,10 +4,6 @@
 
 * TODO: Deprecate pigci.com integration.
 
-## 0.2.1
-
-* Setting up repo to publish gem when new tags are created.
-
 ## 0.2.0
 
 * [Updating TravisCI to test latest ruby versions](https://github.com/PigCI/pig-ci-rails/pull/15)
@@ -15,6 +11,7 @@
 * [Update rspec requirement from ~> 3.8.0 to ~> 3.9.0](https://github.com/PigCI/pig-ci-rails/pull/16)
 * [Update webmock requirement from ~> 3.7.0 to ~> 3.8.0](https://github.com/PigCI/pig-ci-rails/pull/17)
 * [Adding config.thresholds, this allows standalone usage without pigci.com](https://github.com/PigCI/pig-ci-rails/pull/18) & [Replace references for limit to be threshold](https://github.com/PigCI/pig-ci-rails/pull/21)
+* Setting up repo to publish gem when new tags are created.
 
 ## 0.1.5
 
