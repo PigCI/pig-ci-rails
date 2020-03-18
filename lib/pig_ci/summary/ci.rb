@@ -10,13 +10,13 @@ class PigCI::Summary::CI < PigCI::Summary
     puts ''
     puts I18n.t('pig_ci.summary.ci_start')
 
-    over_limit = false
+    over_threshold = false
     @reports.each do |report|
       print_report(report)
-      over_limit = true if report.over_limit_for?(@timestamp)
+      over_threshold = true if report.over_threshold_for?(@timestamp)
     end
 
-    fail_with_error! if over_limit
+    fail_with_error! if over_threshold
     puts ''
   end
 
@@ -28,17 +28,16 @@ class PigCI::Summary::CI < PigCI::Summary
   end
 
   def print_report(report)
-
-    max_and_limit = [
+    max_and_threshold = [
       report.max_for(@timestamp).to_s,
       '/',
-      report.limit
+      report.threshold
     ].join(' ')
 
-    if report.over_limit_for?(@timestamp)
-      puts "#{report.i18n_name}: #{ColorizedString[max_and_limit].colorize(:red)}\n"
+    if report.over_threshold_for?(@timestamp)
+      puts "#{report.i18n_name}: #{ColorizedString[max_and_threshold].colorize(:red)}\n"
     else
-      puts "#{report.i18n_name}: #{ColorizedString[max_and_limit].colorize(:green)}\n"
+      puts "#{report.i18n_name}: #{ColorizedString[max_and_threshold].colorize(:green)}\n"
     end
   end
 end

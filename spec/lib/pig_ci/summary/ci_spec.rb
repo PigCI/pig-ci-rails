@@ -16,9 +16,9 @@ describe PigCI::Summary::CI do
       expect { subject }.to output(/translation missing: en.pig_ci.report.profiler.name/).to_stdout
     end
 
-    context 'report is over the limit' do
+    context 'report is over the threshold' do
       before do
-        allow(reports[0]).to receive(:over_limit_for?).and_return(true)
+        allow(reports[0]).to receive(:over_threshold_for?).and_return(true)
       end
 
       it 'Outputs the data to terminal screen without stopping CI' do

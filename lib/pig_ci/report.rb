@@ -19,14 +19,14 @@ class PigCI::Report
     sorted_and_formatted_data_for(timestamp).collect { |row| row[:max] }.max
   end
 
-  def limit
+  def threshold
     PigCI.thresholds.dig(@i18n_key.to_sym)
   end
 
-  def over_limit_for?(timestamp)
-    return false unless limit.present? && max_for(timestamp).present?
+  def over_threshold_for?(timestamp)
+    return false unless threshold.present? && max_for(timestamp).present?
 
-    max_for(timestamp) > limit
+    max_for(timestamp) > threshold
   end
 
   def sorted_and_formatted_data_for(timestamp)
