@@ -1,0 +1,30 @@
+# from https://github.com/HiMamaInc/bambora-client/blob/f8927b18bb59fa30535d07835a1358ba4420d623/.github/workflows/gempush.yml
+name: Release Ruby Gem 
+
+on:
+  push:
+    tags:
+      - v* # Only run when we carve a new tag
+
+jobs:
+  build:
+    name: Build + Publish
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby 2.6
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.6.x
+
+    - name: Publish to RubyGems
+      run: |
+        mkdir -p $HOME/.gem
+        touch $HOME/.gem/credentials
+        chmod 0600 $HOME/.gem/credentials
+        printf -- "---\n:rubygems_api_key: ${RUBYGEMS_API_KEY}\n" > $HOME/.gem/credentials
+        gem build *.gemspec
+        gem push *.gem
+      env:
+        RUBYGEMS_API_KEY: ${{secrets.RUBYGEMS_API_KEY}}
