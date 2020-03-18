@@ -2,9 +2,8 @@ name: Build & Publish Ruby Gem
 
 on:
   push:
-    branches: [ master ]
     tags:
-      - v*
+      - *
 
 jobs:
   build:
