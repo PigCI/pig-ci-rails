@@ -53,7 +53,7 @@ Configuring the thresholds will allow your test suite to fail in CI. You will ne
 # In spec/rails_helper.rb
 require 'pig_ci'
 PigCI.start do |config|
-  # Maxiumum memory in megabytes
+  # Maximum memory in megabytes
   config.thresholds.memory = 350
 
   # Maximum time per a HTTP request

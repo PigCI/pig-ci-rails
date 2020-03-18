@@ -54,7 +54,7 @@ describe PigCI do
       PigCI.thresholds = {}
     end
 
-    context 'overwritting the memory' do
+    context 'overwriting the memory' do
       subject { PigCI.thresholds = { memory: 300 } }
       it { expect { subject }.to change { PigCI.thresholds.memory }.from(350).to(300) }
     end
