@@ -50,7 +50,7 @@ Gem::Specification.new do |spec|
   spec.post_install_message = [
     'Thank you for install Pig CI!',
     'Upgrade Notes:',
-    'The lastest version adds a "config.thresholds" which will replace the pigci.com integration in future.',
+    'The lastest version adds a "config.thresholds" option which will replace the pigci.com integration in future.',
     'See https://github.com/PigCI/pig-ci-rails#configuring-thresholds for more information :)'
   ].join("/n")
 end
