@@ -10,7 +10,7 @@
 * [Update rake requirement from ~> 12.3 to ~> 13.0](https://github.com/PigCI/pig-ci-rails/pull/14)
 * [Update rspec requirement from ~> 3.8.0 to ~> 3.9.0](https://github.com/PigCI/pig-ci-rails/pull/16)
 * [Update webmock requirement from ~> 3.7.0 to ~> 3.8.0](https://github.com/PigCI/pig-ci-rails/pull/17)
-* [Adding config.thresholds, this allows standalone usage without pigci.com](https://github.com/PigCI/pig-ci-rails/pull/18)
+* [Adding config.thresholds, this allows standalone usage without pigci.com](https://github.com/PigCI/pig-ci-rails/pull/18) & [Replace references for limit to be threshold](https://github.com/PigCI/pig-ci-rails/pull/21)
 
 ## 0.1.5
 

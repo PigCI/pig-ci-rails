@@ -48,6 +48,17 @@ describe PigCI::Report do
     it { is_expected.to eq(1_048_576) }
   end
 
+  describe '#over_threshold_for?' do
+    subject { report.over_threshold_for?(100) }
+
+    it 'returns true when under threshold' do
+      expect(report).to receive(:max_for).with(100).and_return(100).twice
+      expect(report).to receive(:threshold).and_return(90).twice
+
+      is_expected.to be true
+    end
+  end
+
   describe '#i18n_scope' do
     subject { report.i18n_scope }
 
@@ -69,8 +80,8 @@ describe PigCI::Report do
       it { is_expected.to eq(['Key', 'Max (MB)', 'Min (MB)', 'Mean (MB)', 'Requests', '% Change']) }
     end
 
-    describe '#limit' do
-      subject { report.limit }
+    describe '#threshold' do
+      subject { report.threshold }
 
       it { is_expected.to eq(350) }
     end
