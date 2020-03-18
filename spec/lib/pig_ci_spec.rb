@@ -44,6 +44,30 @@ describe PigCI do
     end
   end
 
+  describe '::thresholds.memory' do
+    subject { PigCI.thresholds.memory }
+    it { is_expected.to eq(350) }
+  end
+
+  describe '::thresholds=' do
+    after do
+      PigCI.thresholds = {}
+    end
+
+    context 'overwriting the memory' do
+      subject { PigCI.thresholds = { memory: 300 } }
+      it { expect { subject }.to change { PigCI.thresholds.memory }.from(350).to(300) }
+    end
+
+    context 'resetting the thresholds' do
+      subject { PigCI.thresholds = {} }
+      it do
+        PigCI.thresholds.memory = 300
+        expect { subject }.to change { PigCI.thresholds.memory }.from(300).to(350)
+      end
+    end
+  end
+
   describe '::load_i18n!' do
     pending
   end
@@ -73,6 +97,7 @@ describe PigCI do
       let(:profiler_sample_log_data) { File.open(File.join('spec', 'fixtures', 'files', 'profiler.txt')).read }
       let(:summary_terminal) { double :summary_terminal, print!: true }
       let(:summary_html) { double :summary_terminal, save!: true }
+      let(:summary_ci) { double :summary_ci, call!: true }
 
       before do
         PigCI.pid = Process.pid
@@ -89,6 +114,7 @@ describe PigCI do
         expect(PigCI::Summary::Terminal).to receive(:new).and_return(summary_terminal)
         expect(PigCI::Summary::HTML).to receive(:new).and_return(summary_html)
         expect(PigCI::Api::Reports).to_not receive(:new)
+        expect(PigCI::Summary::CI).to receive(:new).and_return(summary_ci)
         subject
       end
 
@@ -100,6 +126,7 @@ describe PigCI do
           expect(PigCI::Summary::Terminal).to_not receive(:new)
           expect(PigCI::Summary::HTML).to receive(:new).and_return(summary_html)
           expect(PigCI::Api::Reports).to_not receive(:new)
+          expect(PigCI::Summary::CI).to receive(:new).and_return(summary_ci)
           subject
         end
       end
@@ -112,6 +139,7 @@ describe PigCI do
           expect(PigCI::Summary::Terminal).to receive(:new).and_return(summary_terminal)
           expect(PigCI::Summary::HTML).to_not receive(:new)
           expect(PigCI::Api::Reports).to_not receive(:new)
+          expect(PigCI::Summary::CI).to receive(:new).and_return(summary_ci)
           subject
         end
       end
@@ -124,6 +152,7 @@ describe PigCI do
           expect(PigCI::Summary::Terminal).to receive(:new).and_return(summary_terminal)
           expect(PigCI::Summary::HTML).to receive(:new).and_return(summary_html)
           expect(PigCI::Api::Reports).to receive(:new).and_return(api_reports)
+          expect(PigCI::Summary::CI).to receive(:new).and_return(summary_ci)
           subject
         end
       end

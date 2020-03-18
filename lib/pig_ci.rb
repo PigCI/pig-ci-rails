@@ -4,6 +4,7 @@ require 'rake'
 
 require 'pig_ci/version'
 require 'pig_ci/api'
+require 'pig_ci/configuration'
 require 'pig_ci/decorator'
 require 'pig_ci/summary'
 require 'pig_ci/profiler_engine'
@@ -117,6 +118,14 @@ module PigCI
     @locale || :en
   end
 
+  def thresholds=(values)
+    @thresholds = PigCI::Configuration::Thresholds.new(values)
+  end
+
+  def thresholds
+    @thresholds ||= PigCI::Configuration::Thresholds.new
+  end
+
   module_function
 
   def start(&block)
@@ -154,6 +163,9 @@ module PigCI
 
     # If they have an API key, share it with PigCI.com
     PigCI::Api::Reports.new(reports: profiler_engine.reports).share! if PigCI.api_key?
+
+    # Make sure CI fails when metrics are over thresholds.
+    PigCI::Summary::CI.new(reports: profiler_engine.reports).call!
   end
 end
 

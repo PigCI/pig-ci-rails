@@ -15,6 +15,20 @@ class PigCI::Report
     I18n.t('.name', scope: i18n_scope, locale: PigCI.locale)
   end
 
+  def max_for(timestamp)
+    sorted_and_formatted_data_for(timestamp).collect { |row| row[:max] }.max
+  end
+
+  def limit
+    PigCI.thresholds.dig(@i18n_key.to_sym)
+  end
+
+  def over_limit_for?(timestamp)
+    return false unless limit.present? && max_for(timestamp).present?
+
+    max_for(timestamp) > limit
+  end
+
   def sorted_and_formatted_data_for(timestamp)
     data_for(timestamp)[@i18n_key.to_sym].sort_by do |data|
       PigCI.report_row_sort_by(data)
