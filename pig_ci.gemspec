@@ -46,4 +46,11 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.9.0'
   spec.add_development_dependency 'simplecov', '~> 0.17.0'
   spec.add_development_dependency 'yard', '~> 0.9.24'
+
+  spec.post_install_message = [
+    'Thank you for install Pig CI!',
+    'Upgrade Notes:',
+    'The lastest version adds a "config.thresholds" which will replace the pigci.com integration in future.',
+    'See https://github.com/PigCI/pig-ci-rails#configuring-thresholds for more information :)'
+  ].join("/n")
 end
