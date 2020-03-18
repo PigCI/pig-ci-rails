@@ -26,7 +26,7 @@ class PigCI::Report
   def over_threshold_for?(timestamp)
     return false unless threshold.present? && max_for(timestamp).present?
 
-    max_for(timestamp) > limit
+    max_for(timestamp) > threshold
   end
 
   def sorted_and_formatted_data_for(timestamp)
