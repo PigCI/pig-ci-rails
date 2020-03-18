@@ -84,6 +84,8 @@ You can see the full configuration options [lib/pig_ci.rb](https://github.com/Pi
 
 ### With [PigCI.com](https://pigci.com) - For sharing runs as a team via CI
 
+_Note: This feature will be deprecated in the future. Instead use "Configuring thresholds" to have CI pass/fail._
+
 You can hookup your project to PigCI.com, this will fail PRs when metric thresholds are exceeded (e.g. your app see a big increase in memory).
 
 ```ruby
