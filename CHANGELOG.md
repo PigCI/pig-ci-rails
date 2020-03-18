@@ -1,6 +1,10 @@
 # Changelog
 
-## 0.1.6 (In Development)
+## 0.3.0 (In Development)
+
+* TODO: Deprecate pigci.com integration.
+
+## 0.2.0
 
 * [Updating TravisCI to test latest ruby versions](https://github.com/PigCI/pig-ci-rails/pull/15)
 * [Update rake requirement from ~> 12.3 to ~> 13.0](https://github.com/PigCI/pig-ci-rails/pull/14)
