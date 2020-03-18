@@ -5,7 +5,10 @@ class PigCI::Api::Reports < PigCI::Api
 
   def share!
     response = post_payload
-    return if response.success?
+    if response.success?
+      puts I18n.t('pig_ci.api.reports.success')
+      return
+    end
 
     puts I18n.t('pig_ci.api.reports.error', error: JSON.parse(response.parsed_response || '{}')['error'])
   rescue JSON::ParserError => _e

@@ -7,6 +7,9 @@ class PigCI::Summary::CI < PigCI::Summary
   end
 
   def call!
+    puts ''
+    puts I18n.t('pig_ci.summary.ci_start')
+
     over_limit = false
     @reports.each do |report|
       print_report(report)
@@ -14,6 +17,7 @@ class PigCI::Summary::CI < PigCI::Summary
     end
 
     fail_with_error! if over_limit
+    puts ''
   end
 
   private
