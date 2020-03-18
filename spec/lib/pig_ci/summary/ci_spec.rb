@@ -23,7 +23,7 @@ describe PigCI::Summary::CI do
 
       it 'Outputs the data to terminal screen without stopping CI' do
         expect(Kernel).to receive(:exit).with(2)
-        expect { subject }.to output(/PigCI: This commit has exceeded the threshold limits defined in PigCI\.limits/).to_stdout
+        expect { subject }.to output(/PigCI: This commit has exceeded the thresholds defined in PigCI\.thresholds/).to_stdout
       end
     end
   end

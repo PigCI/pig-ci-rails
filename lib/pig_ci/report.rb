@@ -20,7 +20,7 @@ class PigCI::Report
   end
 
   def limit
-    PigCI.limits.dig(@i18n_key.to_sym)
+    PigCI.thresholds.dig(@i18n_key.to_sym)
   end
 
   def over_limit_for?(timestamp)

@@ -164,7 +164,7 @@ module PigCI
     # If they have an API key, share it with PigCI.com
     PigCI::Api::Reports.new(reports: profiler_engine.reports).share! if PigCI.api_key?
 
-    # Make sure CI fails when metrics are over limits.
+    # Make sure CI fails when metrics are over thresholds.
     PigCI::Summary::CI.new(reports: profiler_engine.reports).call!
   end
 end
