@@ -4,6 +4,7 @@ require 'rake'
 
 require 'pig_ci/version'
 require 'pig_ci/api'
+require 'pig_ci/configuration'
 require 'pig_ci/decorator'
 require 'pig_ci/summary'
 require 'pig_ci/profiler_engine'
@@ -117,13 +118,12 @@ module PigCI
     @locale || :en
   end
 
-  attr_writer :limits
-  def limits
-    @limits || {
-      memory: 350,
-      request_time: 250,
-      database_request: 35
-    }
+  def thresholds=(values)
+    @thresholds = PigCI::Configuration::Thresholds.new(values)
+  end
+
+  def thresholds
+    @thresholds ||= PigCI::Configuration::Thresholds.new
   end
 
   module_function
