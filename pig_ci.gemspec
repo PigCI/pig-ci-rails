@@ -52,5 +52,5 @@ Gem::Specification.new do |spec|
     'Upgrade Notes:',
     'The latest version adds a "config.thresholds" option which will replace the pigci.com integration in future.',
     'See https://github.com/PigCI/pig-ci-rails#configuring-thresholds for more information :)'
-  ].join("/n")
+  ].join("\n")
 end
