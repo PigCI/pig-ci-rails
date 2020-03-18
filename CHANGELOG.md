@@ -4,6 +4,10 @@
 
 * TODO: Deprecate pigci.com integration.
 
+## 0.2.1
+
+* Setting up repo to publish gem when new tags are created.
+
 ## 0.2.0
 
 * [Updating TravisCI to test latest ruby versions](https://github.com/PigCI/pig-ci-rails/pull/15)
