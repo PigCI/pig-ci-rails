@@ -3,6 +3,7 @@ name: Build & Publish Ruby Gem
 on:
   create:
     tags:
+      - v*
 
 jobs:
   build:
