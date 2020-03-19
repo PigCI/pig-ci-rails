@@ -48,7 +48,7 @@ describe PigCI::Api::Reports do
         stub_request(:post, 'https://api.pigci.com/api/v1/reports')
           .to_return(status: 401, body: {
             error: 'API Key is invalid'
-          }.to_json)
+          }.to_json, headers: { 'Content-Type' => 'application/json' })
       end
 
       it do
