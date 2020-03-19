@@ -10,7 +10,11 @@ class PigCI::Api::Reports < PigCI::Api
       return
     end
 
-    puts I18n.t('pig_ci.api.reports.error', error: JSON.parse(response.parsed_response || '{}')['error'])
+    if response.parsed_response.is_a?(Hash)
+      puts I18n.t('pig_ci.api.reports.error', error: response.parsed_response.dig('error'))
+    else
+      puts I18n.t('pig_ci.api.reports.error')
+    end
   rescue JSON::ParserError => _e
     puts I18n.t('pig_ci.api.reports.api_error')
   rescue SocketError => e
