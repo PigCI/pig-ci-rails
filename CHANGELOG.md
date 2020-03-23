@@ -4,6 +4,10 @@
 
 * TODO: Deprecate pigci.com integration.
 
+## 0.2.2
+
+* [Fixing grammar on post_install_message](https://github.com/PigCI/pig-ci-rails/pull/25)
+
 ## 0.2.1
 
 * [Handling JSON response for API key being incorrect with correct error](https://github.com/PigCI/pig-ci-rails/pull/23)
