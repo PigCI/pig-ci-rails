@@ -99,7 +99,7 @@ module PigCI
 
   # Throw deprecation notice for setting API
   def api_key=(value)
-    puts 'API was removed.'
+    puts 'DEPRECATED: PigCI.com API has been retired, you no longer need to set config.api_key in your spec/rails_helper.rb file.'
   end
 
   attr_writer :locale
