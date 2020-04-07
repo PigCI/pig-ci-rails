@@ -1,8 +1,8 @@
 # Changelog
 
-## 0.3.0 (In Development)
+## 1.0.0 (In Development)
 
-* TODO: Deprecate pigci.com integration.
+* [Removing PigCI.com integration](https://github.com/PigCI/pig-ci-rails/pull/27) - 
 
 ## 0.2.2
 
