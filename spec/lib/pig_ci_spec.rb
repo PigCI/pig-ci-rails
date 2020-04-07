@@ -1,19 +1,12 @@
 require 'spec_helper'
 
 describe PigCI do
-  before { PigCI.api_key = nil }
-  after { PigCI.api_key = nil }
-
   describe '::api_key=' do
     subject { PigCI.api_key = 'sample-api' }
 
-    it { expect { subject }.to change(PigCI, :api_key).from(nil).to('sample-api') }
-  end
-
-  describe '::api_key?' do
-    subject { PigCI.api_key = 'sample-api' }
-
-    it { expect { subject }.to change(PigCI, :api_key?).from(false).to(true) }
+    it {
+      expect { subject }.to output(/DEPRECATED: PigCI.com API has been retired/).to_stdout
+    }
   end
 
   describe '::start' do
@@ -31,15 +24,14 @@ describe PigCI do
     context 'with block passes' do
       subject do
         PigCI.start do |config|
-          config.api_key = 'sample-api'
+          config.max_change_percentage_precision = 2
         end
       end
 
       it do
         expect(PigCI).to receive(:load_i18ns!).once
         expect(PigCI.profiler_engine).to receive(:setup!).once
-        expect { subject }.to change(PigCI, :pid).from(nil).to(Integer)
-                                                 .and change(PigCI, :api_key).from(nil).to('sample-api')
+        expect { subject }.to change(PigCI, :max_change_percentage_precision).from(1).to(2)
       end
     end
   end
