@@ -2,7 +2,7 @@
 
 ## 1.0.0 (In Development)
 
-* [Removing PigCI.com integration](https://github.com/PigCI/pig-ci-rails/pull/27) - 
+* [Removing PigCI.com integration](https://github.com/PigCI/pig-ci-rails/pull/27) - For more information please [see my announcement](https://pigci.com/github-integration-deprecation-notice).
 
 ## 0.2.2
 
