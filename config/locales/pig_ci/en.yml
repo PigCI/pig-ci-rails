@@ -1,10 +1,5 @@
 en:
   pig_ci:
-    api:
-      reports:
-        success: 'PigCI: Successfully submitted report to pigci.com'
-        error: 'Unable to connect to PigCI API: %{error}'
-        api_error: 'Unable to connect to PigCI API'
     summary:
       ci_start: 'PigCI Thresholds Summary:'
       ci_failure: 'PigCI: This commit has exceeded the thresholds defined in PigCI.thresholds'
