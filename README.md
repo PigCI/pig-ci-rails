@@ -7,7 +7,7 @@
 
 # PigCI
 
-![Sample Output of PigCI in TravisCI](https://user-images.githubusercontent.com/325384/76989551-76307f00-693e-11ea-8afc-c568a9b1e5fe.png)
+![Sample Output of PigCI in TravisCI](https://user-images.githubusercontent.com/325384/78711087-545b6400-790e-11ea-96b7-bb75c119914a.png)
 
 Monitor your Ruby Applications metrics (Memory, SQL Requests & Request Time) as part of your test suite.
 
