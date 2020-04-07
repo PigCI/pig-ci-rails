@@ -3,7 +3,6 @@ require 'active_support/core_ext/string/inflections'
 require 'rake'
 
 require 'pig_ci/version'
-require 'pig_ci/api'
 require 'pig_ci/configuration'
 require 'pig_ci/decorator'
 require 'pig_ci/summary'
@@ -88,21 +87,6 @@ module PigCI
     @profiler_engine ||= PigCI::ProfilerEngine::Rails.new
   end
 
-  attr_writer :api_base_uri
-  def api_base_uri
-    @api_base_uri || 'https://api.pigci.com/api'
-  end
-
-  attr_accessor :api_verify_ssl
-  def api_verify_ssl?
-    !@api_verify_ssl.nil? ? @api_verify_ssl : true
-  end
-
-  attr_accessor :api_key
-  def api_key?
-    !@api_key.nil? && @api_key != ''
-  end
-
   attr_writer :commit_sha1
   def commit_sha1
     @commit_sha1 || ENV['CI_COMMIT_ID'] || ENV['CIRCLE_SHA1'] || ENV['TRAVIS_COMMIT'] || `git rev-parse HEAD`.strip
@@ -111,6 +95,11 @@ module PigCI
   attr_writer :head_branch
   def head_branch
     @head_branch || ENV['CI_BRANCH'] || ENV['CIRCLE_BRANCH'] || ENV['TRAVIS_BRANCH'] || `git rev-parse --abbrev-ref HEAD`.strip
+  end
+
+  # Throw deprecation notice for setting API
+  def api_key=(value)
+    puts 'API was removed.'
   end
 
   attr_writer :locale
@@ -160,9 +149,6 @@ module PigCI
 
     # Save the report summary to the project root.
     PigCI::Summary::HTML.new(reports: profiler_engine.reports).save! if PigCI.generate_html_summary?
-
-    # If they have an API key, share it with PigCI.com
-    PigCI::Api::Reports.new(reports: profiler_engine.reports).share! if PigCI.api_key?
 
     # Make sure CI fails when metrics are over thresholds.
     PigCI::Summary::CI.new(reports: profiler_engine.reports).call!

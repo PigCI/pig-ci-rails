@@ -88,7 +88,6 @@ describe PigCI do
       it do
         expect(PigCI::Summary::Terminal).to_not receive(:new)
         expect(PigCI::Summary::HTML).to_not receive(:new)
-        expect(PigCI::Api::Reports).to_not receive(:new)
         subject
       end
     end
@@ -113,7 +112,6 @@ describe PigCI do
       it do
         expect(PigCI::Summary::Terminal).to receive(:new).and_return(summary_terminal)
         expect(PigCI::Summary::HTML).to receive(:new).and_return(summary_html)
-        expect(PigCI::Api::Reports).to_not receive(:new)
         expect(PigCI::Summary::CI).to receive(:new).and_return(summary_ci)
         subject
       end
@@ -125,7 +123,6 @@ describe PigCI do
         it do
           expect(PigCI::Summary::Terminal).to_not receive(:new)
           expect(PigCI::Summary::HTML).to receive(:new).and_return(summary_html)
-          expect(PigCI::Api::Reports).to_not receive(:new)
           expect(PigCI::Summary::CI).to receive(:new).and_return(summary_ci)
           subject
         end
@@ -138,20 +135,6 @@ describe PigCI do
         it do
           expect(PigCI::Summary::Terminal).to receive(:new).and_return(summary_terminal)
           expect(PigCI::Summary::HTML).to_not receive(:new)
-          expect(PigCI::Api::Reports).to_not receive(:new)
-          expect(PigCI::Summary::CI).to receive(:new).and_return(summary_ci)
-          subject
-        end
-      end
-
-      context 'with API key present' do
-        let(:api_reports) { double :api_reports, share!: true }
-        before { PigCI.api_key = 'sample-api' }
-
-        it do
-          expect(PigCI::Summary::Terminal).to receive(:new).and_return(summary_terminal)
-          expect(PigCI::Summary::HTML).to receive(:new).and_return(summary_html)
-          expect(PigCI::Api::Reports).to receive(:new).and_return(api_reports)
           expect(PigCI::Summary::CI).to receive(:new).and_return(summary_ci)
           subject
         end

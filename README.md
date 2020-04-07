@@ -81,24 +81,6 @@ end # if RSpec.configuration.files_to_run.count > 1
 
 You can see the full configuration options [lib/pig_ci.rb](https://github.com/PigCI/pig-ci-rails/blob/master/lib/pig_ci.rb#L21).
 
-
-### With [PigCI.com](https://pigci.com) - For sharing runs as a team via CI
-
-_Note: This feature will be deprecated in the future. Instead use "Configuring thresholds" to have CI pass/fail._
-
-You can hookup your project to PigCI.com, this will fail PRs when metric thresholds are exceeded (e.g. your app see a big increase in memory).
-
-```ruby
-# In spec/rails_helper.rb
-require 'pig_ci'
-PigCI.start do |config|
-  # When you connect your project, you'll be given an API key.
-  config.api_key = 'your-api-key-here'
-end
-```
-
-It's a great way to track metrics over time & support this project.
-
 ### Framework support
 
 Currently this gem only supports Ruby on Rails tested via RSpec.
@@ -150,10 +132,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Features I'd like to add at some point:
 
-* Add support for "upsert" for when tests are split over multiple machines
 * HTML output to include branch - Right now they're just timestamps which makes filtering hard.
-* Document setting branch/commit to handle when CI doesn't set it correctly.
-* Add rake for submitting reports.
 * https://rubydoc.info/gems/yard/file/docs/GettingStarted.md - Document the gem so it's easier for people to jump on.
 * Support ActionCable (when requests have no key).
 
