@@ -132,6 +132,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Features I'd like to add at some point:
 
+* Add a conditional to only save metrics when all tests pass. So if a test suite is failing, it won't affect future stats.
 * HTML output to include branch - Right now they're just timestamps which makes filtering hard.
 * https://rubydoc.info/gems/yard/file/docs/GettingStarted.md - Document the gem so it's easier for people to jump on.
 * Support ActionCable (when requests have no key).
