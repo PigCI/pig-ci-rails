@@ -57,8 +57,8 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
       profilers.each(&:reset!)
     end
 
-    ::ActiveSupport::Notifications.subscribe 'sql.active_record' do |_name, _started, _finished, _unique_id, _payload|
-      if request_key? && PigCI.enabled?
+    ::ActiveSupport::Notifications.subscribe 'sql.active_record' do |_name, _started, _finished, _unique_id, payload|
+      if request_key? && PigCI.enabled? && ( !PigCI.ignore_cached_queries? || ( PigCI.ignore_cached_queries? && !payload[:cached] ))
         profilers.select { |profiler| profiler.class == PigCI::Profiler::DatabaseRequest }.each(&:increment!)
       end
     end
