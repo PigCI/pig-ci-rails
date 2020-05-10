@@ -116,6 +116,22 @@ PigCI.start do |config|
 end
 ```
 
+## Skipping individual tests
+
+If you have a scenario where you'd like PigCI to not log a specific test, you can add the RSpec metadata `pig_ci: true`. For example:
+
+```ruby
+RSpec.describe "Comments", type: :request do
+  # This test block will be not be tracked.
+  describe "GET #index", pig_ci: false do
+    it do
+      get comments_path
+      expect(response).to be_successful
+    end
+  end
+end
+```
+
 ## Authors
 
 * This gem was made by [@MikeRogers0](https://github.com/MikeRogers0).

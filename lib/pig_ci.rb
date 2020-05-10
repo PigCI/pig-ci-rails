@@ -10,11 +10,17 @@ require 'pig_ci/profiler_engine'
 require 'pig_ci/profiler'
 require 'pig_ci/metric'
 require 'pig_ci/report'
+require 'pig_ci/test_frameworks'
 
 module PigCI
   extend self
 
   attr_accessor :pid
+
+  attr_writer :enabled
+  def enabled?
+    @enabled.nil? ? true : @enabled
+  end
 
   attr_writer :tmp_directory
   def tmp_directory
@@ -119,6 +125,7 @@ module PigCI
 
   def start(&block)
     self.pid = Process.pid
+    PigCI::TestFrameworks::Rspec.configure! if defined?(::RSpec)
 
     block.call(self) if block_given?
 

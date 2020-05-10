@@ -36,6 +36,19 @@ describe PigCI do
     end
   end
 
+  describe '::enabled?' do
+    subject { PigCI.enabled? }
+    it { is_expected.to eq(true) }
+
+  end
+
+  describe '::enabled=' do
+    after { PigCI.enabled = true }
+    subject { PigCI.enabled = false }
+
+    it { expect { subject }.to change { PigCI.enabled? }.from(true).to(false) }
+  end
+
   describe '::thresholds.memory' do
     subject { PigCI.thresholds.memory }
     it { is_expected.to eq(350) }
