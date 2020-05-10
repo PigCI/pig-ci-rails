@@ -10,6 +10,7 @@ require 'pig_ci/profiler_engine'
 require 'pig_ci/profiler'
 require 'pig_ci/metric'
 require 'pig_ci/report'
+require 'pig_ci/test_frameworks'
 
 module PigCI
   extend self
@@ -124,6 +125,7 @@ module PigCI
 
   def start(&block)
     self.pid = Process.pid
+    PigCI::TestFrameworks::Rspec.configure! if defined?(::RSpec)
 
     block.call(self) if block_given?
 

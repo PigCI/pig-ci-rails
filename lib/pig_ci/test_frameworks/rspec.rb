@@ -1,7 +1,5 @@
 class PigCI::TestFrameworks::Rspec
-  extend self
-
-  def configure!
+  def self.configure!
     ::RSpec.configure do |config|
       config.around(:each, pig_ci: false) do |example|
         @pig_ci_enabled = PigCI.enabled?
