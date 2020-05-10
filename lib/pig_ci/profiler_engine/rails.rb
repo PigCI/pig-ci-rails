@@ -58,17 +58,19 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
     end
 
     ::ActiveSupport::Notifications.subscribe 'sql.active_record' do |_name, _started, _finished, _unique_id, _payload|
-      if request_key?
+      if request_key? && PigCI.enabled?
         profilers.select { |profiler| profiler.class == PigCI::Profiler::DatabaseRequest }.each(&:increment!)
       end
     end
 
     ::ActiveSupport::Notifications.subscribe 'process_action.action_controller' do |_name, _started, _finished, _unique_id, _payload|
-      profilers.each do |profiler|
-        profiler.log_request!(request_key)
-      end
+      if PigCI.enabled?
+        profilers.each do |profiler|
+          profiler.log_request!(request_key)
+        end
 
-      request_captured!
+        request_captured!
+      end
       self.request_key = nil
     end
   end

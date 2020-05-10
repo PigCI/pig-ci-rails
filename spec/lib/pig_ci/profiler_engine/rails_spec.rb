@@ -119,6 +119,16 @@ describe PigCI::ProfilerEngine do
           subject
         end
       end
+
+      context 'with PigCI#enabled set to false' do
+        before { PigCI.enabled = false }
+        after { PigCI.enabled = true }
+
+        it do
+          expect(profiler_database_request).to_not receive(:increment!)
+          subject
+        end
+      end
     end
 
     describe 'process_action.action_controller' do
@@ -137,7 +147,24 @@ describe PigCI::ProfilerEngine do
         end
 
         expect { subject }.to change(profiler_engine, :request_captured).from(false).to(true)
-                                                                        .and change(profiler_engine, :request_key).from('request-key').to(nil)
+          .and change(profiler_engine, :request_key).from('request-key').to(nil)
+      end
+
+      context 'with PigCI#enabled set to false' do
+        before { PigCI.enabled = false }
+        after { PigCI.enabled = true }
+
+        it do
+          profiler_engine.profilers.each do |profiler|
+            expect(profiler).to_not receive(:log_request!)
+          end
+
+          expect { subject }.to_not change(profiler_engine, :request_captured)
+        end
+
+        it do
+          expect { subject }.to change(profiler_engine, :request_key).from('request-key').to(nil)
+        end
       end
     end
   end
