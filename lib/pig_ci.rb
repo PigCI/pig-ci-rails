@@ -22,6 +22,13 @@ module PigCI
     @enabled.nil? ? true : @enabled
   end
 
+  # Rails caches repeated queries within the same request. You can not count
+  # any cached queries if you'd like.
+  attr_writer :ignore_cached_queries
+  def ignore_cached_queries?
+    @ignore_cached_queries.nil? ? false : @ignore_cached_queries
+  end
+
   attr_writer :tmp_directory
   def tmp_directory
     @tmp_directory || Pathname.new(Dir.getwd).join('tmp', 'pig-ci')

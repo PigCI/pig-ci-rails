@@ -2,6 +2,7 @@
 
 ## 1.1.0 (In development)
 
+* [Add option to ignore cached SQL queries](https://github.com/PigCI/pig-ci-rails/pull/33)
 * [Skip tracking on specific tests via RSpec metadata](https://github.com/PigCI/pig-ci-rails/pull/32)
 * [Adding Docker for gem development](https://github.com/PigCI/pig-ci-rails/pull/31)
 
