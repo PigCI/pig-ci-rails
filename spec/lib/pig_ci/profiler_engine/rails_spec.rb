@@ -100,7 +100,7 @@ describe PigCI::ProfilerEngine do
       let(:profiler_database_request) do
         profiler_engine.profilers.select { |profiler| profiler.class == PigCI::Profiler::DatabaseRequest }.first
       end
-      let(:payload) {}
+      let(:payload) { { } }
 
       subject do
         ActiveSupport::Notifications.instrument('sql.active_record', payload) {}
@@ -118,15 +118,34 @@ describe PigCI::ProfilerEngine do
           expect(profiler_database_request).to receive(:increment!)
           subject
         end
-      end
 
-      context 'with PigCI#enabled set to false' do
-        before { PigCI.enabled = false }
-        after { PigCI.enabled = true }
+        context 'with a cached query' do
+          let(:payload) { { cached: true } }
 
-        it do
-          expect(profiler_database_request).to_not receive(:increment!)
-          subject
+          it do
+            expect(profiler_database_request).to receive(:increment!)
+            subject
+          end
+
+          context 'With PigCI#ignore_cached_queries set to true' do
+            before { PigCI.ignore_cached_queries = true }
+            after { PigCI.ignore_cached_queries = false }
+
+            it do
+              expect(profiler_database_request).to_not receive(:increment!)
+              subject
+            end
+          end
+        end
+
+        context 'with PigCI#enabled set to false' do
+          before { PigCI.enabled = false }
+          after { PigCI.enabled = true }
+
+          it do
+            expect(profiler_database_request).to_not receive(:increment!)
+            subject
+          end
         end
       end
     end

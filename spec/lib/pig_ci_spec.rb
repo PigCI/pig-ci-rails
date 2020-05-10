@@ -39,7 +39,6 @@ describe PigCI do
   describe '::enabled?' do
     subject { PigCI.enabled? }
     it { is_expected.to eq(true) }
-
   end
 
   describe '::enabled=' do
@@ -47,6 +46,18 @@ describe PigCI do
     subject { PigCI.enabled = false }
 
     it { expect { subject }.to change { PigCI.enabled? }.from(true).to(false) }
+  end
+
+  describe '::ignore_cached_queries?' do
+    subject { PigCI.ignore_cached_queries? }
+    it { is_expected.to eq(false) }
+  end
+
+  describe '::ignore_cached_queries=' do
+    after { PigCI.ignore_cached_queries = false }
+    subject { PigCI.ignore_cached_queries = true }
+
+    it { expect { subject }.to change { PigCI.ignore_cached_queries? }.from(false).to(true) }
   end
 
   describe '::thresholds.memory' do

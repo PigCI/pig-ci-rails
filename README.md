@@ -76,10 +76,29 @@ PigCI.start do |config|
 
   # E.g. disable terminal summary output
   config.generate_terminal_summary = false
+
+  # Rails caches repeated SQL queries, you might want to omit these from your report.
+  config.ignore_cached_queries = true
 end # if RSpec.configuration.files_to_run.count > 1
 ```
 
 You can see the full configuration options [lib/pig_ci.rb](https://github.com/PigCI/pig-ci-rails/blob/master/lib/pig_ci.rb#L21).
+
+### Skipping individual tests
+
+If you have a scenario where you'd like PigCI to not log a specific test, you can add the RSpec metadata `pig_ci: true`. For example:
+
+```ruby
+RSpec.describe "Comments", type: :request do
+  # This test block will be not be tracked.
+  describe "GET #index", pig_ci: false do
+    it do
+      get comments_path
+      expect(response).to be_successful
+    end
+  end
+end
+```
 
 ### Framework support
 
@@ -113,22 +132,6 @@ require 'pig_ci'
 PigCI.start do |config|
   config.during_setup_make_blank_application_request = false
   config.during_setup_precompile_assets = false
-end
-```
-
-## Skipping individual tests
-
-If you have a scenario where you'd like PigCI to not log a specific test, you can add the RSpec metadata `pig_ci: true`. For example:
-
-```ruby
-RSpec.describe "Comments", type: :request do
-  # This test block will be not be tracked.
-  describe "GET #index", pig_ci: false do
-    it do
-      get comments_path
-      expect(response).to be_successful
-    end
-  end
 end
 ```
 
