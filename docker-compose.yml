@@ -1,0 +1,20 @@
+---
+# Docker Compose 2.4 is for local development
+# https://www.heroku.com/podcasts/codeish/57-discussing-docker-containers-and-kubernetes-with-a-docker-captain - Source on that.
+version: '2.4'
+
+services:
+  web:
+    image: pig-ci-rails:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    env_file:
+      - .env
+    command: >
+      bash -c "bundle check || bundle install &&
+      bundle exec rake spec"
+    volumes:
+      - .:/usr/src/app
+      - ~/.docker-data/ruby/2.6.6/bundler:/usr/src/bundler:delegated
