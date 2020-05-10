@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Mike Rogers']
   spec.email         = ['me@mikerogers.io']
 
-  spec.summary       = 'Mintor metrics such a memory usage as part of testing'
-  spec.description   = 'A gem for Ruby on Rails that will report key metrics (memory, request time & SQL Requests) for request & feature tests.'
+  spec.summary       = 'Monitor your Ruby Applications metrics via your test suite.'
+  spec.description   = 'A gem for Ruby on Rails that will track key metrics (memory, request time & SQL Requests) for request & feature tests.'
   spec.homepage      = 'https://github.com/PigCI/pig-ci-rails'
   spec.license       = 'MIT'
 
