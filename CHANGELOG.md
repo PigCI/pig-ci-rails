@@ -1,7 +1,8 @@
 # Changelog
 
-## 1.0.1 (In development)
+## 1.1.0 (In development)
 
+* [Skip tracking on specific tests via RSpec metadata](https://github.com/PigCI/pig-ci-rails/pull/32)
 * [Adding Docker for gem development](https://github.com/PigCI/pig-ci-rails/pull/31)
 
 ## 1.0.0
