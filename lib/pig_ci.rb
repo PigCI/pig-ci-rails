@@ -16,6 +16,11 @@ module PigCI
 
   attr_accessor :pid
 
+  attr_writer :enabled
+  def enabled?
+    @enabled.nil? ? true : @enabled
+  end
+
   attr_writer :tmp_directory
   def tmp_directory
     @tmp_directory || Pathname.new(Dir.getwd).join('tmp', 'pig-ci')
