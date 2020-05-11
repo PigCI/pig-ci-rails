@@ -1,12 +1,13 @@
 # Changelog
 
-## [Unreleased](https://github.com/PigCI/pig-ci-rails/tree/HEAD)
+## [v1.0.1](https://github.com/PigCI/pig-ci-rails/tree/v1.0.1) (2020-05-11)
 
-[Full Changelog](https://github.com/PigCI/pig-ci-rails/compare/v1.0.0...HEAD)
+[Full Changelog](https://github.com/PigCI/pig-ci-rails/compare/v1.0.0...v1.0.1)
 
 **Closed issues:**
 
 - Ignore specific specs? [\#30](https://github.com/PigCI/pig-ci-rails/issues/30)
+- False positives with cached queries  [\#26](https://github.com/PigCI/pig-ci-rails/issues/26)
 
 **Merged pull requests:**
 
@@ -57,6 +58,7 @@
 - Update webmock requirement from ~\> 3.7.0 to ~\> 3.8.0 [\#17](https://github.com/PigCI/pig-ci-rails/pull/17) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Update rspec requirement from ~\> 3.8.0 to ~\> 3.9.0 [\#16](https://github.com/PigCI/pig-ci-rails/pull/16) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Updating TravisCI to test latest ruby versions [\#15](https://github.com/PigCI/pig-ci-rails/pull/15) ([MikeRogers0](https://github.com/MikeRogers0))
+- Update rake requirement from ~\> 12.3 to ~\> 13.0 [\#14](https://github.com/PigCI/pig-ci-rails/pull/14) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [v0.1.5](https://github.com/PigCI/pig-ci-rails/tree/v0.1.5) (2019-09-23)
 
@@ -74,10 +76,6 @@
 
 - Precompile assets before tests run [\#11](https://github.com/PigCI/pig-ci-rails/pull/11) ([MikeRogers0](https://github.com/MikeRogers0))
 
-**Fixed bugs:**
-
-- Fixing issue where timezone would becomes the machines on app warmup [\#5](https://github.com/PigCI/pig-ci-rails/pull/5) ([MikeRogers0](https://github.com/MikeRogers0))
-
 **Merged pull requests:**
 
 - Create FUNDING.yml [\#10](https://github.com/PigCI/pig-ci-rails/pull/10) ([MikeRogers0](https://github.com/MikeRogers0))
@@ -92,7 +90,6 @@
 
 **Merged pull requests:**
 
-- Update rake requirement from ~\> 12.3 to ~\> 13.0 [\#14](https://github.com/PigCI/pig-ci-rails/pull/14) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Adding Dependabot Status badge to readme [\#9](https://github.com/PigCI/pig-ci-rails/pull/9) ([MikeRogers0](https://github.com/MikeRogers0))
 - Fixing duplicate word typo in readme [\#8](https://github.com/PigCI/pig-ci-rails/pull/8) ([MikeRogers0](https://github.com/MikeRogers0))
 - Update webmock requirement from ~\> 3.6.0 to ~\> 3.7.0 [\#6](https://github.com/PigCI/pig-ci-rails/pull/6) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
@@ -104,6 +101,10 @@
 **Implemented enhancements:**
 
 - Add options to control eager loading of rails app [\#3](https://github.com/PigCI/pig-ci-rails/pull/3) ([MikeRogers0](https://github.com/MikeRogers0))
+
+**Fixed bugs:**
+
+- Fixing issue where timezone would becomes the machines on app warmup [\#5](https://github.com/PigCI/pig-ci-rails/pull/5) ([MikeRogers0](https://github.com/MikeRogers0))
 
 **Merged pull requests:**
 
