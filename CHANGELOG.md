@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/PigCI/pig-ci-rails/tree/HEAD)
+
+[Full Changelog](https://github.com/PigCI/pig-ci-rails/compare/v1.0.1...HEAD)
+
+**Merged pull requests:**
+
+- Adding github sponsorship links [\#37](https://github.com/PigCI/pig-ci-rails/pull/37) ([MikeRogers0](https://github.com/MikeRogers0))
+
 ## [v1.0.1](https://github.com/PigCI/pig-ci-rails/tree/v1.0.1) (2020-05-11)
 
 [Full Changelog](https://github.com/PigCI/pig-ci-rails/compare/v1.0.0...v1.0.1)
