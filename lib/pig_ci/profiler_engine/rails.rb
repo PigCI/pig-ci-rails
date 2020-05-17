@@ -35,6 +35,9 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
   end
 
   def eager_load_rails!
+    # None of these methods will work pre-rails 5.
+    return unless ::Rails.version.to_f >= 5.0
+
     # Eager load rails to give more accurate memory levels.
     ::Rails.application.eager_load!
     ::Rails.application.routes.eager_load!

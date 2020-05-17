@@ -47,6 +47,16 @@ describe PigCI::ProfilerEngine do
     end
   end
 
+  describe '#eager_load_rails!' do
+    subject { profiler_engine.send(:eager_load_rails!) }
+
+    it 'Below Rails 5.2, it does not eager load the app' do
+      expect(::Rails).to receive(:version).and_return('4.2.5')
+      expect(::Rails.application).to_not receive(:eager_load!)
+      subject
+    end
+  end
+
   describe '#make_blank_application_request!' do
     subject { profiler_engine.send(:make_blank_application_request!) }
 
