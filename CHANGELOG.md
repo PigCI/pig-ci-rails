@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- Removing Aptfile from repo [\#41](https://github.com/PigCI/pig-ci-rails/pull/41) ([MikeRogers0](https://github.com/MikeRogers0))
 - Limiting GitHub Actions to just Rubocop & Rspec [\#40](https://github.com/PigCI/pig-ci-rails/pull/40) ([MikeRogers0](https://github.com/MikeRogers0))
 - Updating docker setup to be a little slimmer [\#39](https://github.com/PigCI/pig-ci-rails/pull/39) ([MikeRogers0](https://github.com/MikeRogers0))
 - Adding github sponsorship links [\#37](https://github.com/PigCI/pig-ci-rails/pull/37) ([MikeRogers0](https://github.com/MikeRogers0))
@@ -41,6 +42,10 @@
 
 [Full Changelog](https://github.com/PigCI/pig-ci-rails/compare/v0.2.1...v0.2.2)
 
+**Merged pull requests:**
+
+- Fixing grammar on post\_install\_message [\#25](https://github.com/PigCI/pig-ci-rails/pull/25) ([MikeRogers0](https://github.com/MikeRogers0))
+
 ## [v0.2.1](https://github.com/PigCI/pig-ci-rails/tree/v0.2.1) (2020-03-19)
 
 [Full Changelog](https://github.com/PigCI/pig-ci-rails/compare/v0.2.0...v0.2.1)
@@ -56,7 +61,6 @@
 
 **Merged pull requests:**
 
-- Fixing grammar on post\_install\_message [\#25](https://github.com/PigCI/pig-ci-rails/pull/25) ([MikeRogers0](https://github.com/MikeRogers0))
 - Using GitHubs example for gempush.yml [\#22](https://github.com/PigCI/pig-ci-rails/pull/22) ([MikeRogers0](https://github.com/MikeRogers0))
 - Replace references for limit to be threshold [\#21](https://github.com/PigCI/pig-ci-rails/pull/21) ([MikeRogers0](https://github.com/MikeRogers0))
 - Setting up for 0.2.0 release [\#20](https://github.com/PigCI/pig-ci-rails/pull/20) ([MikeRogers0](https://github.com/MikeRogers0))
