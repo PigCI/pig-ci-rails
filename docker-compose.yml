@@ -6,6 +6,7 @@ version: '2.4'
 services:
   web:
     image: pig-ci-rails:latest
+    mem_limit: 128m
     build:
       context: .
       dockerfile: Dockerfile
