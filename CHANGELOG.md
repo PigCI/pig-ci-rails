@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- Updating docker setup to be a little slimmer [\#39](https://github.com/PigCI/pig-ci-rails/pull/39) ([MikeRogers0](https://github.com/MikeRogers0))
 - Adding github sponsorship links [\#37](https://github.com/PigCI/pig-ci-rails/pull/37) ([MikeRogers0](https://github.com/MikeRogers0))
 
 ## [v1.0.1](https://github.com/PigCI/pig-ci-rails/tree/v1.0.1) (2020-05-11)
@@ -26,6 +27,7 @@
 - Skip tracking on specific tests via RSpec metadata [\#32](https://github.com/PigCI/pig-ci-rails/pull/32) ([MikeRogers0](https://github.com/MikeRogers0))
 - Adding in Docker [\#31](https://github.com/PigCI/pig-ci-rails/pull/31) ([MikeRogers0](https://github.com/MikeRogers0))
 - Publishing Package to PigCI account [\#28](https://github.com/PigCI/pig-ci-rails/pull/28) ([MikeRogers0](https://github.com/MikeRogers0))
+- Handling JSON response for API key being incorrect with correct error [\#23](https://github.com/PigCI/pig-ci-rails/pull/23) ([MikeRogers0](https://github.com/MikeRogers0))
 
 ## [v1.0.0](https://github.com/PigCI/pig-ci-rails/tree/v1.0.0) (2020-04-07)
 
@@ -50,7 +52,6 @@
 **Merged pull requests:**
 
 - Stop GitHub actions not to run on commit [\#24](https://github.com/PigCI/pig-ci-rails/pull/24) ([MikeRogers0](https://github.com/MikeRogers0))
-- Handling JSON response for API key being incorrect with correct error [\#23](https://github.com/PigCI/pig-ci-rails/pull/23) ([MikeRogers0](https://github.com/MikeRogers0))
 
 ## [v0.2.0](https://github.com/PigCI/pig-ci-rails/tree/v0.2.0) (2020-03-18)
 
