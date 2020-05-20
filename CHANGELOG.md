@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- Limiting GitHub Actions to just Rubocop & Rspec [\#40](https://github.com/PigCI/pig-ci-rails/pull/40) ([MikeRogers0](https://github.com/MikeRogers0))
 - Updating docker setup to be a little slimmer [\#39](https://github.com/PigCI/pig-ci-rails/pull/39) ([MikeRogers0](https://github.com/MikeRogers0))
 - Adding github sponsorship links [\#37](https://github.com/PigCI/pig-ci-rails/pull/37) ([MikeRogers0](https://github.com/MikeRogers0))
 
@@ -27,7 +28,6 @@
 - Skip tracking on specific tests via RSpec metadata [\#32](https://github.com/PigCI/pig-ci-rails/pull/32) ([MikeRogers0](https://github.com/MikeRogers0))
 - Adding in Docker [\#31](https://github.com/PigCI/pig-ci-rails/pull/31) ([MikeRogers0](https://github.com/MikeRogers0))
 - Publishing Package to PigCI account [\#28](https://github.com/PigCI/pig-ci-rails/pull/28) ([MikeRogers0](https://github.com/MikeRogers0))
-- Handling JSON response for API key being incorrect with correct error [\#23](https://github.com/PigCI/pig-ci-rails/pull/23) ([MikeRogers0](https://github.com/MikeRogers0))
 
 ## [v1.0.0](https://github.com/PigCI/pig-ci-rails/tree/v1.0.0) (2020-04-07)
 
@@ -41,10 +41,6 @@
 
 [Full Changelog](https://github.com/PigCI/pig-ci-rails/compare/v0.2.1...v0.2.2)
 
-**Merged pull requests:**
-
-- Fixing grammar on post\_install\_message [\#25](https://github.com/PigCI/pig-ci-rails/pull/25) ([MikeRogers0](https://github.com/MikeRogers0))
-
 ## [v0.2.1](https://github.com/PigCI/pig-ci-rails/tree/v0.2.1) (2020-03-19)
 
 [Full Changelog](https://github.com/PigCI/pig-ci-rails/compare/v0.2.0...v0.2.1)
@@ -52,6 +48,7 @@
 **Merged pull requests:**
 
 - Stop GitHub actions not to run on commit [\#24](https://github.com/PigCI/pig-ci-rails/pull/24) ([MikeRogers0](https://github.com/MikeRogers0))
+- Handling JSON response for API key being incorrect with correct error [\#23](https://github.com/PigCI/pig-ci-rails/pull/23) ([MikeRogers0](https://github.com/MikeRogers0))
 
 ## [v0.2.0](https://github.com/PigCI/pig-ci-rails/tree/v0.2.0) (2020-03-18)
 
@@ -59,6 +56,7 @@
 
 **Merged pull requests:**
 
+- Fixing grammar on post\_install\_message [\#25](https://github.com/PigCI/pig-ci-rails/pull/25) ([MikeRogers0](https://github.com/MikeRogers0))
 - Using GitHubs example for gempush.yml [\#22](https://github.com/PigCI/pig-ci-rails/pull/22) ([MikeRogers0](https://github.com/MikeRogers0))
 - Replace references for limit to be threshold [\#21](https://github.com/PigCI/pig-ci-rails/pull/21) ([MikeRogers0](https://github.com/MikeRogers0))
 - Setting up for 0.2.0 release [\#20](https://github.com/PigCI/pig-ci-rails/pull/20) ([MikeRogers0](https://github.com/MikeRogers0))
