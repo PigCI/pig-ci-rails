@@ -14,10 +14,6 @@ RUN apk add --no-cache $BUILD_DEPS $DEV_DEPS
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-# Install any extra dependencies via Aptfile
-COPY Aptfile /usr/src/app/Aptfile
-RUN apk add --update $(cat /usr/src/app/Aptfile | xargs)
-
 # Set up environment
 ENV PATH /usr/src/app/bin:$PATH
 
