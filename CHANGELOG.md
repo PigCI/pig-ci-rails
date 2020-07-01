@@ -4,8 +4,17 @@
 
 [Full Changelog](https://github.com/PigCI/pig-ci-rails/compare/v1.0.1...HEAD)
 
+**Fixed bugs:**
+
+- Only eager loading app in Rails \>5.0 [\#38](https://github.com/PigCI/pig-ci-rails/pull/38) ([MikeRogers0](https://github.com/MikeRogers0))
+
+**Closed issues:**
+
+- Rails 4 support? [\#29](https://github.com/PigCI/pig-ci-rails/issues/29)
+
 **Merged pull requests:**
 
+- Updating badges to reference GitHub Actions [\#42](https://github.com/PigCI/pig-ci-rails/pull/42) ([MikeRogers0](https://github.com/MikeRogers0))
 - Removing Aptfile from repo [\#41](https://github.com/PigCI/pig-ci-rails/pull/41) ([MikeRogers0](https://github.com/MikeRogers0))
 - Limiting GitHub Actions to just Rubocop & Rspec [\#40](https://github.com/PigCI/pig-ci-rails/pull/40) ([MikeRogers0](https://github.com/MikeRogers0))
 - Updating docker setup to be a little slimmer [\#39](https://github.com/PigCI/pig-ci-rails/pull/39) ([MikeRogers0](https://github.com/MikeRogers0))
