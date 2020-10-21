@@ -13,6 +13,15 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/PigCI/pig-ci-rails'
   spec.license       = 'MIT'
 
+  spec.metadata = {
+    'bug_tracker_uri' => "#{spec.homepage}/issues",
+    'changelog_uri' => "#{spec.homepage}/blob/master/CHANGELOG.md",
+    'documentation_uri' => spec.homepage,
+    'homepage_uri' => spec.homepage,
+    'source_code_uri' => spec.homepage,
+    'funding_uri' => 'https://www.buymeacoffee.com/MikeRogers0'
+  }
+
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
