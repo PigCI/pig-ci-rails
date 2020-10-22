@@ -110,7 +110,7 @@ describe PigCI::ProfilerEngine do
       let(:profiler_database_request) do
         profiler_engine.profilers.select { |profiler| profiler.class == PigCI::Profiler::DatabaseRequest }.first
       end
-      let(:payload) { { } }
+      let(:payload) { {} }
 
       subject do
         ActiveSupport::Notifications.instrument('sql.active_record', payload) {}
