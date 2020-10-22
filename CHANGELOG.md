@@ -14,6 +14,7 @@
 
 **Merged pull requests:**
 
+- Adding Dependabot.yml [\#45](https://github.com/PigCI/pig-ci-rails/pull/45) ([MikeRogers0](https://github.com/MikeRogers0))
 - Ditching Docker Setup [\#44](https://github.com/PigCI/pig-ci-rails/pull/44) ([MikeRogers0](https://github.com/MikeRogers0))
 - Adding funding\_uri metadata to gemspec [\#43](https://github.com/PigCI/pig-ci-rails/pull/43) ([MikeRogers0](https://github.com/MikeRogers0))
 - Updating badges to reference GitHub Actions [\#42](https://github.com/PigCI/pig-ci-rails/pull/42) ([MikeRogers0](https://github.com/MikeRogers0))
