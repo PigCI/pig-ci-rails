@@ -39,7 +39,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bundler', '~> 2.0'
   spec.add_development_dependency 'rake', '~> 13.0'
-  spec.add_development_dependency 'webmock', '~> 3.8.0'
+  spec.add_development_dependency 'webmock', '~> 3.9.3'
 
   spec.add_development_dependency 'json-schema', '~> 2.8.1'
   spec.add_development_dependency 'rspec', '~> 3.9.0'
