@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   end
   spec.require_paths = ['lib']
-  spec.required_ruby_version = '>= 2.3'
+  spec.required_ruby_version = '>= 2.5'
 
   spec.add_dependency 'activesupport', '>= 4.2'
   spec.add_dependency 'colorize', '>= 0.8.1'
@@ -45,6 +45,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.9.0'
   spec.add_development_dependency 'simplecov', '~> 0.17.0'
   spec.add_development_dependency 'yard', '~> 0.9.24'
+  spec.add_development_dependency 'rubocop', '~> 1.0'
 
   spec.post_install_message = [
     'Thank you for installing Pig CI!',
