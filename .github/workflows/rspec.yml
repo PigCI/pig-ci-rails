@@ -1,32 +1,33 @@
 ---
-name: RSpec
+name: Testing
 
 on:
   push:
     branches: [ master ]
   pull_request:
-    branches: [ master ]
 
 jobs:
-  build:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: [2.6, 2.7, head]
     runs-on: ubuntu-latest
+    name: Test against Ruby ${{ matrix.ruby }}
 
     steps:
-    - uses: actions/checkout@v1
-
-    - name: Set up Ruby 2.6
-      uses: ruby/setup-ruby@v1
+    - uses: actions/checkout@v2
+    - uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.6.6
-        
-    - uses: actions/cache@v1
+        ruby-version: ${{ matrix.ruby }}
+    - name: Cache gems
+      uses: actions/cache@v2.1.2
       with:
         path: vendor/bundle
-        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+        key: ${{ runner.os }}-ruby-${{ matrix.ruby }}-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
-          ${{ runner.os }}-gems-
-
-    - name: Build
+          ${{ runner.os }}-ruby-${{ matrix.ruby }}
+    - name: Install Gems
       env:
         RAILS_ENV: test
       run: |
