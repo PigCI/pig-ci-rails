@@ -14,6 +14,7 @@
 
 **Merged pull requests:**
 
+- Update rspec requirement from ~\> 3.9.0 to ~\> 3.10.0 [\#53](https://github.com/PigCI/pig-ci-rails/pull/53) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Revamping Github Actions [\#49](https://github.com/PigCI/pig-ci-rails/pull/49) ([MikeRogers0](https://github.com/MikeRogers0))
 - Update actions/cache requirement to v2.1.2 [\#48](https://github.com/PigCI/pig-ci-rails/pull/48) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Update webmock requirement from ~\> 3.8.0 to ~\> 3.9.3 [\#47](https://github.com/PigCI/pig-ci-rails/pull/47) ([dependabot[bot]](https://github.com/apps/dependabot))
