@@ -14,6 +14,7 @@
 
 **Merged pull requests:**
 
+- Making GitHub Actions versions less specific [\#57](https://github.com/PigCI/pig-ci-rails/pull/57) ([MikeRogers0](https://github.com/MikeRogers0))
 - Update simplecov requirement from ~\> 0.17.0 to ~\> 0.20.0 [\#56](https://github.com/PigCI/pig-ci-rails/pull/56) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Update rspec requirement from ~\> 3.9.0 to ~\> 3.10.0 [\#53](https://github.com/PigCI/pig-ci-rails/pull/53) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Revamping Github Actions [\#49](https://github.com/PigCI/pig-ci-rails/pull/49) ([MikeRogers0](https://github.com/MikeRogers0))
