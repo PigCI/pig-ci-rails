@@ -14,6 +14,7 @@
 
 **Merged pull requests:**
 
+- Upating Rubocop configuration [\#58](https://github.com/PigCI/pig-ci-rails/pull/58) ([MikeRogers0](https://github.com/MikeRogers0))
 - Making GitHub Actions versions less specific [\#57](https://github.com/PigCI/pig-ci-rails/pull/57) ([MikeRogers0](https://github.com/MikeRogers0))
 - Update simplecov requirement from ~\> 0.17.0 to ~\> 0.20.0 [\#56](https://github.com/PigCI/pig-ci-rails/pull/56) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Update rspec requirement from ~\> 3.9.0 to ~\> 3.10.0 [\#53](https://github.com/PigCI/pig-ci-rails/pull/53) ([dependabot[bot]](https://github.com/apps/dependabot))
@@ -105,6 +106,10 @@
 
 - Precompile assets before tests run [\#11](https://github.com/PigCI/pig-ci-rails/pull/11) ([MikeRogers0](https://github.com/MikeRogers0))
 
+**Fixed bugs:**
+
+- Fixing issue where timezone would becomes the machines on app warmup [\#5](https://github.com/PigCI/pig-ci-rails/pull/5) ([MikeRogers0](https://github.com/MikeRogers0))
+
 **Merged pull requests:**
 
 - Create FUNDING.yml [\#10](https://github.com/PigCI/pig-ci-rails/pull/10) ([MikeRogers0](https://github.com/MikeRogers0))
@@ -130,10 +135,6 @@
 **Implemented enhancements:**
 
 - Add options to control eager loading of rails app [\#3](https://github.com/PigCI/pig-ci-rails/pull/3) ([MikeRogers0](https://github.com/MikeRogers0))
-
-**Fixed bugs:**
-
-- Fixing issue where timezone would becomes the machines on app warmup [\#5](https://github.com/PigCI/pig-ci-rails/pull/5) ([MikeRogers0](https://github.com/MikeRogers0))
 
 **Merged pull requests:**
 
