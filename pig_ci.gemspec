@@ -45,7 +45,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.10.0'
   spec.add_development_dependency 'simplecov', '~> 0.20.0'
   spec.add_development_dependency 'yard', '~> 0.9.24'
-  spec.add_development_dependency 'rubocop', '~> 1.0'
 
   spec.post_install_message = [
     'Thank you for installing Pig CI!',
