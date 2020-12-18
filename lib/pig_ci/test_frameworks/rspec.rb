@@ -14,7 +14,6 @@ class PigCI::TestFrameworks::Rspec
         example.run
         PigCI.enabled = @pig_ci_enabled
       end
-
     end if defined?(::RSpec)
   end
 end
