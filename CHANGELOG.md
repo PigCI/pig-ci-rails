@@ -14,6 +14,7 @@
 
 **Merged pull requests:**
 
+- Updating changelog generator to push to master [\#60](https://github.com/PigCI/pig-ci-rails/pull/60) ([MikeRogers0](https://github.com/MikeRogers0))
 - Upating Rubocop configuration [\#58](https://github.com/PigCI/pig-ci-rails/pull/58) ([MikeRogers0](https://github.com/MikeRogers0))
 - Making GitHub Actions versions less specific [\#57](https://github.com/PigCI/pig-ci-rails/pull/57) ([MikeRogers0](https://github.com/MikeRogers0))
 - Update simplecov requirement from ~\> 0.17.0 to ~\> 0.20.0 [\#56](https://github.com/PigCI/pig-ci-rails/pull/56) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
