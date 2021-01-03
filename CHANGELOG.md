@@ -15,6 +15,7 @@
 **Merged pull requests:**
 
 - Updating changelog generator to push to master [\#60](https://github.com/PigCI/pig-ci-rails/pull/60) ([MikeRogers0](https://github.com/MikeRogers0))
+- Update webmock requirement from ~\> 3.9.3 to ~\> 3.11.0 [\#59](https://github.com/PigCI/pig-ci-rails/pull/59) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Upating Rubocop configuration [\#58](https://github.com/PigCI/pig-ci-rails/pull/58) ([MikeRogers0](https://github.com/MikeRogers0))
 - Making GitHub Actions versions less specific [\#57](https://github.com/PigCI/pig-ci-rails/pull/57) ([MikeRogers0](https://github.com/MikeRogers0))
 - Update simplecov requirement from ~\> 0.17.0 to ~\> 0.20.0 [\#56](https://github.com/PigCI/pig-ci-rails/pull/56) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
@@ -104,14 +105,6 @@
 
 [Full Changelog](https://github.com/PigCI/pig-ci-rails/compare/v0.1.3...v0.1.4)
 
-**Implemented enhancements:**
-
-- Precompile assets before tests run [\#11](https://github.com/PigCI/pig-ci-rails/pull/11) ([MikeRogers0](https://github.com/MikeRogers0))
-
-**Merged pull requests:**
-
-- Create FUNDING.yml [\#10](https://github.com/PigCI/pig-ci-rails/pull/10) ([MikeRogers0](https://github.com/MikeRogers0))
-
 ## [v0.1.3](https://github.com/PigCI/pig-ci-rails/tree/v0.1.3) (2019-08-28)
 
 [Full Changelog](https://github.com/PigCI/pig-ci-rails/compare/v0.1.2...v0.1.3)
@@ -122,6 +115,7 @@
 
 **Merged pull requests:**
 
+- Create FUNDING.yml [\#10](https://github.com/PigCI/pig-ci-rails/pull/10) ([MikeRogers0](https://github.com/MikeRogers0))
 - Adding Dependabot Status badge to readme [\#9](https://github.com/PigCI/pig-ci-rails/pull/9) ([MikeRogers0](https://github.com/MikeRogers0))
 - Fixing duplicate word typo in readme [\#8](https://github.com/PigCI/pig-ci-rails/pull/8) ([MikeRogers0](https://github.com/MikeRogers0))
 - Update webmock requirement from ~\> 3.6.0 to ~\> 3.7.0 [\#6](https://github.com/PigCI/pig-ci-rails/pull/6) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
@@ -132,6 +126,7 @@
 
 **Implemented enhancements:**
 
+- Precompile assets before tests run [\#11](https://github.com/PigCI/pig-ci-rails/pull/11) ([MikeRogers0](https://github.com/MikeRogers0))
 - Add options to control eager loading of rails app [\#3](https://github.com/PigCI/pig-ci-rails/pull/3) ([MikeRogers0](https://github.com/MikeRogers0))
 
 **Fixed bugs:**
