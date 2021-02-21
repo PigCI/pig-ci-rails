@@ -134,7 +134,7 @@ module PigCI
     self.pid = Process.pid
     PigCI::TestFrameworks::Rspec.configure! if defined?(::RSpec)
 
-    block.call(self) if block
+    block&.call(self)
 
     # Add our translations
     load_i18ns!

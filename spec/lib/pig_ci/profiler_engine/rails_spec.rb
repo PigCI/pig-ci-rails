@@ -108,7 +108,7 @@ describe PigCI::ProfilerEngine do
 
     describe "sql.active_record" do
       let(:profiler_database_request) do
-        profiler_engine.profilers.select { |profiler| profiler.instance_of?(PigCI::Profiler::DatabaseRequest) }.first
+        profiler_engine.profilers.find { |profiler| profiler.instance_of?(PigCI::Profiler::DatabaseRequest) }
       end
       let(:payload) { {} }
 
