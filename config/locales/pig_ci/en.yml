@@ -8,7 +8,7 @@ en:
       view_historic_reports: 'Historic Reports'
       footer_html: |
         <p>Generated <time datetime="%{generated_at}">%{generated_at}</time> by PigCI.</p>
-        <p>Support <a href="https://pigci.com/" target="_blank" rel="noopener">PigCI</a> by <a href="https://github.com/apps/pigci/installations/new" target="_blank" rel="noopener">adding us on GitHub</a>.</p>
+        <p>Support <a href="https://pigci.mikerogers.io/" target="_blank" rel="noopener">PigCI</a> by <a href="https://www.buymeacoffee.com/MikeRogers0" target="_blank" rel="noopener">buying me a coffee</a>.</p>
 
     report:
       memory:
