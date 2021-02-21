@@ -1,31 +1,31 @@
 # require 'rubygems'
 
 # Coverage
-require 'simplecov'
+require "simplecov"
 SimpleCov.start do
-  add_filter '/spec/'
+  add_filter "/spec/"
 end
 
-require 'json-schema'
-require 'tmpdir'
-require 'rails'
-require 'active_record/railtie'
+require "json-schema"
+require "tmpdir"
+require "rails"
+require "active_record/railtie"
 
-require 'webmock/rspec'
+require "webmock/rspec"
 WebMock.disable_net_connect!(allow_localhost: true)
 
-require 'support/api_schema_matcher'
+require "support/api_schema_matcher"
 
-require 'support/pig_ci_rails_application'
+require "support/pig_ci_rails_application"
 PigCIRailsApp.new
 
 # Override the PigCI settings so it plays nicely in tests.
-require 'pig_ci'
+require "pig_ci"
 PigCI.output_directory = Pathname.new(Dir.mktmpdir)
 PigCI.tmp_directory = Pathname.new(Dir.mktmpdir)
-PigCI.run_timestamp = '100'
-PigCI.commit_sha1 = 'test_sha1'
-PigCI.head_branch = 'test/branch'
+PigCI.run_timestamp = "100"
+PigCI.commit_sha1 = "test_sha1"
+PigCI.head_branch = "test/branch"
 PigCI.load_i18ns!
 
 RSpec.configure do |config|

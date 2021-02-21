@@ -1,10 +1,11 @@
-name: RuboCop
+name: Standard
 
 on:
   push:
-  pull_request:
+    branches-ignore:
+      - master
 jobs:
-  build:
+  standard:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,12 +18,10 @@ jobs:
       uses: actions/cache@v2
       with:
         path: vendor/bundle
-        key: ${{ runner.os }}-rubocop-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-rubocop-
+        key: ${{ runner.os }}-standardrb
     - name: Install gems
       run: |
         bundle config path vendor/bundle
-        gem install rubocop
-    - name: Run RuboCop
-      run: rubocop --parallel
+        gem install standardrb
+    - name: Run Standard
+      run: standardrb

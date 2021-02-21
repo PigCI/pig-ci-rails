@@ -31,7 +31,7 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
   def precompile_assets!
     # From: https://github.com/rails/sprockets-rails/blob/e9ca63edb6e658cdfcf8a35670c525b369c2ccca/test/test_railtie.rb#L7-L13
     ::Rails.application.load_tasks
-    ::Rake.application['assets:precompile'].execute
+    ::Rake.application["assets:precompile"].execute
   end
 
   def eager_load_rails!
@@ -48,25 +48,25 @@ class PigCI::ProfilerEngine::Rails < ::PigCI::ProfilerEngine
   def make_blank_application_request!
     # Make a call to the root path to load up as much of rails as possible
     # Done within a timezone block as it affects the timezone.
-    Time.use_zone('UTC') do
-      ::Rails.application.call(::Rack::MockRequest.env_for('/'))
+    Time.use_zone("UTC") do
+      ::Rails.application.call(::Rack::MockRequest.env_for("/"))
     end
   end
 
   def attach_listeners!
-    ::ActiveSupport::Notifications.subscribe 'start_processing.action_controller' do |_name, _started, _finished, _unique_id, payload|
+    ::ActiveSupport::Notifications.subscribe "start_processing.action_controller" do |_name, _started, _finished, _unique_id, payload|
       request_key_from_payload!(payload)
 
       profilers.each(&:reset!)
     end
 
-    ::ActiveSupport::Notifications.subscribe 'sql.active_record' do |_name, _started, _finished, _unique_id, payload|
-      if request_key? && PigCI.enabled? && ( !PigCI.ignore_cached_queries? || ( PigCI.ignore_cached_queries? && !payload[:cached] ))
-        profilers.select { |profiler| profiler.class == PigCI::Profiler::DatabaseRequest }.each(&:increment!)
+    ::ActiveSupport::Notifications.subscribe "sql.active_record" do |_name, _started, _finished, _unique_id, payload|
+      if request_key? && PigCI.enabled? && (!PigCI.ignore_cached_queries? || (PigCI.ignore_cached_queries? && !payload[:cached]))
+        profilers.select { |profiler| profiler.instance_of?(PigCI::Profiler::DatabaseRequest) }.each(&:increment!)
       end
     end
 
-    ::ActiveSupport::Notifications.subscribe 'process_action.action_controller' do |_name, _started, _finished, _unique_id, _payload|
+    ::ActiveSupport::Notifications.subscribe "process_action.action_controller" do |_name, _started, _finished, _unique_id, _payload|
       if PigCI.enabled?
         profilers.each do |profiler|
           profiler.log_request!(request_key)

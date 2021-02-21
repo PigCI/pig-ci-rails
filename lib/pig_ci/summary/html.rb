@@ -2,7 +2,7 @@
 # It aims to save to the project root in /pig-ci.
 # It is inspired by https://github.com/colszowka/simplecov-html
 
-require 'erb'
+require "erb"
 
 class PigCI::Summary::HTML < PigCI::Summary
   def initialize(reports:)
@@ -11,15 +11,15 @@ class PigCI::Summary::HTML < PigCI::Summary
 
   def save!
     copy_assets!
-    File.write(index_file_path, template('index').result(binding))
+    File.write(index_file_path, template("index").result(binding))
 
-    puts I18n.t('pig_ci.summary.saved_successfully', output_directory: PigCI.output_directory)
+    puts I18n.t("pig_ci.summary.saved_successfully", output_directory: PigCI.output_directory)
   end
 
   private
 
   def render_report(report)
-    template('report').result(binding)
+    template("report").result(binding)
   end
 
   def timestamps
@@ -27,11 +27,11 @@ class PigCI::Summary::HTML < PigCI::Summary
   end
 
   def template(name)
-    ERB.new(File.read(File.join(File.dirname(__FILE__), '../views', "#{name}.erb")))
+    ERB.new(File.read(File.join(File.dirname(__FILE__), "../views", "#{name}.erb")))
   end
 
   def index_file_path
-    PigCI.output_directory.join('index.html')
+    PigCI.output_directory.join("index.html")
   end
 
   def copy_assets!
@@ -40,10 +40,10 @@ class PigCI::Summary::HTML < PigCI::Summary
   end
 
   def output_assets_directory
-    PigCI.output_directory.join('assets')
+    PigCI.output_directory.join("assets")
   end
 
   def assets_directory
-    File.join(File.dirname(__FILE__), '../../../public/assets')
+    File.join(File.dirname(__FILE__), "../../../public/assets")
   end
 end

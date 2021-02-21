@@ -1,4 +1,4 @@
-require 'get_process_mem'
+require "get_process_mem"
 
 class PigCI::Profiler::Memory < PigCI::Profiler
   def reset!

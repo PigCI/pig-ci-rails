@@ -8,7 +8,7 @@ class PigCI::ProfilerEngine
   end
 
   def request_key?
-    !@request_key.nil? && @request_key != ''
+    !@request_key.nil? && @request_key != ""
   end
 
   def request_captured?
@@ -37,4 +37,4 @@ class PigCI::ProfilerEngine
   end
 end
 
-require 'pig_ci/profiler_engine/rails'
+require "pig_ci/profiler_engine/rails"
