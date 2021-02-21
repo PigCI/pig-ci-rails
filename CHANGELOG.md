@@ -14,6 +14,7 @@
 
 **Merged pull requests:**
 
+- Updating .github/workflows to be simpler [\#67](https://github.com/PigCI/pig-ci-rails/pull/67) ([MikeRogers0](https://github.com/MikeRogers0))
 - Using pigci.mikerogers.io over pigci.com [\#66](https://github.com/PigCI/pig-ci-rails/pull/66) ([MikeRogers0](https://github.com/MikeRogers0))
 - Updating changelog generator to push to master [\#60](https://github.com/PigCI/pig-ci-rails/pull/60) ([MikeRogers0](https://github.com/MikeRogers0))
 - Update webmock requirement from ~\> 3.9.3 to ~\> 3.11.0 [\#59](https://github.com/PigCI/pig-ci-rails/pull/59) ([dependabot[bot]](https://github.com/apps/dependabot))
@@ -91,6 +92,7 @@
 - Adding config.thresholds, this allows standalone usage without pigci.com [\#18](https://github.com/PigCI/pig-ci-rails/pull/18) ([MikeRogers0](https://github.com/MikeRogers0))
 - Update webmock requirement from ~\> 3.7.0 to ~\> 3.8.0 [\#17](https://github.com/PigCI/pig-ci-rails/pull/17) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 - Update rspec requirement from ~\> 3.8.0 to ~\> 3.9.0 [\#16](https://github.com/PigCI/pig-ci-rails/pull/16) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- Updating TravisCI to test latest ruby versions [\#15](https://github.com/PigCI/pig-ci-rails/pull/15) ([MikeRogers0](https://github.com/MikeRogers0))
 - Update rake requirement from ~\> 12.3 to ~\> 13.0 [\#14](https://github.com/PigCI/pig-ci-rails/pull/14) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [v0.1.5](https://github.com/PigCI/pig-ci-rails/tree/v0.1.5) (2019-09-23)
@@ -99,7 +101,6 @@
 
 **Merged pull requests:**
 
-- Updating TravisCI to test latest ruby versions [\#15](https://github.com/PigCI/pig-ci-rails/pull/15) ([MikeRogers0](https://github.com/MikeRogers0))
 - Widen i18n gem version requirement [\#12](https://github.com/PigCI/pig-ci-rails/pull/12) ([mileszim](https://github.com/mileszim))
 
 ## [v0.1.4](https://github.com/PigCI/pig-ci-rails/tree/v0.1.4) (2019-09-10)
