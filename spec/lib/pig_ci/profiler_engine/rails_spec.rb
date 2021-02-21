@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe PigCI::ProfilerEngine do
   let(:profiler_engine) { PigCI::ProfilerEngine::Rails.new }
@@ -9,7 +9,7 @@ describe PigCI::ProfilerEngine do
     allow(Rake.application).to receive(:[]).and_return(double(:rake_task, execute: true))
   end
 
-  describe '#setup!' do
+  describe "#setup!" do
     subject { profiler_engine.setup! }
 
     it do
@@ -19,7 +19,7 @@ describe PigCI::ProfilerEngine do
       subject
     end
 
-    context 'with PigCI.during_setup_eager_load_application set to false' do
+    context "with PigCI.during_setup_eager_load_application set to false" do
       before { PigCI.during_setup_eager_load_application = false }
       after { PigCI.during_setup_eager_load_application = nil }
       it do
@@ -28,7 +28,7 @@ describe PigCI::ProfilerEngine do
       end
     end
 
-    context 'with PigCI.during_setup_make_blank_application_request set to false' do
+    context "with PigCI.during_setup_make_blank_application_request set to false" do
       before { PigCI.during_setup_make_blank_application_request = false }
       after { PigCI.during_setup_make_blank_application_request = nil }
       it do
@@ -37,7 +37,7 @@ describe PigCI::ProfilerEngine do
       end
     end
 
-    context 'with PigCI.during_setup_make_blank_application_request set to false' do
+    context "with PigCI.during_setup_make_blank_application_request set to false" do
       before { PigCI.during_setup_precompile_assets = false }
       after { PigCI.during_setup_precompile_assets = nil }
       it do
@@ -47,54 +47,54 @@ describe PigCI::ProfilerEngine do
     end
   end
 
-  describe '#eager_load_rails!' do
+  describe "#eager_load_rails!" do
     subject { profiler_engine.send(:eager_load_rails!) }
 
-    it 'Below Rails 5.2, it does not eager load the app' do
-      expect(::Rails).to receive(:version).and_return('4.2.5')
+    it "Below Rails 5.2, it does not eager load the app" do
+      expect(::Rails).to receive(:version).and_return("4.2.5")
       expect(::Rails.application).to_not receive(:eager_load!)
       subject
     end
   end
 
-  describe '#make_blank_application_request!' do
+  describe "#make_blank_application_request!" do
     subject { profiler_engine.send(:make_blank_application_request!) }
 
-    it 'does not changes the current timezone' do
+    it "does not changes the current timezone" do
       expect { subject }.to_not change(Time, :zone)
     end
   end
 
-  describe '#profilers' do
+  describe "#profilers" do
     subject { profiler_engine.profilers }
     it { expect(subject.count).to eq(3) }
   end
 
-  describe '#reports' do
+  describe "#reports" do
     subject { profiler_engine.reports }
     it { expect(subject.count).to eq(3) }
   end
 
-  describe '::ActiveSupport::Notifications' do
+  describe "::ActiveSupport::Notifications" do
     let(:payload) do
       {
-        method: 'GET',
-        controller: 'SampleController',
-        action: 'index',
-        format: 'html'
+        method: "GET",
+        controller: "SampleController",
+        action: "index",
+        format: "html"
       }
     end
     before { profiler_engine.setup! }
     after do
-      ActiveSupport::Notifications.unsubscribe('start_processing.action_controller')
-      ActiveSupport::Notifications.unsubscribe('instantiation.active_record')
-      ActiveSupport::Notifications.unsubscribe('sql.active_record')
-      ActiveSupport::Notifications.unsubscribe('process_action.action_controller')
+      ActiveSupport::Notifications.unsubscribe("start_processing.action_controller")
+      ActiveSupport::Notifications.unsubscribe("instantiation.active_record")
+      ActiveSupport::Notifications.unsubscribe("sql.active_record")
+      ActiveSupport::Notifications.unsubscribe("process_action.action_controller")
     end
 
-    describe 'start_processing.action_controller' do
+    describe "start_processing.action_controller" do
       subject do
-        ActiveSupport::Notifications.instrument('start_processing.action_controller', payload) {}
+        ActiveSupport::Notifications.instrument("start_processing.action_controller", payload) {}
       end
 
       it do
@@ -102,18 +102,18 @@ describe PigCI::ProfilerEngine do
           expect(profiler).to receive(:reset!)
         end
 
-        expect { subject }.to change(profiler_engine, :request_key).from(nil).to('GET SampleController#index{format:html}')
+        expect { subject }.to change(profiler_engine, :request_key).from(nil).to("GET SampleController#index{format:html}")
       end
     end
 
-    describe 'sql.active_record' do
+    describe "sql.active_record" do
       let(:profiler_database_request) do
-        profiler_engine.profilers.select { |profiler| profiler.class == PigCI::Profiler::DatabaseRequest }.first
+        profiler_engine.profilers.select { |profiler| profiler.instance_of?(PigCI::Profiler::DatabaseRequest) }.first
       end
       let(:payload) { {} }
 
       subject do
-        ActiveSupport::Notifications.instrument('sql.active_record', payload) {}
+        ActiveSupport::Notifications.instrument("sql.active_record", payload) {}
       end
 
       it do
@@ -121,23 +121,23 @@ describe PigCI::ProfilerEngine do
         subject
       end
 
-      context 'with a request_key set' do
-        before { profiler_engine.request_key = 'request-key' }
+      context "with a request_key set" do
+        before { profiler_engine.request_key = "request-key" }
 
         it do
           expect(profiler_database_request).to receive(:increment!)
           subject
         end
 
-        context 'with a cached query' do
-          let(:payload) { { cached: true } }
+        context "with a cached query" do
+          let(:payload) { {cached: true} }
 
           it do
             expect(profiler_database_request).to receive(:increment!)
             subject
           end
 
-          context 'With PigCI#ignore_cached_queries set to true' do
+          context "With PigCI#ignore_cached_queries set to true" do
             before { PigCI.ignore_cached_queries = true }
             after { PigCI.ignore_cached_queries = false }
 
@@ -148,7 +148,7 @@ describe PigCI::ProfilerEngine do
           end
         end
 
-        context 'with PigCI#enabled set to false' do
+        context "with PigCI#enabled set to false" do
           before { PigCI.enabled = false }
           after { PigCI.enabled = true }
 
@@ -160,14 +160,14 @@ describe PigCI::ProfilerEngine do
       end
     end
 
-    describe 'process_action.action_controller' do
+    describe "process_action.action_controller" do
       let(:payload) {}
       before do
-        profiler_engine.request_key = 'request-key'
+        profiler_engine.request_key = "request-key"
       end
 
       subject do
-        ActiveSupport::Notifications.instrument('process_action.action_controller', payload) {}
+        ActiveSupport::Notifications.instrument("process_action.action_controller", payload) {}
       end
 
       it do
@@ -176,10 +176,10 @@ describe PigCI::ProfilerEngine do
         end
 
         expect { subject }.to change(profiler_engine, :request_captured).from(false).to(true)
-          .and change(profiler_engine, :request_key).from('request-key').to(nil)
+          .and change(profiler_engine, :request_key).from("request-key").to(nil)
       end
 
-      context 'with PigCI#enabled set to false' do
+      context "with PigCI#enabled set to false" do
         before { PigCI.enabled = false }
         after { PigCI.enabled = true }
 
@@ -192,7 +192,7 @@ describe PigCI::ProfilerEngine do
         end
 
         it do
-          expect { subject }.to change(profiler_engine, :request_key).from('request-key').to(nil)
+          expect { subject }.to change(profiler_engine, :request_key).from("request-key").to(nil)
         end
       end
     end

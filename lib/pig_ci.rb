@@ -1,16 +1,16 @@
-require 'active_support'
-require 'active_support/core_ext/string/inflections'
-require 'rake'
+require "active_support"
+require "active_support/core_ext/string/inflections"
+require "rake"
 
-require 'pig_ci/version'
-require 'pig_ci/configuration'
-require 'pig_ci/decorator'
-require 'pig_ci/summary'
-require 'pig_ci/profiler_engine'
-require 'pig_ci/profiler'
-require 'pig_ci/metric'
-require 'pig_ci/report'
-require 'pig_ci/test_frameworks'
+require "pig_ci/version"
+require "pig_ci/configuration"
+require "pig_ci/decorator"
+require "pig_ci/summary"
+require "pig_ci/profiler_engine"
+require "pig_ci/profiler"
+require "pig_ci/metric"
+require "pig_ci/report"
+require "pig_ci/test_frameworks"
 
 module PigCI
   extend self
@@ -31,12 +31,12 @@ module PigCI
 
   attr_writer :tmp_directory
   def tmp_directory
-    @tmp_directory || Pathname.new(Dir.getwd).join('tmp', 'pig-ci')
+    @tmp_directory || Pathname.new(Dir.getwd).join("tmp", "pig-ci")
   end
 
   attr_writer :output_directory
   def output_directory
-    @output_directory || Pathname.new(Dir.getwd).join('pig-ci')
+    @output_directory || Pathname.new(Dir.getwd).join("pig-ci")
   end
 
   attr_accessor :generate_terminal_summary
@@ -102,17 +102,17 @@ module PigCI
 
   attr_writer :commit_sha1
   def commit_sha1
-    @commit_sha1 || ENV['CI_COMMIT_ID'] || ENV['CIRCLE_SHA1'] || ENV['TRAVIS_COMMIT'] || `git rev-parse HEAD`.strip
+    @commit_sha1 || ENV["CI_COMMIT_ID"] || ENV["CIRCLE_SHA1"] || ENV["TRAVIS_COMMIT"] || `git rev-parse HEAD`.strip
   end
 
   attr_writer :head_branch
   def head_branch
-    @head_branch || ENV['CI_BRANCH'] || ENV['CIRCLE_BRANCH'] || ENV['TRAVIS_BRANCH'] || `git rev-parse --abbrev-ref HEAD`.strip
+    @head_branch || ENV["CI_BRANCH"] || ENV["CIRCLE_BRANCH"] || ENV["TRAVIS_BRANCH"] || `git rev-parse --abbrev-ref HEAD`.strip
   end
 
   # Throw deprecation notice for setting API
   def api_key=(value)
-    puts 'DEPRECATED: PigCI.com API has been retired, you no longer need to set config.api_key in your spec/rails_helper.rb file.'
+    puts "DEPRECATED: PigCI.com API has been retired, you no longer need to set config.api_key in your spec/rails_helper.rb file."
   end
 
   attr_writer :locale
@@ -134,7 +134,7 @@ module PigCI
     self.pid = Process.pid
     PigCI::TestFrameworks::Rspec.configure! if defined?(::RSpec)
 
-    block.call(self) if block_given?
+    block.call(self) if block
 
     # Add our translations
     load_i18ns!
@@ -149,7 +149,7 @@ module PigCI
 
   def load_i18ns!
     I18n.available_locales << PigCI.locale
-    I18n.load_path += Dir["#{File.expand_path('../config/locales/pig_ci', __dir__)}/*.{rb,yml}"]
+    I18n.load_path += Dir["#{File.expand_path("../config/locales/pig_ci", __dir__)}/*.{rb,yml}"]
   end
 
   def run_exit_tasks!

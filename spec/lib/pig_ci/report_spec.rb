@@ -1,9 +1,9 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe PigCI::Report do
   let(:report) { PigCI::Report.new }
 
-  describe '::format_row' do
+  describe "::format_row" do
     subject { PigCI::Report.format_row(row) }
     let(:row) do
       {
@@ -24,20 +24,20 @@ describe PigCI::Report do
           min: 1_048_576,
           total: 1_048_576,
           number_of_requests: 1,
-          max_change_percentage: '0.0%'
+          max_change_percentage: "0.0%"
         }
       )
     end
   end
 
-  describe '#max_for' do
-    subject { report.max_for('1000') }
+  describe "#max_for" do
+    subject { report.max_for("1000") }
 
     let(:rows) do
       [
-        { max: 576 },
-        { max: 1_048_576 },
-        { max: 576 }
+        {max: 576},
+        {max: 1_048_576},
+        {max: 576}
       ]
     end
 
@@ -48,10 +48,10 @@ describe PigCI::Report do
     it { is_expected.to eq(1_048_576) }
   end
 
-  describe '#over_threshold_for?' do
+  describe "#over_threshold_for?" do
     subject { report.over_threshold_for?(100) }
 
-    it 'returns true when under threshold' do
+    it "returns true when under threshold" do
       expect(report).to receive(:max_for).with(100).and_return(100).twice
       expect(report).to receive(:threshold).and_return(90).twice
 
@@ -59,28 +59,28 @@ describe PigCI::Report do
     end
   end
 
-  describe '#i18n_scope' do
+  describe "#i18n_scope" do
     subject { report.i18n_scope }
 
-    it { is_expected.to eq('pig_ci.report.report') }
+    it { is_expected.to eq("pig_ci.report.report") }
   end
 
-  context 'i18n_key is memory' do
-    let(:report) { PigCI::Report.new(i18n_key: 'memory') }
+  context "i18n_key is memory" do
+    let(:report) { PigCI::Report.new(i18n_key: "memory") }
 
-    describe '#i18n_name' do
+    describe "#i18n_name" do
       subject { report.i18n_name }
 
-      it { is_expected.to eq('Peak memory per a request') }
+      it { is_expected.to eq("Peak memory per a request") }
     end
 
-    describe '#headings' do
+    describe "#headings" do
       subject { report.headings }
 
-      it { is_expected.to eq(['Key', 'Max (MB)', 'Min (MB)', 'Mean (MB)', 'Requests', '% Change']) }
+      it { is_expected.to eq(["Key", "Max (MB)", "Min (MB)", "Mean (MB)", "Requests", "% Change"]) }
     end
 
-    describe '#threshold' do
+    describe "#threshold" do
       subject { report.threshold }
 
       it { is_expected.to eq(350) }

@@ -7,7 +7,7 @@ class PigCI::Metric::Current
     @to_h = {}
 
     File.foreach(@log_file) do |f|
-      key, value = f.strip.split('|')
+      key, value = f.strip.split("|")
       value = value.to_i
 
       @to_h[key] ||= {

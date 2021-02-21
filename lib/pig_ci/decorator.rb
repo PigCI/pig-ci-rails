@@ -6,4 +6,4 @@ class PigCI::Decorator
   end
 end
 
-require 'pig_ci/decorator/report_terminal_decorator'
+require "pig_ci/decorator/report_terminal_decorator"

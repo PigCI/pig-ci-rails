@@ -2,7 +2,7 @@ class PigCI::Report
   attr_accessor :historical_log_file, :i18n_key
 
   def initialize(historical_log_file: nil, i18n_key: nil, timestamp: nil)
-    @i18n_key = i18n_key || self.class.name.underscore.split('/').last
+    @i18n_key = i18n_key || self.class.name.underscore.split("/").last
     @historical_log_file = historical_log_file || PigCI.tmp_directory.join("#{@i18n_key}.json")
     @timestamp = timestamp || PigCI.run_timestamp
   end
@@ -12,7 +12,7 @@ class PigCI::Report
   end
 
   def i18n_name
-    I18n.t('.name', scope: i18n_scope, locale: PigCI.locale)
+    I18n.t(".name", scope: i18n_scope, locale: PigCI.locale)
   end
 
   def max_for(timestamp)
@@ -30,9 +30,9 @@ class PigCI::Report
   end
 
   def sorted_and_formatted_data_for(timestamp)
-    data_for(timestamp)[@i18n_key.to_sym].sort_by do |data|
+    data_for(timestamp)[@i18n_key.to_sym].sort_by { |data|
       PigCI.report_row_sort_by(data)
-    end.collect do |data|
+    }.collect do |data|
       self.class.format_row(data)
     end
   end
@@ -73,6 +73,6 @@ class PigCI::Report
   end
 end
 
-require 'pig_ci/report/memory'
-require 'pig_ci/report/request_time'
-require 'pig_ci/report/database_request'
+require "pig_ci/report/memory"
+require "pig_ci/report/request_time"
+require "pig_ci/report/database_request"
