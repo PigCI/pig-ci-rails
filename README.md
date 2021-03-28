@@ -1,16 +1,35 @@
-[![Gem Version](https://badge.fury.io/rb/pig-ci-rails.svg)](https://badge.fury.io/rb/pig-ci-rails)
-![RSpec](https://github.com/PigCI/pig-ci-rails/workflows/RSpec/badge.svg)
-![Linters](https://github.com/PigCI/pig-ci-rails/workflows/Linters/badge.svg)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a3ab882cc57c4cc68d7e30f25cad2568)](https://www.codacy.com/app/MikeRogers0/pig-ci-rails?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=PigCI/pig-ci-rails&amp;utm_campaign=Badge_Grade)
-[![Maintainability](https://api.codeclimate.com/v1/badges/d022db58c712d425dba9/maintainability)](https://codeclimate.com/github/PigCI/pig-ci-rails/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/d022db58c712d425dba9/test_coverage)](https://codeclimate.com/github/PigCI/pig-ci-rails/test_coverage)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=PigCI/pig-ci-rails)](https://dependabot.com)
+<h1 align="center">
+  PigCI
+</h1>
 
-# PigCI
+<p align="center">
+Monitor your Ruby Applications metrics (Memory, SQL Requests & Request Time) as part of your test suite. If your app exceeds an acceptable threshold it'll fail the test suite.
+</p>
+
+<p align="center">
+  <a target="_blank" rel="noopener noreferrer" href="https://badge.fury.io/rb/pig-ci-rails">
+    <img src="https://badge.fury.io/rb/pig-ci-rails.svg" alt="Gem Version" style="max-width:100%;">
+  </a>
+  <a target="_blank" rel="noopener noreferrer" href="https://github.com/PigCI/pig-ci-rails/workflows/RSpec/badge.svg">
+    <img src="https://github.com/PigCI/pig-ci-rails/workflows/RSpec/badge.svg" alt="RSpec" style="max-width:100%;">
+  </a>
+  <a target="_blank" rel="noopener noreferrer" href="https://github.com/PigCI/pig-ci-rails/workflows/Linters/badge.svg">
+    <img src="https://github.com/PigCI/pig-ci-rails/workflows/Linters/badge.svg" alt="Linters" style="max-width:100%;">
+  </a>
+</p>
+
+
+## Deprecation notice
+
+This gem is not longer actively maintained, I suggest using theses alternatives instead:
+
+- [TestProf](https://github.com/test-prof/test-prof)
+- [rack-mini-profiler](https://github.com/MiniProfiler/rack-mini-profiler)
+- [RSpec::Benchmark](https://github.com/piotrmurach/rspec-benchmark)
+
+## Sample Output
 
 ![Sample Output of PigCI in TravisCI](https://user-images.githubusercontent.com/325384/78711087-545b6400-790e-11ea-96b7-bb75c119914a.png)
-
-Monitor your Ruby Applications metrics (Memory, SQL Requests & Request Time) as part of your test suite. If your app exceeds an acceptable threshold it'll fail the test suite.
 
 ## Installation
 
@@ -25,13 +44,13 @@ end
 And then execute:
 
 ```bash
-bundle
+$ bundle
 ```
 
 Or install it yourself as:
 
 ```bash
-gem install pig-ci-rails
+$ gem install pig-ci-rails
 ```
 
 ## Usage
@@ -145,15 +164,6 @@ end
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## TODO
-
-Features I'd like to add at some point:
-
-* Add a conditional to only save metrics when all tests pass. So if a test suite is failing, it won't affect future stats.
-* HTML output to include branch - Right now they're just timestamps which makes filtering hard.
-* https://rubydoc.info/gems/yard/file/docs/GettingStarted.md - Document the gem so it's easier for people to jump on.
-* Support ActionCable (when requests have no key).
 
 ## Contributing
 
