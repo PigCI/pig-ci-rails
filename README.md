@@ -1,16 +1,29 @@
-[![Gem Version](https://badge.fury.io/rb/pig-ci-rails.svg)](https://badge.fury.io/rb/pig-ci-rails)
-![RSpec](https://github.com/PigCI/pig-ci-rails/workflows/RSpec/badge.svg)
-![Linters](https://github.com/PigCI/pig-ci-rails/workflows/Linters/badge.svg)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a3ab882cc57c4cc68d7e30f25cad2568)](https://www.codacy.com/app/MikeRogers0/pig-ci-rails?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=PigCI/pig-ci-rails&amp;utm_campaign=Badge_Grade)
-[![Maintainability](https://api.codeclimate.com/v1/badges/d022db58c712d425dba9/maintainability)](https://codeclimate.com/github/PigCI/pig-ci-rails/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/d022db58c712d425dba9/test_coverage)](https://codeclimate.com/github/PigCI/pig-ci-rails/test_coverage)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=PigCI/pig-ci-rails)](https://dependabot.com)
+<h1 align="center">
+  PigCI
+</h1>
 
-# PigCI
+<div align="center">
+  [![Gem Version](https://badge.fury.io/rb/pig-ci-rails.svg)](https://badge.fury.io/rb/pig-ci-rails)
+  ![RSpec](https://github.com/PigCI/pig-ci-rails/workflows/RSpec/badge.svg)
+  ![Linters](https://github.com/PigCI/pig-ci-rails/workflows/Linters/badge.svg)
+</div>
+
+## Summary
+
+Monitor your Ruby Applications metrics (Memory, SQL Requests & Request Time) as part of your test suite. If your app exceeds an acceptable threshold it'll fail the test suite.
 
 ![Sample Output of PigCI in TravisCI](https://user-images.githubusercontent.com/325384/78711087-545b6400-790e-11ea-96b7-bb75c119914a.png)
 
-Monitor your Ruby Applications metrics (Memory, SQL Requests & Request Time) as part of your test suite. If your app exceeds an acceptable threshold it'll fail the test suite.
+## Notice
+
+**Deprecation notice: This gem is not longer actively maintained**
+
+Alternatives:
+
+- [TestProf](https://github.com/test-prof/test-prof)
+- [rack-mini-profiler](https://github.com/MiniProfiler/rack-mini-profiler)
+- [RSpec::Benchmark](https://github.com/piotrmurach/rspec-benchmark)
+
 
 ## Installation
 
