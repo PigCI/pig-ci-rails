@@ -2,11 +2,17 @@
   PigCI
 </h1>
 
-<div align="center">
-  [![Gem Version](https://badge.fury.io/rb/pig-ci-rails.svg)](https://badge.fury.io/rb/pig-ci-rails)
-  ![RSpec](https://github.com/PigCI/pig-ci-rails/workflows/RSpec/badge.svg)
-  ![Linters](https://github.com/PigCI/pig-ci-rails/workflows/Linters/badge.svg)
-</div>
+<p align="center">
+  <a target="_blank" rel="noopener noreferrer" href="https://badge.fury.io/rb/pig-ci-rails">
+    <img src="https://badge.fury.io/rb/pig-ci-rails.svg" alt="Gem Version" style="max-width:100%;">
+  </a>
+  <a target="_blank" rel="noopener noreferrer" href="https://github.com/PigCI/pig-ci-rails/workflows/RSpec/badge.svg">
+    <img src="https://github.com/PigCI/pig-ci-rails/workflows/RSpec/badge.svg" alt="RSpec" style="max-width:100%;">
+  </a>
+  <a target="_blank" rel="noopener noreferrer" href="https://github.com/PigCI/pig-ci-rails/workflows/Linters/badge.svg">
+    <img src="https://github.com/PigCI/pig-ci-rails/workflows/Linters/badge.svg" alt="Linters" style="max-width:100%;">
+  </a>
+</p>
 
 ## Summary
 
