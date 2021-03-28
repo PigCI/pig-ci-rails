@@ -44,13 +44,13 @@ end
 And then execute:
 
 ```bash
-bundle
+$ bundle
 ```
 
 Or install it yourself as:
 
 ```bash
-gem install pig-ci-rails
+$ gem install pig-ci-rails
 ```
 
 ## Usage
@@ -164,15 +164,6 @@ end
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## TODO
-
-Features I'd like to add at some point:
-
-* Add a conditional to only save metrics when all tests pass. So if a test suite is failing, it won't affect future stats.
-* HTML output to include branch - Right now they're just timestamps which makes filtering hard.
-* https://rubydoc.info/gems/yard/file/docs/GettingStarted.md - Document the gem so it's easier for people to jump on.
-* Support ActionCable (when requests have no key).
 
 ## Contributing
 
