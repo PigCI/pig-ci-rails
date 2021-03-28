@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/PigCI/pig-ci-rails/tree/HEAD)
+## [v1.1.0](https://github.com/PigCI/pig-ci-rails/tree/v1.1.0) (2021-03-28)
 
-[Full Changelog](https://github.com/PigCI/pig-ci-rails/compare/v1.0.1...HEAD)
+[Full Changelog](https://github.com/PigCI/pig-ci-rails/compare/v1.0.1...v1.1.0)
 
 **Fixed bugs:**
 
