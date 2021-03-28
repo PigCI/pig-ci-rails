@@ -3,6 +3,10 @@
 </h1>
 
 <p align="center">
+Monitor your Ruby Applications metrics (Memory, SQL Requests & Request Time) as part of your test suite. If your app exceeds an acceptable threshold it'll fail the test suite.
+</p>
+
+<p align="center">
   <a target="_blank" rel="noopener noreferrer" href="https://badge.fury.io/rb/pig-ci-rails">
     <img src="https://badge.fury.io/rb/pig-ci-rails.svg" alt="Gem Version" style="max-width:100%;">
   </a>
@@ -14,22 +18,18 @@
   </a>
 </p>
 
-## Summary
 
-Monitor your Ruby Applications metrics (Memory, SQL Requests & Request Time) as part of your test suite. If your app exceeds an acceptable threshold it'll fail the test suite.
+## Deprecation notice
 
-![Sample Output of PigCI in TravisCI](https://user-images.githubusercontent.com/325384/78711087-545b6400-790e-11ea-96b7-bb75c119914a.png)
-
-## Notice
-
-**Deprecation notice: This gem is not longer actively maintained**
-
-Alternatives:
+This gem is not longer actively maintained, I suggest using theses alternatives instead:
 
 - [TestProf](https://github.com/test-prof/test-prof)
 - [rack-mini-profiler](https://github.com/MiniProfiler/rack-mini-profiler)
 - [RSpec::Benchmark](https://github.com/piotrmurach/rspec-benchmark)
 
+## Sample Output
+
+![Sample Output of PigCI in TravisCI](https://user-images.githubusercontent.com/325384/78711087-545b6400-790e-11ea-96b7-bb75c119914a.png)
 
 ## Installation
 
