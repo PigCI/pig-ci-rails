@@ -8,12 +8,9 @@
 
 - Only eager loading app in Rails \>5.0 [\#38](https://github.com/PigCI/pig-ci-rails/pull/38) ([MikeRogers0](https://github.com/MikeRogers0))
 
-**Closed issues:**
-
-- Rails 4 support? [\#29](https://github.com/PigCI/pig-ci-rails/issues/29)
-
 **Merged pull requests:**
 
+- Adding End Of Life notice [\#68](https://github.com/PigCI/pig-ci-rails/pull/68) ([MikeRogers0](https://github.com/MikeRogers0))
 - Updating .github/workflows to be simpler [\#67](https://github.com/PigCI/pig-ci-rails/pull/67) ([MikeRogers0](https://github.com/MikeRogers0))
 - Using pigci.mikerogers.io over pigci.com [\#66](https://github.com/PigCI/pig-ci-rails/pull/66) ([MikeRogers0](https://github.com/MikeRogers0))
 - Updating changelog generator to push to master [\#60](https://github.com/PigCI/pig-ci-rails/pull/60) ([MikeRogers0](https://github.com/MikeRogers0))
@@ -38,11 +35,6 @@
 ## [v1.0.1](https://github.com/PigCI/pig-ci-rails/tree/v1.0.1) (2020-05-11)
 
 [Full Changelog](https://github.com/PigCI/pig-ci-rails/compare/v1.0.0...v1.0.1)
-
-**Closed issues:**
-
-- Ignore specific specs? [\#30](https://github.com/PigCI/pig-ci-rails/issues/30)
-- False positives with cached queries  [\#26](https://github.com/PigCI/pig-ci-rails/issues/26)
 
 **Merged pull requests:**
 
